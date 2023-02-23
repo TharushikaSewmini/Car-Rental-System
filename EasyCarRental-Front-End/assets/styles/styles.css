@@ -1,0 +1,35 @@
+body{
+    background-color: white;
+}
+
+.card{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    border-radius: 1.5rem;
+    flex-direction: row;
+}
+
+#lImage {
+    background: linear-gradient(to right,#00A0F0 75%, #EEEFF1 25%);
+    border-radius: 1.5rem 0 0 1.5rem;
+}
+
+#loginImage {
+    width:50%;
+    height: 50%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.card-body {
+    width: 80%;
+    background-color: #EEEFF1;
+    border-radius: 0 1.5rem 1.5rem 0;
+}
+
