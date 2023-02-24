@@ -31,11 +31,17 @@ img {
 .cName{
     height: 35px;
     font-size: 21px;
+    font-family: sans-serif;
     color: white;
     background-color: #a52834;
 }
 
-h2{
-    font-size: 35px;
-    font-family: sans-serif;
+thead{
+    background-color: #2774AE;
+    color: white;
+    text-align: center;
+}
+
+th, td, tr, tbody {
+    border: 1px solid #dbe3e7 !important;
 }

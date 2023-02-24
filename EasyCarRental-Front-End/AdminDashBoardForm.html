@@ -62,12 +62,15 @@
     </div>
 </nav>
 
+
+<main class="container-fluid">
 <!----------Page Header---------->
 <h1 class="mt-3" style="text-align: center">Admin DashBoard</h1>
 
 <!---------DashBoard Page------------------>
     <!----Reg Users, Available Cars, Available Drivers, Total Bookings, Active Bookings, Maintenance Cars count----->
-    <div class="container-fluid mt-3">
+    <section class="mt-3" id="dashBoardContent">
+
         <div class="row gy-3 mx-4" id="displayContainer">
             <div class="col-3 me-3">
                 <div class="card mt-3 col-10 text-center mx-auto">
@@ -117,7 +120,112 @@
                 </div>
             </div>
         </div>
-    </div>
+
+    </section>
+
+<!--------------Car Page--------------->
+    <section class="container" id="CarContent">
+        <h1 class="mt-3" style="text-align: center">Cars Management</h1>
+
+        <!----------Car Form-------->
+        <form class="row g-3">
+            <div class="col-md-3">
+                <label for="regNo" class="form-label">Registration No</label>
+                <input type="text" class="form-control" id="regNo" name="regNo">
+            </div>
+            <div class="col-md-4">
+                <label for="brand" class="form-label">Brand</label>
+                <input type="text" class="form-control" id="brand" name="brand">
+            </div>
+
+            <div class="col-md-5 ms-auto" id="carImage" style="background-color: lightskyblue;">
+                <img src="..." alt="">
+            </div>
+
+            <div class="col-3">
+                <label for="noOfPassengers" class="form-label">No of Passengers</label>
+                <input type="number" class="form-control" id="noOfPassengers" name="noOfPassengers">
+            </div>
+
+            <div class="col-md-4">
+                <label for="type" class="form-label">Type</label>
+                <select id="type" class="form-select" name="type">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                </select>
+            </div>
+
+            <div class="col-md-4"></div>
+
+            <div class="col-md-3">
+                <label for="transmissionType" class="form-label">Transmission Type</label>
+                <select id="transmissionType" class="form-select" name="transmissionType">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="fuelType" class="form-label">Fuel Type</label>
+                <select id="fuelType" class="form-select" name="fuelType">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                </select>
+            </div>
+
+            <div class="col-3">
+                <label for="color" class="form-label">Color</label>
+                <input type="color" class="form-control" id="color" name="color">
+            </div>
+
+            <div class="col-md-3">
+                <label for="dailyRate" class="form-label">Daily Rate</label>
+                <input type="number" class="form-control" id="dailyRate" name="dailyRate">
+            </div>
+
+            <div class="col-md-3">
+                <label for="monthlyRate" class="form-label">Monthly Rate</label>
+                <input type="number" class="form-control" id="monthlyRate" name="monthlyRate">
+            </div>
+
+            <div class="col-12">
+                <button type="button" class="btn btn-primary" id="btnSaveCar">Save</button>
+            </div>
+        </form>
+
+
+        <!-------Car Table------->
+        <section class="mt-4">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Reg No</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">No of Passengers</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Transmission Type</th>
+                    <th scope="col">Fuel Type</th>
+                    <th scope="col">Daily Rate</th>
+                    <th scope="col">Monthly Rate</th>
+                    <th scope="col">Free KM for a Day</th>
+                    <th scope="col">Free KM for a Month</th>
+                    <th scope="col">Price for Extra KM</th>
+                </tr>
+                </thead>
+                <tbody id="tblCar">
+                <tr></tr>
+                </tbody>
+            </table>
+        </section>
+
+    </section>
+
+
+
+
+</main>
 
 <script src="assets/js/jquery-3.6.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
