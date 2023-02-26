@@ -324,7 +324,7 @@
     <section>
         <h1 class="mt-3" style="text-align: center">Rent Request Management</h1>
 
-        <!--Customer Request Table-->
+        <!--Rent Request Table-->
         <section class="mt-4">
             <table class="table table-striped">
                 <thead style="background-color: #8E44AD; color: white;">
@@ -345,6 +345,98 @@
                 <tr></tr>
                 </tbody>
             </table>
+        </section>
+
+    </section>
+
+    <!--Booking Page-->
+    <section class="container" id="BookingContent">
+        <h1 class="mt-3" style="text-align: center">Booking Management</h1>
+
+        <!--Booking Table-->
+        <section class="mt-4">
+            <table class="table table-striped">
+                <thead style="background-color: #8E44AD; color: white;">
+                <tr>
+                    <th scope="col">Booking ID</th>
+                    <th scope="col">Booking Date</th>
+                    <th scope="col">Customer ID</th>
+                    <th scope="col">Car ID</th>
+                    <th scope="col">Driver ID</th>
+                    <th scope="col">Pickup Date</th>
+                    <th scope="col">Return Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody id="tblBooking">
+                <tr></tr>
+                </tbody>
+            </table>
+        </section>
+
+    </section>
+
+    <section  class="container" id="PaymentContent">
+        <h1 class="mt-3" style="text-align: center">Payment Management</h1>
+
+        <!--Driver form-->
+        <section id="paymentForm">
+            <div class="mb-1">
+                <label for="txtBookingID" class="form-label fw-bold">Booking ID</label>
+                <input class="form-control" type="text" id="txtBookingID" name="bookingId">
+                <span class="control-error text-danger" style="font-size: 13px;" id="lblBookingID"></span>
+            </div>
+            <div class="mb-1 mt-1">
+                <label for="txtDate" class="form-label fw-bold">Date</label>
+                <input class="form-control" type="text" id="txtDate" name="date">
+                <span class="control-error text-danger" style="font-size: 13px;" id="lblDate"></span>
+            </div>
+            <div class="mb-1 mt-1">
+                <label for="txtPickupDate" class="form-label fw-bold">Pickup Date</label>
+                <input class="form-control" type="text" id="txtPickupDate" name="pickupDate">
+                <span class="control-error text-danger" style="font-size: 13px;" id="lblPickupDate"></span>
+            </div>
+            <div class="mb-1 mt-1">
+                <label for="txtReturnDate" class="form-label fw-bold">Return Date</label>
+                <input class="form-control" id="txtReturnDate" type="text" name="return Date">
+                <span class="control-error text-danger" style="font-size: 13px;" id="lblReturnDate"></span>
+            </div>
+
+            <div class="mb-1 mt-1">
+                <label for="txtViewDriverId" class="form-label fw-bold">Driver ID</label>
+                <input class="form-control" id="txtViewDriverId" type="text" name="driverId">
+                <span class="control-error text-danger" style="font-size: 13px;" id="lblViewDriverId"></span>
+            </div>
+
+            <div class="mb-1 mt-1">
+                <label for="txtDamageCost" class="form-label fw-bold">Damage Cost</label>
+                <input class="form-control" id="txtDamageCost" type="text" name="damageCost">
+                <span class="control-error text-danger" style="font-size: 13px;" id="lblDamageCost"></span>
+            </div>
+
+            <div class="mb-1 mt-1">
+                <label for="txtRentalCost" class="form-label fw-bold">Rental Cost</label>
+                <input class="form-control" id="txtRentalCost" type="text" name="rentalCost">
+                <span class="control-error text-danger" style="font-size: 13px;" id="lblRentalCost"></span>
+            </div>
+
+            <div class="mb-1 mt-1">
+                <label for="txtTotal" class="form-label fw-bold">Total Cost</label>
+                <input class="form-control" id="txtTotal" type="text" name="total">
+                <span class="control-error text-danger" style="font-size: 13px;" id="lblTotal"></span>
+            </div>
+
+            <div class="mb-1 mt-1">
+                <label for="txtBalance" class="form-label fw-bold">Balance</label>
+                <input class="form-control" id="txtBalance" type="text" name="balance">
+                <span class="control-error text-danger" style="font-size: 13px;" id="lblBalance"></span>
+            </div>
+
+            <div class="mt-4">
+                <button type="button" class="btn btn-success" id="btnCalculatePayment">Calculate Payment</button>
+                <button type="button" class="btn btn-primary" id="btnSubmitPayment">Payment Submit</button>
+                <button type="button" class="btn btn-danger" id="btnCancel">Cancel</button>
+            </div>
         </section>
     </section>
 
