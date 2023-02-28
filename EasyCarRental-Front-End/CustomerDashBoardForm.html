@@ -110,6 +110,70 @@
             </table>
         </section>
     </section>
+
+
+    <!--Rent Request Page-->
+    <section class="container" id="RentRequestContent">
+        <h1 class="mt-3" style="text-align: center">Rent Request</h1>
+
+        <!----------Rent Request Form-------->
+        <form class="row g-3">
+            <div class="col-md-3">
+                <label for="txtRegNo" class="form-label">Reg No</label>
+                <input type="text" class="form-control" id="txtRegNo" name="regNo">
+            </div>
+            <div class="col-md-3">
+                <label for="txtBrand" class="form-label">Brand</label>
+                <input type="text" class="form-control" id="txtBrand" name="brand">
+            </div>
+            <div class="col-md-4">
+                <label for="txtType" class="form-label">Type</label>
+                <input type="text" class="form-control" id="txtType" name="type">
+            </div>
+            <div class="col-md-4">
+                <label for="txtColor" class="form-label">Color</label>
+                <input type="text" class="form-control" id="txtColor" name="color">
+            </div>
+<!--            <div class="col-md-4">-->
+<!--                <label for="txtCustomerEmail" class="form-label">Email</label>-->
+<!--                <input type="text" class="form-control" id="txtCustomerEmail" name="email">-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <label for="txtCustomerNIC" class="form-label">NIC</label>-->
+<!--                <input type="text" class="form-control" id="txtCustomerNIC" name="nic">-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <label for="txtCustomerDrivingLicenseNo" class="form-label">Address</label>-->
+<!--                <input type="text" class="form-control" id="txtCustomerDrivingLicenseNo" name="drivingLicenseNo">-->
+<!--            </div>-->
+<!--            <div class="col-12">-->
+<!--                <button type="button" class="btn btn-primary" id="btnSaveCustomer">Save</button>-->
+<!--                <button type="button" class="btn btn-danger" id="btnCancelCustomer">Cancel</button>-->
+<!--            </div>-->
+        </form>
+
+        <!--Rent Request Table-->
+        <section class="mt-4">
+            <table class="table table-striped">
+                <thead style="background-color: #8E44AD; color: white;">
+                <tr>
+                    <th scope="col">Booking ID</th>
+                    <th scope="col">Booking Date</th>
+                    <th scope="col">Customer ID</th>
+                    <th scope="col">Car ID</th>
+                    <th scope="col">Driver ID</th>
+                    <th scope="col">Pickup Date</th>
+                    <th scope="col">Return Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody id="tblBooking">
+                <tr></tr>
+                </tbody>
+            </table>
+        </section>
+
+    </section>
 </main>
 </body>
 </html>
