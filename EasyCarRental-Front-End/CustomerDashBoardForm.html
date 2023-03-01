@@ -134,22 +134,51 @@
                 <label for="txtColor" class="form-label">Color</label>
                 <input type="text" class="form-control" id="txtColor" name="color">
             </div>
-<!--            <div class="col-md-4">-->
-<!--                <label for="txtCustomerEmail" class="form-label">Email</label>-->
-<!--                <input type="text" class="form-control" id="txtCustomerEmail" name="email">-->
-<!--            </div>-->
-<!--            <div class="col-md-4">-->
-<!--                <label for="txtCustomerNIC" class="form-label">NIC</label>-->
-<!--                <input type="text" class="form-control" id="txtCustomerNIC" name="nic">-->
-<!--            </div>-->
-<!--            <div class="col-md-4">-->
-<!--                <label for="txtCustomerDrivingLicenseNo" class="form-label">Address</label>-->
-<!--                <input type="text" class="form-control" id="txtCustomerDrivingLicenseNo" name="drivingLicenseNo">-->
-<!--            </div>-->
-<!--            <div class="col-12">-->
-<!--                <button type="button" class="btn btn-primary" id="btnSaveCustomer">Save</button>-->
-<!--                <button type="button" class="btn btn-danger" id="btnCancelCustomer">Cancel</button>-->
-<!--            </div>-->
+            <div class="col-md-4">
+                <label for="txtTransmissionType" class="form-label">Email</label>
+                <input type="text" class="form-control" id="txtTransmissionType" name="transmissionType">
+            </div>
+            <div class="col-md-4">
+                <label for="txtNoOfPassengers" class="form-label">NIC</label>
+                <input type="text" class="form-control" id="txtNoOfPassengers" name="nic">
+            </div>
+
+            <div class="col-md-4">
+                <label for="fuelType" class="form-label">Fuel Type</label>
+                <select id="fuelType" class="form-select" name="fuelType">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                </select>
+            </div>
+
+            <div class="col-3">
+                <label for="txtPriceExtraKM" class="form-label">Price Extra KM</label>
+                <input type="color" class="form-control" id="txtPriceExtraKM" name="priceExtraKM">
+            </div>
+
+            <div class="col-md-3">
+                <label for="dailyRate" class="form-label">Daily Rate</label>
+                <input type="number" class="form-control" id="dailyRate" name="dailyRate">
+            </div>
+
+            <div class="col-md-3">
+                <label for="monthlyRate" class="form-label">Monthly Rate</label>
+                <input type="number" class="form-control" id="monthlyRate" name="monthlyRate">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtPickupDate" class="form-label">Pickup Date</label>
+                <input type="number" class="form-control" id="txtPickupDate" name="pickupDate">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtReturnDate" class="form-label">Return Date</label>
+                <input type="number" class="form-control" id="txtReturnDate" name="returnDate">
+            </div>
+
+            <div class="col-12">
+                <button type="button" class="btn btn-primary" id="btnSendRequest">Send</button>
+            </div>
         </form>
 
         <!--Rent Request Table-->
