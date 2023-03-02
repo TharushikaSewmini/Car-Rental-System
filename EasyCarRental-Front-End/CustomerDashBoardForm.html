@@ -250,6 +250,52 @@
             </table>
         </section>
 
+
+
+        <!----------Loss Damage Paid Form-------->
+        <form class="row g-3">
+            <div class="col-md-3">
+                <label for="txtViewRegNo" class="form-label">Reg No</label>
+                <input type="text" class="form-control" id="txtViewRegNo" name="regNo">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtViewPickupDate" class="form-label">Pickup Date</label>
+                <input type="number" class="form-control" id="txtViewPickupDate" name="pickupDate">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtViewReturnDate" class="form-label">Return Date</label>
+                <input type="number" class="form-control" id="txtViewReturnDate" name="returnDate">
+            </div>
+
+            <div class="col-12">
+                <button type="button" class="btn btn-primary" id="btnPaidForCar">Paid for Car</button>
+            </div>
+    </section>
+
+
+    <!--Payment Page-->
+    <section class="container" id="PaymentContent">
+        <h1 class="mt-3" style="text-align: center">Payment</h1>
+
+        <!--Payment Table-->
+        <section class="mt-4">
+            <table class="table table-striped">
+                <thead style="background-color: #8E44AD; color: white;">
+                <tr>
+                    <th scope="col">Payment ID</th>
+                    <th scope="col">Payment Date</th>
+                    <th scope="col">Booking ID</th>
+                    <th scope="col">Amount</th>
+                </tr>
+                </thead>
+                <tbody id="tblPayment">
+                <tr></tr>
+                </tbody>
+            </table>
+        </section>
+
         <div class="col-12">
             <button type="button" class="btn btn-primary" id="btnPaid">Paid</button>
         </div>
