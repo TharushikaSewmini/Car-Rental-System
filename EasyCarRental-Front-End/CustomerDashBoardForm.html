@@ -130,17 +130,15 @@
                 <label for="txtType" class="form-label">Type</label>
                 <input type="text" class="form-control" id="txtType" name="type">
             </div>
-            <div class="col-md-4">
-                <label for="txtColor" class="form-label">Color</label>
-                <input type="text" class="form-control" id="txtColor" name="color">
-            </div>
-            <div class="col-md-4">
-                <label for="txtTransmissionType" class="form-label">Email</label>
-                <input type="text" class="form-control" id="txtTransmissionType" name="transmissionType">
-            </div>
+
             <div class="col-md-4">
                 <label for="txtNoOfPassengers" class="form-label">NIC</label>
                 <input type="text" class="form-control" id="txtNoOfPassengers" name="nic">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtTransmissionType" class="form-label">Email</label>
+                <input type="text" class="form-control" id="txtTransmissionType" name="transmissionType">
             </div>
 
             <div class="col-md-4">
@@ -151,11 +149,6 @@
                 </select>
             </div>
 
-            <div class="col-3">
-                <label for="txtPriceExtraKM" class="form-label">Price Extra KM</label>
-                <input type="color" class="form-control" id="txtPriceExtraKM" name="priceExtraKM">
-            </div>
-
             <div class="col-md-3">
                 <label for="dailyRate" class="form-label">Daily Rate</label>
                 <input type="number" class="form-control" id="dailyRate" name="dailyRate">
@@ -164,6 +157,26 @@
             <div class="col-md-3">
                 <label for="monthlyRate" class="form-label">Monthly Rate</label>
                 <input type="number" class="form-control" id="monthlyRate" name="monthlyRate">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtFreeKMForDay" class="form-label">Free KM for Day</label>
+                <input type="text" class="form-control" id="txtFreeKMForDay" name="freeKMForDay">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtFreeKMForMonth" class="form-label">Free KM for Month</label>
+                <input type="text" class="form-control" id="txtFreeKMForMonth" name="freeKMForMonth">
+            </div>
+
+            <div class="col-3">
+                <label for="txtPriceExtraKM" class="form-label">Price Extra KM</label>
+                <input type="text" class="form-control" id="txtPriceExtraKM" name="priceExtraKM">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtColor" class="form-label">Color</label>
+                <input type="color" class="form-control" id="txtColor" name="color">
             </div>
 
             <div class="col-md-3">
@@ -178,10 +191,45 @@
 
             <div class="col-12">
                 <button type="button" class="btn btn-primary" id="btnSendRequest">Send</button>
+                <button type="button" class="btn btn-danger" id="btnCancelRequest">Cancel</button>
             </div>
         </form>
 
         <!--Rent Request Table-->
+        <section class="mt-4">
+            <table class="table table-striped">
+                <thead style="background-color: #8E44AD; color: white;">
+                <tr>
+                    <th scope="col">Rent Request ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Reg No</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">No of Passengers</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Transmission Type</th>
+                    <th scope="col">Fuel Type</th>
+                    <th scope="col">Daily Rate</th>
+                    <th scope="col">Monthly Rate</th>
+                    <th scope="col">Free KM for a Day</th>
+                    <th scope="col">Free KM for a Month</th>
+                    <th scope="col">Price for Extra KM</th>
+                </tr>
+                </thead>
+                <tbody id="tblRentRequest">
+                <tr></tr>
+                </tbody>
+            </table>
+        </section>
+
+    </section>
+
+    <!--Rent Response Page-->
+    <section class="container" id="RentResponseContent">
+        <h1 class="mt-3" style="text-align: center">Rent Response</h1>
+
+        <!--Rent Response Table-->
         <section class="mt-4">
             <table class="table table-striped">
                 <thead style="background-color: #8E44AD; color: white;">
@@ -193,15 +241,18 @@
                     <th scope="col">Driver ID</th>
                     <th scope="col">Pickup Date</th>
                     <th scope="col">Return Date</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Accepted/Denied</th>
                 </tr>
                 </thead>
-                <tbody id="tblBooking">
+                <tbody id="tblRentResponse">
                 <tr></tr>
                 </tbody>
             </table>
         </section>
 
+        <div class="col-12">
+            <button type="button" class="btn btn-primary" id="btnPaid">Paid</button>
+        </div>
     </section>
 </main>
 </body>
