@@ -1,5 +1,6 @@
-body{
-    background-color: white;
+#background{
+    background-image: linear-gradient(to right, #9DACCA , #EEEFF1 20%, #B8E4C9);
+    height: 100vh;
 }
 
 .card{
@@ -28,8 +29,21 @@ body{
 }
 
 .card-body {
-    width: 80%;
+    width: 70%;
     background-color: #EEEFF1;
     border-radius: 0 1.5rem 1.5rem 0;
+}
+
+label{
+    font-size: 17px;
+}
+
+input{
+    height: 45px;
+}
+
+button{
+    height: 45px;
+    background: #2664A4 !important;
 }
 
