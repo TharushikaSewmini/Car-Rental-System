@@ -1,5 +1,5 @@
 #background{
-    background-image: linear-gradient(to right, #9DACCA , #EEEFF1 50%, #95b7e8);
+    background-image: linear-gradient(to right,#EEEFF1,  #7EC2E5 50%, #EEEFF1);
     height: 100vh;
 }
 
@@ -12,6 +12,9 @@
     margin: auto;
     border-radius: 1.5rem;
     flex-direction: row;
+    /*border: none;*/
+    box-shadow: #88b2c7 2px 3px 10px 2px;
+
 }
 
 #lImage {
@@ -34,7 +37,7 @@
     border-radius: 0 1.5rem 1.5rem 0;
 }
 
-label{
+.form-label{
     font-size: 17px;
 }
 
@@ -42,8 +45,11 @@ input{
     height: 45px;
 }
 
-button{
+#btnAdminLogin{
     height: 45px;
+    font-size: 17px;
     background: #2664A4 !important;
+    border: none;
+    box-shadow: #c3c5c6 1px 4px 4px;
 }
 

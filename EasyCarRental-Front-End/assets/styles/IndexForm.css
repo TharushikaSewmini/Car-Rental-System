@@ -1,0 +1,40 @@
+pre{
+    display: inline-block;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 17px;
+    overflow: unset;
+}
+
+.list-group-item{
+    border: none !important;
+}
+
+.list-group{
+    flex-direction: row;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#carDetails>li{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.card{
+    align-items: center;
+}
+
+.card-img-top{
+    max-width: 80%;
+    align-items: center;
+}
+
+.card-body{
+    position: relative;
+    left: 0;
+}
+
+.card-footer{
+    background-color: white;
+}
