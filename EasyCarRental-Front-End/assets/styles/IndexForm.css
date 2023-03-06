@@ -38,3 +38,18 @@ pre{
 .card-footer{
     background-color: white;
 }
+
+footer{
+    background-color: #23262b;
+    height: 70px;
+    position: relative;
+}
+
+footer>small{
+    color: #b6b6b6;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}

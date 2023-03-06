@@ -23,3 +23,11 @@ thead{
 th, td, tr, tbody {
     border: 1px solid #dbe3e7 !important;
 }
+
+.modal-footer{
+    justify-content: center;
+}
+
+#btnSignUp{
+    background-color: #2664A4;
+}
