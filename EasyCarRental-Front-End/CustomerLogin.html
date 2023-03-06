@@ -11,28 +11,107 @@
     <link href="assets/styles/CustomerLoginForm.css" rel="stylesheet">
 </head>
 <body>
-<main class="container-fluid" id="background">
+<main class="container-fluid" id="loginFormContainer">
     <div class="card" style="width: 70rem; height: 35rem">
         <div class="card-img-top mx-auto" style="width: 85%;" id="lImage">
             <img src="assets/images/Car.png" id="loginImage" alt="Login Page Image">
         </div>
         <div class="card-body">
-            <h1 class="card-title mt-5" style="text-align: center; font-size: 45px; width: 91.66666667%;">Sign in</h1>
-            <form class="row g-4 mt-4">
+            <h1 class="card-title mt-4">Sign in</h1>
+            <form class="row g-4 mt-3">
                 <div class="col-md-11">
                     <label for="inputUserName" class="form-label">User Name</label>
                     <input type="text" class="form-control" id="inputUserName">
                 </div>
                 <div class="col-md-11">
-                    <label for="inputPassword4" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="inputPassword4">
+                    <label for="inputPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword">
                 </div>
             </form>
-            <button type="button" class="btn btn-primary col-md-11 mt-4 mx-auto" id="btnLogin">Login</button>
+            <button type="button" class="btn btn-primary col-md-11 mt-4 mb-3 mx-auto" id="btnLogin">Login</button>
             <a href="#" class="card-link">Forgot Password?</a>
-            <h6 class="mt-3">Don't have an Account?<button type="button" class="btn btn-primary col-md-6 mx-auto" id="btnSignUp">SignUp</button></h6>
+            <h6 class="mt-5">Don't have an Account?
+                <a href="#" class="card-link mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id="lnkSignUpForm">Sign Up</a></h6>
         </div>
     </div>
+
+
+    <!--SignUp Form-->
+    <section id="signUpForm">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content px-4">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Up</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="Nimal Perera">
+                            </div>
+                            <div class="col-6">
+                                <label for="inputAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            </div>
+                            <div class="col-6">
+                                <label for="inputAddress2" class="form-label">Contact No</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="0712834555">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="inputEmail4" placeholder="nimal50@gmail.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputUserName1" class="form-label">UserName</label>
+                                <input type="text" class="form-control" id="inputUserName1" placeholder="nimal">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPassword4" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="inputPassword4">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inputNic" class="form-label">NIC</label>
+                                <input type="text" class="form-control" id="inputNic" placeholder="983546632V">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputDrivingLicenseNo" class="form-label">Driving License No</label>
+                                <input type="text" class="form-control" id="inputDrivingLicenseNo" placeholder="B386055">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="formNIC" class="form-label">Upload NIC</label>
+                                <input class="form-control" type="file" id="formNIC" multiple>
+                            </div>
+                            <div class="mb-3">
+                                <label for="formDrivingLicenseNo" class="form-label">Upload Driving License No</label>
+                                <input class="form-control" type="file" id="formDrivingLicenseNo">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary col-3" id="btnSignUp">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
+
+<script src="assets/js/jquery-3.6.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script>
+    $("#loginFormContainer").click(function () {
+        $("#signUpForm").css('display','block');
+    });
+
+    $("#lnkSignUpForm").click(function () {
+        $("#signUpForm").css('display','none');
+    });
+</script>
 </body>
 </html>

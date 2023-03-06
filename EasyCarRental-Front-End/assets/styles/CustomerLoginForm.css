@@ -1,5 +1,5 @@
-#background{
-    background-image: linear-gradient(to right, #9DACCA , #EEEFF1 50%, #95b7e8);
+#loginFormContainer{
+    background-image: linear-gradient(to right, #ecfbfd, #7EC2E5 50%, #ecfbfd);
     height: 100vh;
 }
 
@@ -34,15 +34,38 @@
     border-radius: 0 1.5rem 1.5rem 0;
 }
 
-label{
+.card-body> .card-title{
+    text-align: center;
+    font-size: 45px;
+    width: 91.66666667%;
+}
+
+.card-body>label{
     font-size: 17px;
 }
 
-input{
+#inputUserName, #inputPassword{
     height: 45px;
 }
 
-button{
+#btnLogin{
     height: 45px;
     background: #2664A4 !important;
+}
+
+.modal{
+    --bs-modal-header-border-color: #478cd2 !important;
+}
+
+#exampleModalLabel{
+    font-size: 30px !important;
+    color: #266a4a;
+}
+
+.modal-footer{
+    justify-content: center;
+}
+
+#btnSignUp{
+    background-color: #2664A4;
 }
