@@ -127,7 +127,7 @@
         <h1 class="mt-3" style="text-align: center">Cars Management</h1>
 
         <!----------Car Form-------->
-        <form class="row g-3 mt-2">
+        <form class="row g-3 mt-2" id="carForm">
             <div class="col-md-3">
                 <label for="txtRegNo" class="form-label">Registration No</label>
                 <input type="text" class="form-control" id="txtRegNo" name="regNo">
@@ -212,8 +212,8 @@
             </div>
 
             <div class="col-md-3 mt-3">
-                <label for="txtPricePerExtraKM" class="form-label">Price Per Extra KM</label>
-                <input type="number" class="form-control" id="txtPricePerExtraKM" name="pricePerExtraKM">
+                <label for="txtPriceForExtraKM" class="form-label">Price Per Extra KM</label>
+                <input type="number" class="form-control" id="txtPriceForExtraKM" name="priceForExtraKM">
             </div>
 
             <div class="col-md-10 mt-4 mx-auto">
@@ -241,11 +241,11 @@
                     <th scope="col">Type</th>
                     <th scope="col">Color</th>
                     <th scope="col">No of Passengers</th>
-                    <th scope="col">Type</th>
                     <th scope="col">Transmission Type</th>
                     <th scope="col">Fuel Type</th>
                     <th scope="col">Daily Rate</th>
                     <th scope="col">Monthly Rate</th>
+                    <th scope="col">Loss Damage Waiver</th>
                     <th scope="col">Free KM for a Day</th>
                     <th scope="col">Free KM for a Month</th>
                     <th scope="col">Price for Extra KM</th>
@@ -488,6 +488,161 @@
 <script src="assets/js/Navigations.js"></script>
 <script>
 
+    let baseURL = "http://localhost:8080/EasyCarRentalApp/";
+
+    loadAllCars();
+
+    function bindRowClickEvents() {
+        $("#tblCar>tr").click(function () {
+            let regNo = $(this).children(":eq(0)").text();
+            let brand = $(this).children(":eq(1)").text();
+            let type = $(this).children(":eq(2)").text();
+            let color = $(this).children(":eq(3)").text();
+            let noOfPassengers = $(this).children(":eq(4)").text();
+            let transmissionType = $(this).children(":eq(5)").text();
+            let fuelType = $(this).children(":eq(6)").text();
+            let dailyRate = $(this).children(":eq(7)").text();
+            let monthlyRate = $(this).children(":eq(8)").text();
+            let lossDamageWaiver = $(this).children(":eq(9)").text();
+            let freeKMForDay = $(this).children(":eq(10)").text();
+            let freeKMForMonth = $(this).children(":eq(11)").text();
+            let priceForExtraKM = $(this).children(":eq(12)").text();
+            // let status = $(this).children(":eq(3)").text();
+
+            $("#txtRegNo").val(regNo);
+            $("#txtBrand").val(brand);
+            $("#selectType").val(type);
+            $("#selectColor").val(color);
+            $("#txtNoOfPassengers").val(noOfPassengers);
+            $("#selectTransmissionType").val(transmissionType);
+            $("#selectFuelType").val(fuelType);
+            $("#txtDailyRate").val(dailyRate);
+            $("#txtMonthlyRate").val(monthlyRate);
+            $("#txtLossDamageWaiver").val(lossDamageWaiver);
+            $("#txtFreeKMForDay").val(freeKMForDay);
+            $("#txtFreeKMForMonth").val(freeKMForMonth);
+            $("#txtPriceForExtraKM").val(priceForExtraKM);
+        });
+    }
+
+    function setTextFieldValues(regNo,brand,type,color,noOfPassengers,transmissionType,fuelType,dailyRate,monthlyRate,lossDamageWaiver,freeKMForDay,freeKMForMonth,priceForExtraKM){
+        $("#txtRegNo").val(regNo);
+        $("#txtBrand").val(brand);
+        $("#selectType").val(type);
+        $("#selectColor").val(color);
+        $("#txtNoOfPassengers").val(noOfPassengers);
+        $("#selectTransmissionType").val(transmissionType);
+        $("#selectFuelType").val(fuelType);
+        $("#txtDailyRate").val(dailyRate);
+        $("#txtMonthlyRate").val(monthlyRate);
+        $("#txtLossDamageWaiver").val(lossDamageWaiver);
+        $("#txtFreeKMForDay").val(freeKMForDay);
+        $("#txtFreeKMForMonth").val(freeKMForMonth);
+        $("#txtPriceForExtraKM").val(priceForExtraKM);
+        $("#selectCarImages").val(null);
+    }
+
+    $("#btnSaveCar").click(function (){
+        var formData = $("#carForm").serialize();
+        console.log(formData);
+        $.ajax({
+            url: baseURL+"car",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            success: function (resp){
+                alert(resp.message);
+                setTextFieldValues("","","","");
+                loadAllCars();
+            },
+            error: function (error){
+                var jsObject = JSON.parse(error.responseText);
+                alert(jsObject);
+            }
+        });
+    });
+
+
+
+    $("#btnUpdateCar").click(function (){
+        let regNo = $("#txtRegNo").val();
+        let brand = $("#txtBrand").val();
+        let type =  $("#selectType").val();
+        let color = $("#selectColor").val();
+        let noOfPassengers = $("#txtNoOfPassengers").val();
+        let transmissionType = $("#selectTransmissionType").val();
+        let fuelType = $("#selectFuelType").val();
+        let dailyRate = $("#txtDailyRate").val();
+        let monthlyRate = $("#txtMonthlyRate").val();
+        let lossDamageWaiver = $("#txtLossDamageWaiver").val();
+        let freeKMForDay = $("#txtFreeKMForDay").val();
+        let freeKMForMonth = $("#txtFreeKMForMonth").val();
+        let priceForExtraKM = $("#txtPriceForExtraKM").val();
+
+
+        var car= {
+            regNo: regNo,
+            brand: brand,
+            type: type,
+            color: color,
+            noOfPassengers: noOfPassengers,
+            transmissionType: transmissionType,
+            fuelType: fuelType,
+            dailyRate: dailyRate,
+            monthlyRate: monthlyRate,
+            lossDamageWaiver: lossDamageWaiver,
+            freeKMForDay: freeKMForDay,
+            freeKMForMonth: freeKMForMonth,
+            priceForExtraKM: priceForExtraKM
+        }
+
+        $.ajax({
+            url: baseURL+"car",
+            method: "put",
+            contentType: "application/json",
+            data: JSON.stringify(car),
+            dataType: "json",
+            success: function (resp){
+                alert(resp.message);
+                loadAllCars();
+            },
+            error: function (error){
+                var jsObject = JSON.parse(error.responseText).message;
+                alert(jsObject.message);
+            }
+        });
+    });
+
+
+
+    $("#btnGetAllCars").click(function (){
+        loadAllCars();
+    });
+
+
+
+    function loadAllCars(){
+        $("#tblCar").empty();
+        $.ajax ({
+            url: baseURL+"car",
+            dataType: "json",
+            success: function (resp) {
+                console.log(resp);
+                for (let car of resp.data) {
+                    var row = '<tr><td>'+car.regNo+'</td><td>'+car.brand+'</td><td>'+car.type+'</td><td>'+car.color+'</td><td>'+car.noOfPassengers+'</td><td>'+car.transmissionType+'</td>' +'<td>'+car.fuelType+'</td><td>'
+                        +car.dailyRate+'</td><td>'+car.monthlyRate+'</td><td>'+car.lossDamageWaiver+'</td><td>'+car.freeKMForDay+'</td><td>'+car.freeKMForMonth+'</td><td>'+car.priceForExtraKM+'</td></tr>';
+                    $("#tblCar").append(row);
+                }
+                bindRowClickEvents();
+                setTextFieldValues("","","","");
+                $("#txtRegNo").focus();
+            },
+            error: function (error){
+                var jsObject = JSON.parse(error.responseText).message;
+                alert(jsObject.message);
+            }
+        });
+    }
 </script>
 </body>
 </html>
