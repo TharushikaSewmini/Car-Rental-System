@@ -68,7 +68,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="txtCustomerUserName" class="form-label">UserName</label>
-                                <input type="text" class="form-control" id="txtCustomerUserName" placeholder="nimal" name="userName">
+                                <input type="text" class="form-control" id="txtCustomerUserName" placeholder="nimal" name="username">
                             </div>
                             <div class="col-md-6">
                                 <label for="txtCustomerPassword" class="form-label">Password</label>
@@ -126,8 +126,9 @@
             dataType: "json",
             success: function (resp){
                 alert(resp.message);
-                // setTextFieldValues("","","","","","","","");
-                // loadAllCustomers();
+                // $("#signUpForm").close;
+                $("#signUpForm").css('display','none');
+
             },
             error: function (error) {
                 var jsObject = JSON.parse(error.responseText);

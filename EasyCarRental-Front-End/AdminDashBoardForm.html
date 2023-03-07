@@ -527,7 +527,7 @@
     }
 
     //----------------Clear InputFields--------------
-    function setTextFieldValues(regNo,brand,type,color,noOfPassengers,transmissionType,fuelType,dailyRate,monthlyRate,lossDamageWaiver,freeKMForDay,freeKMForMonth,priceForExtraKM){
+    function setCarFormTextFieldValues(regNo,brand,type,color,noOfPassengers,transmissionType,fuelType,dailyRate,monthlyRate,lossDamageWaiver,freeKMForDay,freeKMForMonth,priceForExtraKM){
         $("#txtRegNo").val(regNo);
         $("#txtBrand").val(brand);
         $("#selectType").val(type);
@@ -555,7 +555,7 @@
             dataType: "json",
             success: function (resp){
                 alert(resp.message);
-                setTextFieldValues("","","","");
+                setCarFormTextFieldValues("","","","");
                 loadAllCars();
             },
             error: function (error){
@@ -675,7 +675,7 @@
                     $("#tblCar").append(row);
                 }
                 bindRowClickEvents();
-                setTextFieldValues("","","","");
+                setCarFormTextFieldValues("","","","");
                 $("#txtRegNo").focus();
             },
             error: function (error){
