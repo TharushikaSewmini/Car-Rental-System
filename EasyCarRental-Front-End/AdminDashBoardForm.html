@@ -226,7 +226,7 @@
         </form>
 
         <form class="d-flex mt-5 col-5 mx-auto" role="search">
-            <input class="form-control me-2" type="search" id="txtSearchCar" placeholder="Input Customer ID/Name" aria-label="Search">
+            <input class="form-control me-2" type="search" id="txtSearchCar" placeholder="Input Car Reg No" aria-label="Search">
             <button class="btn btn-secondary" type="button" id="btnSearchCar" style="color: white;">Search</button>
         </form>
 
@@ -492,6 +492,7 @@
 
     loadAllCars();
 
+    //----------------Bind Data to InputFields--------------
     function bindRowClickEvents() {
         $("#tblCar>tr").click(function () {
             let regNo = $(this).children(":eq(0)").text();
@@ -525,6 +526,7 @@
         });
     }
 
+    //----------------Clear InputFields--------------
     function setTextFieldValues(regNo,brand,type,color,noOfPassengers,transmissionType,fuelType,dailyRate,monthlyRate,lossDamageWaiver,freeKMForDay,freeKMForMonth,priceForExtraKM){
         $("#txtRegNo").val(regNo);
         $("#txtBrand").val(brand);
@@ -542,6 +544,7 @@
         $("#selectCarImages").val(null);
     }
 
+    //----------------Save Car--------------
     $("#btnSaveCar").click(function (){
         var formData = $("#carForm").serialize();
         console.log(formData);
@@ -563,7 +566,7 @@
     });
 
 
-
+    //----------------Update Car--------------
     $("#btnUpdateCar").click(function (){
         let regNo = $("#txtRegNo").val();
         let brand = $("#txtBrand").val();
@@ -614,11 +617,49 @@
     });
 
 
+    //----------------Delete Car--------------
+    $("#btnDeleteCar").click(function (){
+        let regNo = $("#txtRegNo").val();
+        $.ajax({
+            url: baseURL+"car?regNo="+regNo+"",
+            method: "delete",
+            dataType: "json",
+            success: function (resp){
+                alert(resp.message);
+                loadAllCars();
+            },
+            error: function (error){
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    });
 
+
+    //----------------Search Car--------------
+    $("#btnSearchCar").click(function () {
+        let typedRegNo = $("#txtSearchCar").val();
+        $.ajax({
+            url: baseURL+"car?regNo="+typedRegNo+"",
+            method: "get",
+            dataType: "json",
+            success: function (resp){
+                alert(resp.message);
+                console.log(resp.data);
+                var car = resp.data;
+                setTextFieldValues(car.regNo, car.brand, car.type, car.color, car.noOfPassengers, car.transmissionType, car.fuelType,
+                    car.dailyRate, car.monthlyRate, car.lossDamageWaiver, car.freeKMForDay, car.freeKMForMonth, car.priceForExtraKM);
+            },
+            error: function (error){
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    });
+
+
+    //----------------Load Data to Table--------------
     $("#btnGetAllCars").click(function (){
         loadAllCars();
     });
-
 
 
     function loadAllCars(){
