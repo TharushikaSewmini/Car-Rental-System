@@ -23,25 +23,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item ms-3">
-                    <a class="nav-link active" aria-current="page" href="#">DashBoard</a>
+                    <a class="nav-link active" aria-current="page" href="#" style="font-weight: bold;" id="linkDashBoard">DashBoard</a>
                 </li>
                 <li class="nav-item ms-3">
-                    <a class="nav-link active" href="#">Car</a>
+                    <a class="nav-link active" href="#" style="font-weight: bold;" id="linkCars">Cars</a>
                 </li>
                 <li class="nav-item ms-3">
-                    <a class="nav-link active" href="#">Customer</a>
+                    <a class="nav-link active" href="#" style="font-weight: bold;" id="linkCustomers">Customers</a>
                 </li>
                 <li class="nav-item ms-3">
-                    <a class="nav-link active" href="#">Driver</a>
+                    <a class="nav-link active" href="#" style="font-weight: bold;" id="linkDrivers">Drivers</a>
                 </li>
                 <li class="nav-item ms-3">
-                    <a class="nav-link active" href="#">Rent Request</a>
+                    <a class="nav-link active" href="#" style="font-weight: bold;" id="linkBookingRequest">Booking Request</a>
                 </li>
                 <li class="nav-item ms-3">
-                    <a class="nav-link active" href="#">Booking</a>
+                    <a class="nav-link active" href="#" style="font-weight: bold;" id="linkBooking">Booking</a>
                 </li>
                 <li class="nav-item ms-3">
-                    <a class="nav-link active" href="#">Payment</a>
+                    <a class="nav-link active" href="#" style="font-weight: bold;" id="linkPayment">Payment</a>
                 </li>
             </ul>
 
@@ -64,12 +64,11 @@
 
 
 <main class="container-fluid">
-<!----------Page Header---------->
-<h1 class="mt-3" style="text-align: center">Admin DashBoard</h1>
 
-<!---------DashBoard Page------------------>
+<!---------------DashBoard Page------------------>
     <!----Reg Users, Available Cars, Available Drivers, Total Bookings, Active Bookings, Maintenance Cars count----->
-    <section class="mt-3" id="dashBoardContent">
+    <section class="mt-3" id="dashBoardPage">
+        <h1 class="mt-3" style="text-align: center">Admin DashBoard</h1>
 
         <div class="row gy-3 mx-4" id="displayContainer">
             <div class="col-3 me-3">
@@ -123,74 +122,112 @@
 
     </section>
 
-<!--------------Car Page--------------->
-    <section class="container" id="CarContent">
+<!--------------Car Page------------------>
+    <section class="container" id="carPage">
         <h1 class="mt-3" style="text-align: center">Cars Management</h1>
 
         <!----------Car Form-------->
-        <form class="row g-3">
+        <form class="row g-3 mt-2">
             <div class="col-md-3">
-                <label for="regNo" class="form-label">Registration No</label>
-                <input type="text" class="form-control" id="regNo" name="regNo">
+                <label for="txtRegNo" class="form-label">Registration No</label>
+                <input type="text" class="form-control" id="txtRegNo" name="regNo">
             </div>
-            <div class="col-md-4">
-                <label for="brand" class="form-label">Brand</label>
-                <input type="text" class="form-control" id="brand" name="brand">
-            </div>
-
-            <div class="col-md-5 ms-auto" id="carImage" style="background-color: lightskyblue;">
-                <img src="..." alt="">
+            <div class="col-md-3">
+                <label for="txtBrand" class="form-label">Brand</label>
+                <input type="text" class="form-control" id="txtBrand" name="brand">
             </div>
 
             <div class="col-3">
-                <label for="noOfPassengers" class="form-label">No of Passengers</label>
-                <input type="number" class="form-control" id="noOfPassengers" name="noOfPassengers">
+                <label for="txtNoOfPassengers" class="form-label">No of Passengers</label>
+                <input type="number" class="form-control" id="txtNoOfPassengers" name="noOfPassengers">
             </div>
 
-            <div class="col-md-4">
-                <label for="type" class="form-label">Type</label>
-                <select id="type" class="form-select" name="type">
+            <div class="col-3 mt-3">
+                <label for="selectColor" class="form-label">Color</label>
+                <input type="color" class="form-control" id="selectColor" name="color">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="selectType" class="form-label">Type</label>
+                <select id="selectType" class="form-select" name="type">
                     <option selected>Choose...</option>
-                    <option>...</option>
+                    <option>General</option>
+                    <option>Premium</option>
+                    <option>Luxury</option>
                 </select>
             </div>
 
-            <div class="col-md-4"></div>
-
-            <div class="col-md-3">
-                <label for="transmissionType" class="form-label">Transmission Type</label>
-                <select id="transmissionType" class="form-select" name="transmissionType">
+            <div class="col-md-3 mt-3">
+                <label for="selectTransmissionType" class="form-label">Transmission Type</label>
+                <select id="selectTransmissionType" class="form-select" name="transmissionType">
                     <option selected>Choose...</option>
-                    <option>...</option>
+                    <option>Manual</option>
+                    <option>Auto</option>
                 </select>
             </div>
 
-            <div class="col-md-4">
-                <label for="fuelType" class="form-label">Fuel Type</label>
-                <select id="fuelType" class="form-select" name="fuelType">
-                    <option selected>Choose...</option>
-                    <option>...</option>
+            <div class="col-md-3 mt-3">
+                <label for="selectFuelType" class="form-label">Fuel Type</label>
+                <select id="selectFuelType" class="form-select" name="fuelType">
+                    <option selected >Choose...</option>
+                    <option>Diesel</option>
+                    <option>Petrol</option>
                 </select>
             </div>
 
             <div class="col-3">
-                <label for="color" class="form-label">Color</label>
-                <input type="color" class="form-control" id="color" name="color">
+                <label for="selectCarImages" class="form-label">Upload Car Images</label>
+                <input class="form-control" type="file" id="selectCarImages" multiple>
             </div>
 
-            <div class="col-md-3">
-                <label for="dailyRate" class="form-label">Daily Rate</label>
-                <input type="number" class="form-control" id="dailyRate" name="dailyRate">
+            <!------Images of Car------->
+            <div class="col-md-3" style="width: 200px; height: 120px; border: 1px solid black;"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtDailyRate" class="form-label">Daily Rate</label>
+                <input type="number" class="form-control" id="txtDailyRate" name="dailyRate">
             </div>
 
-            <div class="col-md-3">
-                <label for="monthlyRate" class="form-label">Monthly Rate</label>
-                <input type="number" class="form-control" id="monthlyRate" name="monthlyRate">
+            <div class="col-md-3 mt-3">
+                <label for="txtMonthlyRate" class="form-label">Monthly Rate</label>
+                <input type="number" class="form-control" id="txtMonthlyRate" name="monthlyRate">
             </div>
 
-            <div class="col-12">
-                <button type="button" class="btn btn-primary" id="btnSaveCar">Save</button>
+            <div class="col-md-3 mt-3">
+                <label for="txtLossDamageWaiver" class="form-label">Loss Damage Waiver</label>
+                <input type="number" class="form-control" id="txtLossDamageWaiver" name="lossDamageWaiver">
             </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtFreeKMForDay" class="form-label">Free KM for Day</label>
+                <input type="number" class="form-control" id="txtFreeKMForDay" name="freeKMForDay">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtFreeKMForMonth" class="form-label">Free KM for Month</label>
+                <input type="number" class="form-control" id="txtFreeKMForMonth" name="freeKMForMonth">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtPricePerExtraKM" class="form-label">Price Per Extra KM</label>
+                <input type="number" class="form-control" id="txtPricePerExtraKM" name="pricePerExtraKM">
+            </div>
+
+            <div class="col-md-10 mt-4 mx-auto">
+                <button type="button" class="btn btn-success col-2 ms-5" id="btnSaveCar">Save</button>
+                <button type="button" class="btn btn-primary col-2 ms-2" id="btnUpdateCar">Update</button>
+                <button type="button" class="btn btn-danger col-2 ms-2" id="btnDeleteCar">Delete</button>
+                <button type="button" class="btn btn-warning col-2 ms-2" id="btnGetAllCars">View All Cars</button>
+                <button type="button" class="btn btn-info col-2 ms-2" id="btnAddNewCar">Add New Car</button>
+            </div>
+        </form>
+
+        <form class="d-flex mt-5 col-5 mx-auto" role="search">
+            <input class="form-control me-2" type="search" id="txtSearchCar" placeholder="Input Customer ID/Name" aria-label="Search">
+            <button class="btn btn-secondary" type="button" id="btnSearchCar" style="color: white;">Search</button>
         </form>
 
 
@@ -222,8 +259,8 @@
 
     </section>
 
-    <!--Customer Page-->
-    <section class="container" id="CustomerContent">
+    <!--------------Customer Page------------------>
+    <section class="container" id="customerPage">
         <h1 class="mt-3" style="text-align: center">Customer Details</h1>
 
         <!--Customer Search-->
@@ -254,8 +291,8 @@
 
     </section>
 
-<!--Driver Page-->
-    <section class="container" id="DriverContent">
+    <!--------------Driver Page------------------>
+    <section class="container" id="driverPage">
         <h1 class="mt-3" style="text-align: center">Driver Management</h1>
 
         <!--Driver form-->
@@ -320,8 +357,8 @@
 
     </section>
 
-    <!--Rent Request Page-->
-    <section>
+    <!--------------Rent Request Page------------------>
+    <section class="container" id="bookingRequestPage">
         <h1 class="mt-3" style="text-align: center">Rent Request Management</h1>
 
         <!--Rent Request Table-->
@@ -349,8 +386,8 @@
 
     </section>
 
-    <!--Booking Page-->
-    <section class="container" id="BookingContent">
+    <!--------------Booking Page------------------>
+    <section class="container" id="bookingPage">
         <h1 class="mt-3" style="text-align: center">Booking Management</h1>
 
         <!--Booking Table-->
@@ -376,7 +413,8 @@
 
     </section>
 
-    <section  class="container" id="PaymentContent">
+    <!--------------Payment Page------------------>
+    <section  class="container" id="paymentPage">
         <h1 class="mt-3" style="text-align: center">Payment Management</h1>
 
         <!--Driver form-->
@@ -444,12 +482,12 @@
 
 </main>
 
-<!--Footer Content-->
-<footer>
-    <small class="mt-4">Developed By Tharushika | 2023 All Rights Reserved</small>
-</footer>
-
 <script src="assets/js/jquery-3.6.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/js/Navigations.js"></script>
+<script>
+
+</script>
 </body>
 </html>

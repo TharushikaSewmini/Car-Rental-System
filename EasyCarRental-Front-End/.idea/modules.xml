@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../EasyCarRental-Back-End/EasyCarRental-Back-End.iml" filepath="$PROJECT_DIR$/../EasyCarRental-Back-End/EasyCarRental-Back-End.iml" />
       <module fileurl="file://$PROJECT_DIR$/EasyCarRental-Front-End.iml" filepath="$PROJECT_DIR$/EasyCarRental-Front-End.iml" />
     </modules>
   </component>
