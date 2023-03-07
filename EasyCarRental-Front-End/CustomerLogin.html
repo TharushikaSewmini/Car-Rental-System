@@ -48,40 +48,40 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="row g-3">
+                        <form class="row g-3" id="customerRegisterForm">
                             <div class="col-md-6">
-                                <label for="inputName" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="inputName" placeholder="Nimal Perera">
+                                <label for="txtCustomerName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="txtCustomerName" placeholder="Nimal Perera" name="name">
                             </div>
                             <div class="col-6">
-                                <label for="inputAddress" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                <label for="txtCustomerAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="txtCustomerAddress" placeholder="1234 Main St" name="address">
                             </div>
                             <div class="col-6">
-                                <label for="inputAddress2" class="form-label">Contact No</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="0712834555">
+                                <label for="txtCustomerContact" class="form-label">Contact No</label>
+                                <input type="text" class="form-control" id="txtCustomerContact" placeholder="0712834555" name="contact">
                             </div>
 
                             <div class="col-md-6">
-                                <label for="inputEmail4" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail4" placeholder="nimal50@gmail.com">
+                                <label for="txtCustomerEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="txtCustomerEmail" placeholder="nimal50@gmail.com" name="email">
                             </div>
                             <div class="col-md-6">
-                                <label for="inputUserName1" class="form-label">UserName</label>
-                                <input type="text" class="form-control" id="inputUserName1" placeholder="nimal">
+                                <label for="txtCustomerUserName" class="form-label">UserName</label>
+                                <input type="text" class="form-control" id="txtCustomerUserName" placeholder="nimal" name="userName">
                             </div>
                             <div class="col-md-6">
-                                <label for="inputPassword4" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword4">
+                                <label for="txtCustomerPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="txtCustomerPassword" name="password">
                             </div>
 
                             <div class="col-md-6">
-                                <label for="inputNic" class="form-label">NIC</label>
-                                <input type="text" class="form-control" id="inputNic" placeholder="983546632V">
+                                <label for="txtCustomerNic" class="form-label">NIC</label>
+                                <input type="text" class="form-control" id="txtCustomerNic" placeholder="983546632V" name="nic">
                             </div>
                             <div class="col-md-6">
-                                <label for="inputDrivingLicenseNo" class="form-label">Driving License No</label>
-                                <input type="text" class="form-control" id="inputDrivingLicenseNo" placeholder="B386055">
+                                <label for="txtCustomerDrivingLicenseNo" class="form-label">Driving License No</label>
+                                <input type="text" class="form-control" id="txtCustomerDrivingLicenseNo" placeholder="B386055" name="drivingLicense">
                             </div>
 
                             <div class="mb-3">
@@ -95,7 +95,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary col-3" id="btnSignUp">Sign Up</button>
+                        <button type="button" class="btn btn-primary col-3" id="btnCustomerSignUp">Sign Up</button>
                     </div>
                 </div>
             </div>
@@ -113,6 +113,29 @@
     $("#lnkSignUpForm").click(function () {
         $("#signUpForm").css('display','none');
     });
+
+    let baseURL = "http://localhost:8080/EasyCarRentalApp/";
+
+    $("#btnCustomerSignUp").click(function (){
+        var formData = $("#customerRegisterForm").serialize();
+        console.log(formData);
+        $.ajax ({
+            url: baseURL+"customer",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            success: function (resp){
+                alert(resp.message);
+                // setTextFieldValues("","","","","","","","");
+                // loadAllCustomers();
+            },
+            error: function (error) {
+                var jsObject = JSON.parse(error.responseText);
+                alert(jsObject.message);
+            }
+        });
+    });
+
 </script>
 </body>
 </html>
