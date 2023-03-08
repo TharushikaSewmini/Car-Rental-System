@@ -22,60 +22,16 @@
             <form class="row g-4 mt-4" id="adminLoginForm">
                 <div class="col-md-11">
                     <label for="txtAdminUserName" class="form-label">User Name</label>
-                    <input type="text" class="form-control" id="txtAdminLoginUserName" name="adminUsername">
+                    <input type="text" class="form-control" id="txtAdminUserName" name="adminUsername">
                 </div>
                 <div class="col-md-11">
                     <label for="txtAdminPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="txtAdminLoginPassword" name="adminPassword">
+                    <input type="password" class="form-control" id="txtAdminPassword" name="adminPassword">
                 </div>
             </form>
             <button type="button" class="btn btn-primary col-md-11 mt-4 mx-auto" id="btnAdminLogin">Login</button>
-            <h6 class="mt-5">Don't have an Account?
-                <a href="#" class="card-link mx-2" data-bs-toggle="modal" data-bs-target="#adminSignUpModal" id="lnkAdminSignUpForm">Sign Up</a></h6>
         </div>
     </div>
-
-
-
-
-
-    <!--SignUp Form-->
-    <section id="signUpForm">
-        <!-- Modal -->
-        <div class="modal fade" id="adminSignUpModal" tabindex="-1" aria-labelledby="adminSignUpModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-m">
-                <div class="modal-content px-4">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Up</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnClose"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="row g-3" id="adminSignupForm">
-                            <div class="col-md-12">
-                                <label for="txtAdminName" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="txtAdminName" placeholder="Nimal Perera" name="adminName">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="txtAdminEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="txtAdminEmail" placeholder="nimal50@gmail.com" name="adminEmail">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="txtAdminUserName" class="form-label">UserName</label>
-                                <input type="text" class="form-control" id="txtAdminUserName" placeholder="nimal" name="adminUsername">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="txtAdminPassword" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="txtAdminPassword" name="adminPassword">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary col-5 mx-auto" id="btnAdminSignUp">Sign Up</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 </main>
 
 <script src="assets/js/jquery-3.6.1.min.js"></script>
@@ -83,35 +39,35 @@
 <script>
     let baseURL = "http://localhost:8080/EasyCarRentalApp/";
 
-    //------Clear InputFields-----------
-    function setAdminFormTextFieldValues(username, password, email, name){
-        $("#txtAdminUserName").val(username);
-        $("#txtAdminPassword").val(password);
-        $("#txtAdminEmail").val(email);
-        $("#txtAdminName").val(name);
-    }
+    // //------Clear InputFields-----------
+    // function setAdminFormTextFieldValues(username, password, email, name){
+    //     $("#txtAdminUserName").val(username);
+    //     $("#txtAdminPassword").val(password);
+    //     $("#txtAdminEmail").val(email);
+    //     $("#txtAdminName").val(name);
+    // }
 
-    //-----Save New Admin----------
-    $("#btnAdminSignUp").click(function (){
-        var formData = $("#adminSignupForm").serialize();
-        console.log(formData);
-        $.ajax ({
-            url: baseURL+"admin",
-            method: "post",
-            data: formData,
-            dataType: "json",
-            success: function (resp){
-                alert(resp.message);
-                setAdminFormTextFieldValues("");
-                //close the model
-                $("#btnClose").click();
-            },
-            error: function (error) {
-                var jsObject = JSON.parse(error.responseText);
-                alert(jsObject.message);
-            }
-        });
-    });
+    // //-----Save New Admin----------
+    // $("#btnAdminSignUp").click(function (){
+    //     var formData = $("#adminSignupForm").serialize();
+    //     console.log(formData);
+    //     $.ajax ({
+    //         url: baseURL+"admin",
+    //         method: "post",
+    //         data: formData,
+    //         dataType: "json",
+    //         success: function (resp){
+    //             alert(resp.message);
+    //             setAdminFormTextFieldValues("");
+    //             //close the model
+    //             $("#btnClose").click();
+    //         },
+    //         error: function (error) {
+    //             var jsObject = JSON.parse(error.responseText);
+    //             alert(jsObject.message);
+    //         }
+    //     });
+    // });
 
     //----------------Search Admin by username and password--------------
     $("#btnAdminLogin").click(function () {

@@ -23,13 +23,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item ms-3">
-                    <a class="nav-link active" aria-current="page" href="#">DashBoard</a>
+                    <a class="nav-link active" aria-current="page" href="#" id="linkProfile">DashBoard</a>
                 </li>
                 <li class="nav-item ms-3">
-                    <a class="nav-link active" href="#">Booking Request</a>
+                    <a class="nav-link active" href="#" id="linkBookingRequest">Booking Request</a>
                 </li>
                 <li class="nav-item ms-3">
-                    <a class="nav-link active" href="#">Payment</a>
+                    <a class="nav-link active" href="#" id="linkBookingResponse">Booking Response</a>
+                </li>
+                <li class="nav-item ms-3">
+                    <a class="nav-link active" href="#" id="linkPayment">Payment</a>
                 </li>
             </ul>
 
@@ -52,68 +55,66 @@
 
 <main class="container-fluid">
     <!----------Page Header---------->
-    <section class="container-fluid" id="CustomerContent">
-        <h1 class="mt-3" style="text-align: center">Customer DashBoard</h1>
+    <section class="container" id="customerProfilePage">
+        <h1 class="mt-3" style="text-align: center">Your Profile</h1>
 
-        <!----------Car Form-------->
-        <form class="row g-3">
-            <div class="col-md-3">
-                <label for="txtCustomerName" class="form-label">Name</label>
-                <input type="text" class="form-control" id="txtCustomerName" name="name">
+        <!----------Customer Form-------->
+        <form class="row g-3 mt-4" id="customerForm">
+            <div class="col-md-4 mt-4">
+                <label for="txtLoadCustomerName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="txtLoadCustomerName" name="lName">
             </div>
-            <div class="col-md-4">
-                <label for="txtCustomerContact" class="form-label">Contact No</label>
-                <input type="text" class="form-control" id="txtCustomerContact" name="contact">
+            <div class="col-md-4 mt-4">
+                <label for="txtLoadCustomerAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="txtLoadCustomerAddress" name="lAddress">
             </div>
-            <div class="col-md-4">
-                <label for="txtCustomerAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="txtCustomerAddress" name="address">
+            <div class="col-md-4 mt-4">
+                <label for="txtLoadCustomerContact" class="form-label">Contact No</label>
+                <input type="text" class="form-control" id="txtLoadCustomerContact" name="lContact">
             </div>
-            <div class="col-md-4">
-                <label for="txtCustomerEmail" class="form-label">Email</label>
-                <input type="text" class="form-control" id="txtCustomerEmail" name="email">
+            <div class="col-md-4 mt-4">
+                <label for="txtLoadCustomerEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="txtLoadCustomerEmail" name="lEmail">
             </div>
-            <div class="col-md-4">
-                <label for="txtCustomerNIC" class="form-label">NIC</label>
-                <input type="text" class="form-control" id="txtCustomerNIC" name="nic">
+            <div class="col-md-4 mt-4">
+                <label for="txtLoadCustomerNIC" class="form-label">NIC</label>
+                <input type="text" class="form-control" id="txtLoadCustomerNIC" name="lNic">
             </div>
-            <div class="col-md-4">
-                <label for="txtCustomerDrivingLicenseNo" class="form-label">Address</label>
-                <input type="text" class="form-control" id="txtCustomerDrivingLicenseNo" name="drivingLicenseNo">
+            <div class="col-md-4 mt-4">
+                <label for="txtLoadCustomerDrivingLicenseNo" class="form-label">Driving License No</label>
+                <input type="text" class="form-control" id="txtLoadCustomerDrivingLicenseNo" name="lDrivingLicenseNo">
             </div>
-            <div class="col-12">
-                <button type="button" class="btn btn-primary" id="btnSaveCustomer">Save</button>
-                <button type="button" class="btn btn-danger" id="btnCancelCustomer">Cancel</button>
+            <div class="col-6 mx-auto mt-5">
+                <button type="button" class="btn btn-primary col-3 mx-5" id="btnUpdateCustomer">Save Changes</button>
+                <button type="button" class="btn btn-danger col-3 mx-5" id="btnCancelCustomer">Cancel</button>
             </div>
         </form>
 
 
-
-
-        <!-------Customer Table------->
-        <section class="mt-4">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">Customer ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Contact No</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">NIC</th>
-                    <th scope="col">Driving License No</th>
-                </tr>
-                </thead>
-                <tbody id="tblCustomer">
-                <tr></tr>
-                </tbody>
-            </table>
-        </section>
+<!--        &lt;!&ndash;-&#45;&#45;&#45;&#45;Customer Table-&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--        <section class="mt-4">-->
+<!--            <table class="table table-striped">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th scope="col">Customer ID</th>-->
+<!--                    <th scope="col">Name</th>-->
+<!--                    <th scope="col">Contact No</th>-->
+<!--                    <th scope="col">Address</th>-->
+<!--                    <th scope="col">Email</th>-->
+<!--                    <th scope="col">NIC</th>-->
+<!--                    <th scope="col">Driving License No</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody id="tblCustomer">-->
+<!--                <tr></tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </section>-->
     </section>
 
 
     <!--Rent Request Page-->
-    <section class="container" id="RentRequestContent">
+    <section class="container" id="bookingRequestPage">
         <h1 class="mt-3" style="text-align: center">Rent Request</h1>
 
         <!----------Rent Request Form-------->
@@ -226,7 +227,7 @@
     </section>
 
     <!--Rent Response Page-->
-    <section class="container" id="RentResponseContent">
+    <section class="container" id="bookingResponsePage">
         <h1 class="mt-3" style="text-align: center">Rent Response</h1>
 
         <!--Rent Response Table-->
@@ -276,7 +277,7 @@
 
 
     <!--Payment Page-->
-    <section class="container" id="PaymentContent">
+    <section class="container" id="paymentPage">
         <h1 class="mt-3" style="text-align: center">Payment</h1>
 
         <!--Payment Table-->
@@ -302,12 +303,92 @@
     </section>
 </main>
 
-<!--Footer Content-->
-<footer>
-    <small class="mt-4">Developed By Tharushika | 2023 All Rights Reserved</small>
-</footer>
-
 <script src="assets/js/jquery-3.6.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/CustomerDashBoard.js"></script>
+<script>
+
+    let baseURL = "http://localhost:8080/EasyCarRentalApp/";
+
+
+    let username = localStorage.getItem("username");
+    getLastLoginCustomer();
+
+    //------Set Data InputFields-----------
+    function setCustomerDetailsTextFieldValues(lName, lAddress, lContact, lEmail, lNic, lDrivingLicenseNo){
+        $("#txtLoadCustomerName").val(lName);
+        $("#txtLoadCustomerAddress").val(lAddress);
+        $("#txtLoadCustomerContact").val(lContact);
+        // $("#txtLoadCustomerUserName").val(username);
+        // $("#txtLoadCustomerPassword").val(password);
+        $("#txtLoadCustomerEmail").val(lEmail);
+        $("#txtLoadCustomerNIC").val(lNic);
+        $("#txtLoadCustomerDrivingLicenseNo").val(lDrivingLicenseNo);
+        // $("#txtLoadCustomerLoginUserName").val(loginUsername);
+        // $("#txtCustomerLoginPassword").val(loginPassword);
+    }
+
+
+    //----------------Get Customer by Username--------------
+    function getLastLoginCustomer() {
+        let typedUsername = username;
+        console.log("lastLog: "+typedUsername);
+        $.ajax({
+            url: baseURL+"customer?username="+typedUsername+"",
+            method: "get",
+            dataType: "json",
+            success: function (resp){
+                alert(resp.message);
+                console.log(resp.data);
+                var customer = resp.data;
+                alert(customer);
+                setCustomerDetailsTextFieldValues(customer.name, customer.address, customer.contact, customer.email,
+                    customer.nic, customer.drivingLicenseNo, customer.username, customer.password);
+            },
+            error: function (error){
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    }
+
+    //----------------Update Customer Profile--------------
+    $("#btnUpdateCustomer").click(function (){
+        let name = $("#txtLoadCustomerName").val();
+        let address = $("#txtLoadCustomerAddress").val();
+        let contact =  $("#txtLoadCustomerContact").val();
+        let email = $("#txtLoadCustomerEmail").val();
+        let nic = $("#txtLoadCustomerNIC").val();
+        let drivingLicenseNo = $("#txtLoadCustomerDrivingLicenseNo").val();
+        // let username = $("#txtLoadCustomerUsername").val();
+
+
+        var car= {
+            name: name,
+            address: address,
+            contact: contact,
+            email: email,
+            nic: nic,
+            drivingLicenseNo: drivingLicenseNo
+            // username: username
+        }
+
+        $.ajax({
+            url: baseURL+"customer",
+            method: "put",
+            contentType: "application/json",
+            data: JSON.stringify(car),
+            dataType: "json",
+            success: function (resp){
+                alert(resp.message);
+                // loadAllCars();
+            },
+            error: function (error){
+                var jsObject = JSON.parse(error.responseText).message;
+                alert(jsObject.message);
+            }
+        });
+    });
+
+</script>
 </body>
 </html>

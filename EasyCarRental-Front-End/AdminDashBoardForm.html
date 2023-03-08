@@ -122,7 +122,7 @@
 
     </section>
 
-<!--------------Car Page------------------>
+    <!--------------Car Page------------------>
     <section class="container" id="carPage">
         <h1 class="mt-3" style="text-align: center">Cars Management</h1>
 
@@ -489,7 +489,7 @@
 <script>
 
     let baseURL = "http://localhost:8080/EasyCarRentalApp/";
-
+//===========================Car============================
     loadAllCars();
 
     //----------------Bind Data to InputFields--------------
@@ -656,7 +656,7 @@
     });
 
 
-    //----------------Load Data to Table--------------
+    //----------------Load Car Data to Table--------------
     $("#btnGetAllCars").click(function (){
         loadAllCars();
     });
@@ -677,6 +677,31 @@
                 bindRowClickEvents();
                 setCarFormTextFieldValues("","","","");
                 $("#txtRegNo").focus();
+            },
+            error: function (error){
+                var jsObject = JSON.parse(error.responseText).message;
+                alert(jsObject.message);
+            }
+        });
+    }
+
+
+//================================Customer=============================
+    //----------------Load Customer Data to Table--------------
+    loadAllCustomers();
+
+    function loadAllCustomers(){
+        $("#tblCustomerDetails").empty();
+        $.ajax ({
+            url: baseURL+"customer",
+            dataType: "json",
+            success: function (resp) {
+                console.log(resp);
+                for (let customer of resp.data) {
+                    var row = '<tr><td>'+customer.id+'</td><td>'+customer.name+'</td><td>'+customer.address+'</td><td>'+customer.contact+'</td><td>'
+                              +customer.email+'</td><td>'+customer.drivingLicenseNo+'</td>' +'<td>'+customer.nic+'</td></tr>';
+                    $("#tblCustomerDetails").append(row);
+                }
             },
             error: function (error){
                 var jsObject = JSON.parse(error.responseText).message;
