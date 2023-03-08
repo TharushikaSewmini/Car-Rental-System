@@ -646,7 +646,7 @@
                 alert(resp.message);
                 console.log(resp.data);
                 var car = resp.data;
-                setTextFieldValues(car.regNo, car.brand, car.type, car.color, car.noOfPassengers, car.transmissionType, car.fuelType,
+                setCarFormTextFieldValues(car.regNo, car.brand, car.type, car.color, car.noOfPassengers, car.transmissionType, car.fuelType,
                     car.dailyRate, car.monthlyRate, car.lossDamageWaiver, car.freeKMForDay, car.freeKMForMonth, car.priceForExtraKM);
             },
             error: function (error){

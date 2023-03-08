@@ -19,14 +19,14 @@
         </div>
         <div class="card-body">
             <h1 class="card-title mt-5" style="text-align: center; font-size: 45px; width: 91.66666667%;">Sign in</h1>
-            <form class="row g-4 mt-4">
+            <form class="row g-4 mt-4" id="adminLoginForm">
                 <div class="col-md-11">
                     <label for="txtAdminUserName" class="form-label">User Name</label>
-                    <input type="text" class="form-control" id="txtAdminUserName" name="aUserName">
+                    <input type="text" class="form-control" id="txtAdminLoginUserName" name="adminUsername">
                 </div>
                 <div class="col-md-11">
                     <label for="txtAdminPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="txtAdminPassword" name="aPassword">
+                    <input type="password" class="form-control" id="txtAdminLoginPassword" name="adminPassword">
                 </div>
             </form>
             <button type="button" class="btn btn-primary col-md-11 mt-4 mx-auto" id="btnAdminLogin">Login</button>
@@ -47,25 +47,25 @@
                 <div class="modal-content px-4">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Up</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnClose"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="row g-3">
+                        <form class="row g-3" id="adminSignupForm">
                             <div class="col-md-12">
                                 <label for="txtAdminName" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="txtAdminName" placeholder="Nimal Perera" name="aName">
+                                <input type="text" class="form-control" id="txtAdminName" placeholder="Nimal Perera" name="adminName">
                             </div>
                             <div class="col-md-12">
                                 <label for="txtAdminEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="txtAdminEmail" placeholder="nimal50@gmail.com" name="aEmail">
+                                <input type="email" class="form-control" id="txtAdminEmail" placeholder="nimal50@gmail.com" name="adminEmail">
                             </div>
                             <div class="col-md-12">
-                                <label for="txtAdminUserName1" class="form-label">UserName</label>
-                                <input type="text" class="form-control" id="txtAdminUserName1" placeholder="nimal" name="aUser">
+                                <label for="txtAdminUserName" class="form-label">UserName</label>
+                                <input type="text" class="form-control" id="txtAdminUserName" placeholder="nimal" name="adminUsername">
                             </div>
                             <div class="col-md-12">
-                                <label for="txtAdminPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="txtAdminPassword1" name="aPassword">
+                                <label for="txtAdminPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="txtAdminPassword" name="adminPassword">
                             </div>
                         </form>
                     </div>
@@ -81,7 +81,61 @@
 <script src="assets/js/jquery-3.6.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
-    
+    let baseURL = "http://localhost:8080/EasyCarRentalApp/";
+
+    //------Clear InputFields-----------
+    function setAdminFormTextFieldValues(username, password, email, name){
+        $("#txtAdminUserName").val(username);
+        $("#txtAdminPassword").val(password);
+        $("#txtAdminEmail").val(email);
+        $("#txtAdminName").val(name);
+    }
+
+    //-----Save New Admin----------
+    $("#btnAdminSignUp").click(function (){
+        var formData = $("#adminSignupForm").serialize();
+        console.log(formData);
+        $.ajax ({
+            url: baseURL+"admin",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            success: function (resp){
+                alert(resp.message);
+                setAdminFormTextFieldValues("");
+                //close the model
+                $("#btnClose").click();
+            },
+            error: function (error) {
+                var jsObject = JSON.parse(error.responseText);
+                alert(jsObject.message);
+            }
+        });
+    });
+
+    //----------------Search Admin by username and password--------------
+    $("#btnAdminLogin").click(function () {
+        var formData = $("#adminLoginForm").serialize();
+        console.log(formData);
+        $.ajax({
+            url: baseURL+"admin",
+            method: "get",
+            data: formData,
+            dataType: "json",
+            success: function (resp){
+                alert(resp.message);
+                console.log(resp.data);
+                if (!resp.data){
+                    $("#txtAdminLoginUserName").focus();
+                    return alert("The Email or Password is incorrect.");
+                }
+                $(location).attr('href','AdminDashBoardForm.html');
+            },
+            error: function (error){
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    });
 </script>
 </body>
 </html>

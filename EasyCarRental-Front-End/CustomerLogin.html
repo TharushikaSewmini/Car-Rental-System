@@ -19,17 +19,17 @@
         </div>
         <div class="card-body">
             <h1 class="card-title mt-4">Sign in</h1>
-            <form class="row g-4 mt-3">
+            <form class="row g-4 mt-3" id="customerLoginForm">
                 <div class="col-md-11">
-                    <label for="inputUserName" class="form-label">User Name</label>
-                    <input type="text" class="form-control" id="inputUserName">
+                    <label for="txtCustomerLoginUserName" class="form-label">User Name</label>
+                    <input type="text" class="form-control" id="txtCustomerLoginUserName" name="username">
                 </div>
                 <div class="col-md-11">
-                    <label for="inputPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="inputPassword">
+                    <label for="txtCustomerLoginPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="txtCustomerLoginPassword" name="password">
                 </div>
             </form>
-            <button type="button" class="btn btn-primary col-md-11 mt-4 mb-3 mx-auto" id="btnLogin">Login</button>
+            <button type="button" class="btn btn-primary col-md-11 mt-4 mb-3 mx-auto" id="btnCustomerLogin">Login</button>
             <a href="#" class="card-link">Forgot Password?</a>
             <h6 class="mt-5">Don't have an Account?
                 <a href="#" class="card-link mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id="lnkSignUpForm">Sign Up</a></h6>
@@ -45,7 +45,7 @@
                 <div class="modal-content px-4">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Up</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" id="btnClose" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form class="row g-3" id="customerRegisterForm">
@@ -106,16 +106,32 @@
 <script src="assets/js/jquery-3.6.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
-    $("#loginFormContainer").click(function () {
-        $("#signUpForm").css('display','block');
-    });
-
-    $("#lnkSignUpForm").click(function () {
-        $("#signUpForm").css('display','none');
-    });
+    // $("#loginFormContainer").click(function () {
+    //     $("#signUpForm").css('display','block');
+    // });
+    //
+    // $("#lnkSignUpForm").click(function () {
+    //     $("#signUpForm").css('display','none');
+    // });
 
     let baseURL = "http://localhost:8080/EasyCarRentalApp/";
 
+    //------Clear InputFields-----------
+    function setCustomerFormTextFieldValues(username, address, contact, password, email, name, drivingLicense, nic, loginUsername, loginPassword){
+        $("#txtCustomerName").val(name);
+        $("#txtCustomerAddress").val(address);
+        $("#txtCustomerContact").val(contact);
+        $("#txtCustomerUserName").val(username);
+        $("#txtCustomerPassword").val(password);
+        $("#txtCustomerEmail").val(email);
+        $("#txtCustomerDrivingLicenseNo").val(drivingLicense);
+        $("#txtCustomerNIC").val(nic);
+        $("#formDrivingLicenseNo, #formNIC").val(null);
+        $("#txtCustomerLoginUserName").val(loginUsername);
+        $("#txtCustomerLoginPassword").val(loginPassword);
+    }
+
+    //-----Save New Customer----------
     $("#btnCustomerSignUp").click(function (){
         var formData = $("#customerRegisterForm").serialize();
         console.log(formData);
@@ -126,13 +142,36 @@
             dataType: "json",
             success: function (resp){
                 alert(resp.message);
-                // $("#signUpForm").close;
-                $("#signUpForm").css('display','none');
-
+                setCustomerFormTextFieldValues("");
+                //close the model
+                $("#btnClose").click();
             },
             error: function (error) {
                 var jsObject = JSON.parse(error.responseText);
                 alert(jsObject.message);
+            }
+        });
+    });
+
+    //----------------Search Customer by username and password--------------
+    $("#btnCustomerLogin").click(function () {
+        var formData = $("#customerLoginForm").serialize();
+        $.ajax({
+            url: baseURL+"customer",
+            method: "get",
+            data: formData,
+            dataType: "json",
+            success: function (resp){
+                alert(resp.message);
+                console.log(resp.data);
+                if (!resp.data){
+                    $("#txtCustomerLoginUserName").focus();
+                    //return alert("The Email or Password is incorrect.");
+                }
+                $(location).attr('href','CustomerDashBoardForm.html');
+            },
+            error: function (error){
+                alert(JSON.parse(error.responseText).message);
             }
         });
     });
