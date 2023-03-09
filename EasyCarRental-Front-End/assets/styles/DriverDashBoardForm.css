@@ -1,0 +1,9 @@
+thead{
+    background-color: #2774AE;
+    color: white;
+    text-align: center;
+}
+
+th, td, tr, tbody {
+    border: 1px solid #dbe3e7 !important;
+}

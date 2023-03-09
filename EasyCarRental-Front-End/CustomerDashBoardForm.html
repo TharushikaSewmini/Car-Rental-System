@@ -60,29 +60,45 @@
 
         <!----------Customer Form-------->
         <form class="row g-3 mt-4" id="customerForm">
-            <div class="col-md-4 mt-4">
+            <div class="col-md-3 mt-3">
                 <label for="txtLoadCustomerName" class="form-label">Name</label>
                 <input type="text" class="form-control" id="txtLoadCustomerName" name="lName">
             </div>
-            <div class="col-md-4 mt-4">
+            <div class="col-md-3 mt-3">
                 <label for="txtLoadCustomerAddress" class="form-label">Address</label>
                 <input type="text" class="form-control" id="txtLoadCustomerAddress" name="lAddress">
             </div>
-            <div class="col-md-4 mt-4">
+            <div class="col-md-3 mt-3">
                 <label for="txtLoadCustomerContact" class="form-label">Contact No</label>
                 <input type="text" class="form-control" id="txtLoadCustomerContact" name="lContact">
             </div>
-            <div class="col-md-4 mt-4">
+            <div class="col-md-3 mt-3">
                 <label for="txtLoadCustomerEmail" class="form-label">Email</label>
                 <input type="text" class="form-control" id="txtLoadCustomerEmail" name="lEmail">
             </div>
-            <div class="col-md-4 mt-4">
+            <div class="col-md-3 mt-3">
                 <label for="txtLoadCustomerNIC" class="form-label">NIC</label>
                 <input type="text" class="form-control" id="txtLoadCustomerNIC" name="lNic">
             </div>
-            <div class="col-md-4 mt-4">
+            <div class="col-md-3 mt-3">
                 <label for="txtLoadCustomerDrivingLicenseNo" class="form-label">Driving License No</label>
                 <input type="text" class="form-control" id="txtLoadCustomerDrivingLicenseNo" name="lDrivingLicenseNo">
+            </div>
+            <div class="col-md-3 mt-3">
+                <label for="txtLoadCustomerUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="txtLoadCustomerUsername" name="lUsername">
+            </div>
+            <div class="col-md-4 mt-3">
+                <label for="txtLoadCustomerPassword" class="form-label">Current Password</label>
+                <input type="text" class="form-control" id="txtLoadCustomerPassword" name="lPassword">
+            </div>
+            <div class="col-md-4 mt-3">
+                <label for="txtCustomerNewPassword" class="form-label">New Password</label>
+                <input type="text" class="form-control" id="txtCustomerNewPassword" name="lNewPassword">
+            </div>
+            <div class="col-md-4 mt-3">
+                <label for="txtConfirmCustomerPassword" class="form-label">Confirm Password</label>
+                <input type="text" class="form-control" id="txtConfirmCustomerPassword" name="lConfirmPassword">
             </div>
             <div class="col-6 mx-auto mt-5">
                 <button type="button" class="btn btn-primary col-3 mx-5" id="btnUpdateCustomer">Save Changes</button>
@@ -115,83 +131,112 @@
 
     <!--Rent Request Page-->
     <section class="container" id="bookingRequestPage">
-        <h1 class="mt-3" style="text-align: center">Rent Request</h1>
+        <h1 class="mt-3" style="text-align: center">Booking Request</h1>
 
         <!----------Rent Request Form-------->
-        <form class="row g-3">
-            <div class="col-md-3">
-                <label for="txtRegNo" class="form-label">Reg No</label>
-                <input type="text" class="form-control" id="txtRegNo" name="regNo">
-            </div>
-            <div class="col-md-3">
-                <label for="txtBrand" class="form-label">Brand</label>
-                <input type="text" class="form-control" id="txtBrand" name="brand">
-            </div>
-            <div class="col-md-4">
-                <label for="txtType" class="form-label">Type</label>
-                <input type="text" class="form-control" id="txtType" name="type">
-            </div>
-
-            <div class="col-md-4">
-                <label for="txtNoOfPassengers" class="form-label">NIC</label>
-                <input type="text" class="form-control" id="txtNoOfPassengers" name="nic">
-            </div>
-
-            <div class="col-md-4">
-                <label for="txtTransmissionType" class="form-label">Email</label>
-                <input type="text" class="form-control" id="txtTransmissionType" name="transmissionType">
-            </div>
-
-            <div class="col-md-4">
-                <label for="fuelType" class="form-label">Fuel Type</label>
-                <select id="fuelType" class="form-select" name="fuelType">
+        <form class="row g-3 mt-2" id="carForm">
+            <div class="col-md-3 mt-3">
+                <label for="selectType" class="form-label">Type</label>
+                <select id="selectType" class="form-select" name="selectType">
                     <option selected>Choose...</option>
-                    <option>...</option>
+                    <option>General</option>
+                    <option>Premium</option>
+                    <option>Luxury</option>
+                </select>
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="selectCarRegNo" class="form-label">Registration No</label>
+                <select id="selectCarRegNo" class="form-select" name="selectRegNo">
+                    <option selected>Choose...</option>
                 </select>
             </div>
 
             <div class="col-md-3">
-                <label for="dailyRate" class="form-label">Daily Rate</label>
-                <input type="number" class="form-control" id="dailyRate" name="dailyRate">
-            </div>
-
-            <div class="col-md-3">
-                <label for="monthlyRate" class="form-label">Monthly Rate</label>
-                <input type="number" class="form-control" id="monthlyRate" name="monthlyRate">
-            </div>
-
-            <div class="col-md-4">
-                <label for="txtFreeKMForDay" class="form-label">Free KM for Day</label>
-                <input type="text" class="form-control" id="txtFreeKMForDay" name="freeKMForDay">
-            </div>
-
-            <div class="col-md-4">
-                <label for="txtFreeKMForMonth" class="form-label">Free KM for Month</label>
-                <input type="text" class="form-control" id="txtFreeKMForMonth" name="freeKMForMonth">
+                <label for="txtLoadBrand" class="form-label">Brand</label>
+                <input type="text" class="form-control" id="txtLoadBrand" readonly name="loadBrand">
             </div>
 
             <div class="col-3">
-                <label for="txtPriceExtraKM" class="form-label">Price Extra KM</label>
-                <input type="text" class="form-control" id="txtPriceExtraKM" name="priceExtraKM">
+                <label for="txtLoadNoOfPassengers" class="form-label">No of Passengers</label>
+                <input type="text" class="form-control" id="txtLoadNoOfPassengers" readonly name="loadNoOfPassengers">
             </div>
 
-            <div class="col-md-4">
-                <label for="txtColor" class="form-label">Color</label>
-                <input type="color" class="form-control" id="txtColor" name="color">
+            <div class="col-3 mt-3">
+                <label for="loadColor" class="form-label">Color</label>
+                <input type="color" class="form-control" id="loadColor" disabled readonly name="loadColor">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtLoadTransmissionType" class="form-label">Transmission Type</label>
+                <input type="text" class="form-control" id="txtLoadTransmissionType" readonly name="loadTransmissionType">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtLoadFuelType" class="form-label">Fuel Type</label>
+                <input type="text" class="form-control" id="txtLoadFuelType" readonly name="loadFuelType">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtLoadDailyRate" class="form-label">Daily Rate(Rs)</label>
+                <input type="text" class="form-control" id="txtLoadDailyRate" readonly name="loadDailyRate">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtLoadMonthlyRate" class="form-label">Monthly Rate(Rs)</label>
+                <input type="text" class="form-control" id="txtLoadMonthlyRate" readonly name="loadMonthlyRate">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtLoadLossDamageWaiver" class="form-label">Loss Damage Waiver(Rs)</label>
+                <input type="text" class="form-control" id="txtLoadLossDamageWaiver" readonly name="loadLossDamageWaiver">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtLoadFreeKMForDay" class="form-label">Free KM for Day</label>
+                <input type="text" class="form-control" id="txtLoadFreeKMForDay" readonly name="loadFreeKMForDay">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtLoadFreeKMForMonth" class="form-label">Free KM for Month</label>
+                <input type="text" class="form-control" id="txtLoadFreeKMForMonth" readonly name="loadFreeKMForMonth">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="txtLoadPriceForExtraKM" class="form-label">Price Per Extra KM(Rs)</label>
+                <input type="text" class="form-control" id="txtLoadPriceForExtraKM" readonly name="loadPriceForExtraKM">
+            </div>
+
+            <!------Images of Car------->
+            <div class="col-md-3" style="width: 200px; height: 120px; border: 1px solid black;"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+
+            <div class="col-md-3">
+                <label for="txtPickupDate" class="form-label">Choose Pickup Date</label>
+                <input type="date" class="form-control" id="txtPickupDate" name="pickupDate">
             </div>
 
             <div class="col-md-3">
-                <label for="txtPickupDate" class="form-label">Pickup Date</label>
-                <input type="number" class="form-control" id="txtPickupDate" name="pickupDate">
+                <label for="txtReturnDate" class="form-label">Choose Return Date</label>
+                <input type="date" class="form-control" id="txtReturnDate" name="returnDate">
             </div>
 
-            <div class="col-md-3">
-                <label for="txtReturnDate" class="form-label">Return Date</label>
-                <input type="number" class="form-control" id="txtReturnDate" name="returnDate">
+            <div class="col-3">
+                <label for="uploadLossDamageWaiverReceipt" class="form-label">Upload Loss Damage Waiver Receipt</label>
+                <input class="form-control" type="file" id="uploadLossDamageWaiverReceipt">
+            </div>
+
+            <div class="col-md-3 mt-3">
+                <label for="selectedDriverOption" class="form-label">Need a Driver?</label>
+                <select id="selectedDriverOption" class="form-select" name="driverOption">
+                    <option selected>Choose...</option>
+                </select>
             </div>
 
             <div class="col-12">
-                <button type="button" class="btn btn-primary" id="btnSendRequest">Send</button>
+                <button type="button" class="btn btn-primary" id="btnSendRequest">Send Booking Request</button>
                 <button type="button" class="btn btn-danger" id="btnCancelRequest">Cancel</button>
             </div>
         </form>
@@ -311,37 +356,36 @@
     let baseURL = "http://localhost:8080/EasyCarRentalApp/";
 
 
-    let username = localStorage.getItem("username");
+    let username = localStorage.getItem("Username");
     getLastLoginCustomer();
 
+    //=====================Customer Profile================
+
     //------Set Data InputFields-----------
-    function setCustomerDetailsTextFieldValues(lName, lAddress, lContact, lEmail, lNic, lDrivingLicenseNo){
+    function setCustomerDetailsTextFieldValues(lName, lAddress, lContact, lEmail, lNic, lDrivingLicenseNo, lUsername, lPassword){
         $("#txtLoadCustomerName").val(lName);
         $("#txtLoadCustomerAddress").val(lAddress);
         $("#txtLoadCustomerContact").val(lContact);
-        // $("#txtLoadCustomerUserName").val(username);
-        // $("#txtLoadCustomerPassword").val(password);
         $("#txtLoadCustomerEmail").val(lEmail);
         $("#txtLoadCustomerNIC").val(lNic);
         $("#txtLoadCustomerDrivingLicenseNo").val(lDrivingLicenseNo);
-        // $("#txtLoadCustomerLoginUserName").val(loginUsername);
-        // $("#txtCustomerLoginPassword").val(loginPassword);
+        $("#txtLoadCustomerUsername").val(lUsername);
+        $("#txtLoadCustomerPassword").val(lPassword);
     }
-
 
     //----------------Get Customer by Username--------------
     function getLastLoginCustomer() {
         let typedUsername = username;
-        console.log("lastLog: "+typedUsername);
+        // console.log("lastLog: "+typedUsername);
         $.ajax({
             url: baseURL+"customer?username="+typedUsername+"",
             method: "get",
             dataType: "json",
             success: function (resp){
-                alert(resp.message);
+                // alert(resp.message);
                 console.log(resp.data);
                 var customer = resp.data;
-                alert(customer);
+                // alert(customer);
                 setCustomerDetailsTextFieldValues(customer.name, customer.address, customer.contact, customer.email,
                     customer.nic, customer.drivingLicenseNo, customer.username, customer.password);
             },
@@ -359,28 +403,34 @@
         let email = $("#txtLoadCustomerEmail").val();
         let nic = $("#txtLoadCustomerNIC").val();
         let drivingLicenseNo = $("#txtLoadCustomerDrivingLicenseNo").val();
-        // let username = $("#txtLoadCustomerUsername").val();
+        let username = $("#txtLoadCustomerUsername").val();
+        // let password = $("#txtLoadCustomerPassword").val();
+        let newPassword = $("#txtCustomerNewPassword").val();
+        let confirmedPassword = $("#txtConfirmCustomerPassword").val();
 
+        // if ($("#txtCustomerNewPassword").val() instanceof $("#txtConfirmCustomerPassword").val()){
+        //     alert("Password and Confirm Password does not match");
+        // }
 
-        var car= {
+        var customer= {
             name: name,
             address: address,
             contact: contact,
             email: email,
             nic: nic,
-            drivingLicenseNo: drivingLicenseNo
-            // username: username
+            drivingLicenseNo: drivingLicenseNo,
+            username: username,
+            password: confirmedPassword
         }
 
         $.ajax({
             url: baseURL+"customer",
             method: "put",
             contentType: "application/json",
-            data: JSON.stringify(car),
+            data: JSON.stringify(customer),
             dataType: "json",
             success: function (resp){
                 alert(resp.message);
-                // loadAllCars();
             },
             error: function (error){
                 var jsObject = JSON.parse(error.responseText).message;
@@ -388,6 +438,108 @@
             }
         });
     });
+
+
+//==========================Car Booking Request===============
+
+    //----------------Get Cars by Type--------------
+    $("#selectType").change(function (){
+        getAllCarByType();
+    });
+
+    function getAllCarByType() {
+        $("#selectCarRegNo").empty();
+        let selectedType = $("#selectType").val();
+        $.ajax({
+            url: baseURL+"car?type="+selectedType+"",
+            method: "get",
+            dataType: "json",
+            success: function (resp){
+                // alert(resp.message);
+                console.log(resp.data);
+                for (let car of resp.data) {
+                    let regNo = car.regNo;
+                    $("#selectCarRegNo").append(`<option value="${regNo}">${regNo}</option>`);
+                }
+            },
+            error: function (error){
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    }
+
+    // $("#selectType").change(function (){
+    //     $("#selectCarRegNo").empty();
+    //     let type = $("#selectType").val();
+    //     let res = searchRegNoByType(type);
+    //     // console.log(res);
+    //     for (let car of res) {
+    //         let regNo = car.regNo;
+    //         $("#selectCarRegNo").append(`<option value="${regNo}">${regNo}</option>`);
+    //     }
+    // });
+
+    // function searchRegNoByType(type){
+    //     let response = ""
+    //     let selectedType = $("#selectType").val();
+    //     $.ajax({
+    //         url: baseURL+"car?type="+selectedType+"",
+    //         method: "get",
+    //         dataType: "json",
+    //         async: false,
+    //         success: function (resp){
+    //             alert(resp.message);
+    //             console.log(resp.data);
+    //             response = resp.data.filter((i) => {
+    //                 return i.type == type;
+    //             });
+    //         }
+    //     });
+    //     console.log("1: "+response);
+    //     return response;
+    // }
+
+    //----------------Clear InputFields--------------
+    function setCarDetailsFormTextFieldValues(loadBrand,loadColor,loadNoOfPassengers,loadTransmissionType,loadFuelType,loadDailyRate,loadMonthlyRate,loadLossDamageWaiver,loadFreeKMForDay,loadFreeKMForMonth,loadPriceForExtraKM){
+        $("#txtLoadBrand").val(loadBrand);
+        $("#loadColor").val(loadColor);
+        $("#txtLoadNoOfPassengers").val(loadNoOfPassengers);
+        $("#txtLoadTransmissionType").val(loadTransmissionType);
+        $("#txtLoadFuelType").val(loadFuelType);
+        $("#txtLoadDailyRate").val(loadDailyRate);
+        $("#txtLoadMonthlyRate").val(loadMonthlyRate);
+        $("#txtLoadLossDamageWaiver").val(loadLossDamageWaiver);
+        $("#txtLoadFreeKMForDay").val(loadFreeKMForDay);
+        $("#txtLoadFreeKMForMonth").val(loadFreeKMForMonth);
+        $("#txtLoadPriceForExtraKM").val(loadPriceForExtraKM);
+        // $("#selectCarStatus").val(loadStatus);
+        // $("#selectCarImages").val(null);
+    }
+
+    //--------------Get Car Details by RegNo----------
+    $("#selectCarRegNo").change(function (){
+        getCarByRegNo();
+    });
+
+    function getCarByRegNo(){
+        // $("#selectCarRegNo").empty();
+        let selectedRegNo = $("#selectCarRegNo").val();
+        $.ajax({
+            url: baseURL+"car?regNo="+selectedRegNo+"",
+            method: "get",
+            dataType: "json",
+            success: function (resp){
+                alert(resp.message);
+                console.log("Resp.data"+resp.data);
+                let car = resp.data;
+                setCarDetailsFormTextFieldValues(car.brand, car.color, car.noOfPassengers, car.transmissionType, car.fuelType,
+                    car.dailyRate, car.monthlyRate, car.lossDamageWaiver, car.freeKMForDay, car.freeKMForMonth, car.priceForExtraKM);
+            },
+            error: function (error){
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    }
 
 </script>
 </body>

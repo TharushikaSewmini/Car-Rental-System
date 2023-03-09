@@ -14,7 +14,7 @@ img {
     height: 43px;
 }
 
-form input{
+#customerForm input{
     height: 50px !important;
 }
 
