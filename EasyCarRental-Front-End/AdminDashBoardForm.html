@@ -123,11 +123,11 @@
     </section>
 
     <!--------------Car Page------------------>
-    <section class="container" id="carPage">
+    <section class="container-fluid" id="carPage">
         <h1 class="mt-3" style="text-align: center">Cars Management</h1>
 
         <!----------Car Form-------->
-        <form class="row g-3 mt-2" id="carForm">
+        <form class="row g-3 mt-2 mx-5" id="carForm">
             <div class="col-md-3">
                 <label for="txtRegNo" class="form-label">Registration No</label>
                 <input type="text" class="form-control" id="txtRegNo" name="regNo">
@@ -143,14 +143,16 @@
             </div>
 
             <div class="col-3 mt-3">
+                <div>
                 <label for="selectColor" class="form-label">Color</label>
                 <input type="color" class="form-control" id="selectColor" name="color">
+                </div>
             </div>
 
             <div class="col-md-3 mt-3">
                 <label for="selectType" class="form-label">Type</label>
                 <select id="selectType" class="form-select" name="type">
-                    <option selected>Choose...</option>
+                    <option selected hidden>Choose...</option>
                     <option>General</option>
                     <option>Premium</option>
                     <option>Luxury</option>
@@ -160,7 +162,7 @@
             <div class="col-md-3 mt-3">
                 <label for="selectTransmissionType" class="form-label">Transmission Type</label>
                 <select id="selectTransmissionType" class="form-select" name="transmissionType">
-                    <option selected>Choose...</option>
+                    <option selected hidden>Choose...</option>
                     <option>Manual</option>
                     <option>Auto</option>
                 </select>
@@ -169,22 +171,69 @@
             <div class="col-md-3 mt-3">
                 <label for="selectFuelType" class="form-label">Fuel Type</label>
                 <select id="selectFuelType" class="form-select" name="fuelType">
-                    <option selected >Choose...</option>
+                    <option selected hidden>Choose...</option>
                     <option>Diesel</option>
                     <option>Petrol</option>
                 </select>
             </div>
 
+<!--            <div class="col-3">-->
+<!--                <div>-->
+<!--                <label for="selectCarImages" class="form-label">Upload Car Images</label>-->
+<!--                <input class="form-control" accept="image/*" type="file" id="selectCarImages" multiple name="selectCarImages" onchange="document.getElementById('carImage1').src = window.URL.createObjectURL(this.files[0])">-->
+<!--            </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash;&#45;&#45;&#45;&#45;Images of Car-&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--            <div class="d-flex justify-content-center" >-->
+<!--&lt;!&ndash;                <img alt="Image" id="mainImage" src="">&ndash;&gt;-->
+<!--                <div class="col-md-3 mx-4" style="width: 200px; height: 120px; border: 1px solid black;">-->
+<!--                    <img alt="Image" id="carImage1" src="">-->
+<!--                </div>-->
+<!--                <div class="col-md-3 mx-4" style="width: 200px; height: 120px; border: 1px solid black;" id="carImage2"></div>-->
+<!--                <div class="col-md-3 mx-4" style="width: 200px; height: 120px; border: 1px solid black;" id="carImage3"></div>-->
+<!--                <div class="col-md-3 mx-4" style="width: 200px; height: 120px; border: 1px solid black;" id="carImage4"></div>-->
+<!--            </div>-->
+
+
             <div class="col-3">
-                <label for="selectCarImages" class="form-label">Upload Car Images</label>
-                <input class="form-control" type="file" id="selectCarImages" multiple>
+                <div class="input-group-m">
+                    <label for="fileString1" class="form-label">Upload Picture</label>
+                    <input class="form-control mt-2" formenctype="multipart/form-data" name="fileString[]" type="file" id="fileString1" aria-describedby="inputGroup-sizing-lg" multiple>
+                </div>
+<!--                <div class="input-group-m">-->
+<!--                    <label for="fileString2" class="form-label">Upload Back Picture</label>-->
+<!--                    <input class="form-control mt-2" name="fileString2" type="file" id="fileString2" aria-describedby="inputGroup-sizing-lg" multiple>-->
+<!--                </div>-->
+<!--                <div class="input-group-m">-->
+<!--                    <label for="fileString3" class="form-label">Upload Side Picture</label>-->
+<!--                    <input class="form-control mt-2" name="fileString3" type="file" id="fileString3" aria-describedby="inputGroup-sizing-lg" multiple>-->
+<!--                </div>-->
+<!--                <div class="input-group-m">-->
+<!--                    <label for="fileString4" class="form-label">Upload Interior Picture</label>-->
+<!--                    <input class="form-control mt-2" name="fileString4" type="file" id="fileString4" aria-describedby="inputGroup-sizing-lg" multiple>-->
+<!--                </div>-->
             </div>
 
+
             <!------Images of Car------->
-            <div class="col-md-3" style="width: 200px; height: 120px; border: 1px solid black;"></div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3"></div>
+            <div class="d-flex justify-content-center" >
+                <!--                <img alt="Image" id="mainImage" src="">-->
+                <div class="col-md-3 mx-4" style="width: 200px; height: 140px; border: 1px solid black;" id="carImageContent1">
+                    <img alt="Image" id="carImage1" src="" style="width: 100%; height: 100%;">
+                </div>
+                <div class="col-md-3 mx-4" style="width: 200px; height: 120px; border: 1px solid black;" id="carImageContent2">
+                    <img alt="Image" id="carImage2" src="" style="width: 100%; height: 100%;">
+                </div>
+                <div class="col-md-3 mx-4" style="width: 200px; height: 120px; border: 1px solid black;" id="carImageContent3">
+                    <img alt="Image" id="carImage3" src="" style="width: 100%; height: 100%;">
+                </div>
+                <div class="col-md-3 mx-4" style="width: 200px; height: 120px; border: 1px solid black;" id="carImageContent4">
+                    <img alt="Image" id="carImage4" src="" style="width: 100%; height: 100%;">
+                </div>
+            </div>
+
+<!--            <div class="col-md-3 mt-3"></div>-->
 
             <div class="col-md-3 mt-3">
                 <label for="txtDailyRate" class="form-label">Daily Rate</label>
@@ -200,6 +249,8 @@
                 <label for="txtLossDamageWaiver" class="form-label">Loss Damage Waiver</label>
                 <input type="number" class="form-control" id="txtLossDamageWaiver" name="lossDamageWaiver">
             </div>
+
+            <div class="col-md-3 mt-3"></div>
 
             <div class="col-md-3 mt-3">
                 <label for="txtFreeKMForDay" class="form-label">Free KM for Day</label>
@@ -219,9 +270,10 @@
             <div class="col-md-3 mt-3">
                 <label for="selectCarStatus" class="form-label">Status</label>
                 <select id="selectCarStatus" class="form-select" name="status">
-                    <option selected >Choose...</option>
+                    <option selected hidden>Choose...</option>
                     <option>Available</option>
                     <option>Under Maintenance</option>
+                    <option>On Hire</option>
                 </select>
             </div>
 
@@ -234,6 +286,7 @@
             </div>
         </form>
 
+
         <form class="d-flex mt-5 col-5 mx-auto" role="search">
             <input class="form-control me-2" type="search" id="txtSearchCar" placeholder="Input Car Reg No" aria-label="Search">
             <button class="btn btn-secondary" type="button" id="btnSearchCar" style="color: white;">Search</button>
@@ -241,7 +294,7 @@
 
 
         <!-------Car Table------->
-        <section class="mt-4">
+        <section class="mt-4 mx-5">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -331,7 +384,7 @@
                 <div class="col-md-12 my-0">
                     <label for="selectedDriverStatus" class="form-label">Status</label>
                     <select id="selectedDriverStatus" class="form-select" name="driverStatus">
-                        <option selected>Choose...</option>
+                        <option selected hidden></option>
                         <option>Available</option>
                         <option>Not Available</option>
                         <option>On Hire</option>
@@ -346,7 +399,6 @@
                 </div>
             </form>
         </div>
-
 
         <section class="col-md-7" style="display: inline-block; margin-left: 80px;" id="viewDriver">
             <!--Driver Search-->
@@ -380,32 +432,89 @@
     </section>
 
     <!--------------Rent Request Page------------------>
-    <section class="container" id="bookingRequestPage">
+    <section class="container-fluid" id="bookingRequestPage">
         <h1 class="mt-3" style="text-align: center">Rent Request Management</h1>
 
+        <section class="d-flex justify-content-center">
+        <!--Booking Request form-->
+        <div class="col-3 mt-1 px-0" style="display: inline-block;">
+            <form class="row g-3" id="bookingRequestForm">
+                <div class="col-md-6">
+                    <label for="txtLoadBookingRequestId" class="form-label my-1">Booking ID</label>
+                    <input class="form-control" type="text" id="txtLoadBookingRequestId" name="bookingId" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label for="txtLoadBookingDate" class="form-label my-1">Booking Date</label>
+                    <input type="text" class="form-control" id="txtLoadBookingDate" name="bookingDate" disabled>
+                </div>
+                <div class="col-md-6 my-1">
+                    <label for="txtLoadCustomerName" class="form-label my-1">Customer Name</label>
+                    <input type="text" class="form-control" id="txtLoadCustomerName" name="customerName" disabled>
+                </div>
+                <div class="col-md-6 my-1">
+                    <label for="txtLoadCustomerEmail" class="form-label my-1">Customer Email</label>
+                    <input type="text" class="form-control" id="txtLoadCustomerEmail" name="customerEmail" disabled>
+                </div>
+                <div class="col-md-6 my-1">
+                    <label for="txtLoadCarRegNo" class="form-label my-1">Car Reg No</label>
+                    <input type="text" class="form-control" id="txtLoadCarRegNo" name="carRegNo" disabled>
+                </div>
+                <div class="col-md-6 my-1">
+                    <label for="txtLoadDriverId" class="form-label my-1">Driver ID</label>
+                    <input type="text" class="form-control" id="txtLoadDriverId" name="driverId" disabled>
+                </div>
+                <div class="col-md-6 my-1">
+                    <label for="txtLoadPickupDate" class="form-label my-1">Pickup Date</label>
+                    <input type="text" class="form-control" id="txtLoadPickupDate" name="pickupDate" disabled>
+                </div>
+                <div class="col-md-6 my-1">
+                    <label for="txtLoadReturnDate" class="form-label my-1">Return Date</label>
+                    <input type="text" class="form-control" id="txtLoadReturnDate" name="returnDate" disabled>
+                </div>
+                <div class="col-md-10 my-1">
+                    <label for="txtLoadBookingStatus" class="form-label my-1">Status</label>
+                    <input type="text" class="form-control" id="txtLoadBookingStatus" name="bookingStatus" disabled>
+                </div>
+                <div class="col-md-12 my-0">
+                    <label for="selectAnotherDriver" class="form-label my-1">Change Driver</label>
+                    <select id="selectAnotherDriver" class="form-select" name="anotherDriver">
+                        <option selected disabled>Select Another Driver</option>
+                    </select>
+                </div>
+                <div class="col-md-12 my-1">
+                    <label for="txtDenialReason" class="form-label my-1">Denial Reason</label>
+                    <input type="text" class="form-control" id="txtDenialReason" name="denialReason">
+                </div>
+
+                <div class="col-12 mx-auto px-auto d-flex justify-content-center">
+                    <button type="button" class="btn btn-success col-md-4" id="btnAcceptRequest">Accept</button>
+                    <button type="button" class="btn btn-danger col-md-4 mx-4" id="btnDenyRequest">Deny</button>
+                </div>
+            </form>
+        </div>
+
         <!--Rent Request Table-->
-        <section class="mt-4">
-            <table class="table table-striped">
+        <section class="col-8 mt-4" style="display: inline-block; margin-left: 30px;">
+            <table class="table table-striped" style="margin-left: 30px;">
                 <thead style="background-color: #8E44AD; color: white;">
                 <tr>
                     <th scope="col">Booking ID</th>
                     <th scope="col">Booking Date</th>
-                    <th scope="col">Customer ID</th>
-                    <th scope="col">Car ID</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Customer Email</th>
+                    <th scope="col">Car RegNo</th>
                     <th scope="col">Driver ID</th>
                     <th scope="col">Pickup Date</th>
                     <th scope="col">Return Date</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Request Accept</th>
-                    <th scope="col">Request Deny</th>
                 </tr>
                 </thead>
-                <tbody id="tblRequest">
+                <tbody id="tblBookingRequest">
                 <tr></tr>
                 </tbody>
             </table>
         </section>
-
+        </section>
     </section>
 
     <!--------------Booking Page------------------>
@@ -419,8 +528,9 @@
                 <tr>
                     <th scope="col">Booking ID</th>
                     <th scope="col">Booking Date</th>
-                    <th scope="col">Customer ID</th>
-                    <th scope="col">Car ID</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Customer Email</th>
+                    <th scope="col">Car RegNo</th>
                     <th scope="col">Driver ID</th>
                     <th scope="col">Pickup Date</th>
                     <th scope="col">Return Date</th>
@@ -511,8 +621,54 @@
 <script>
 
     let baseURL = "http://localhost:8080/EasyCarRentalApp/";
+
 //===========================Car============================
     loadAllCars();
+
+    //------------Add Car Images----------------
+    $("#fileString1").change(function (){
+        console.log($('#fileString1').val());
+        $("#carImage1").attr('src',window.URL.createObjectURL(this.files[0]));
+        $("#carImage2").attr('src',window.URL.createObjectURL(this.files[1]));
+        $("#carImage3").attr('src',window.URL.createObjectURL(this.files[2]));
+        $("#carImage4").attr('src',window.URL.createObjectURL(this.files[3]));
+
+        // console.log($('#carImage1').val());
+        // onchange="document.getElementById('carImage1').src = window.URL.createObjectURL(this.files[0])";
+    });
+
+    // $("#fileString2").change(function (){
+    //     console.log($('#fileString2').val());
+    //     $("#carImage2").attr('src',window.URL.createObjectURL(this.files[0]));
+    // });
+    //
+    // $("#fileString3").change(function (){
+    //     console.log($('#fileString3').val());
+    //     $("#carImage3").attr('src',window.URL.createObjectURL(this.files[0]));
+    // });
+    //
+    // $("#fileString4").change(function (){
+    //     console.log($('#fileString4').val());
+    //     $("#carImage4").attr('src',window.URL.createObjectURL(this.files[0]));
+    // });
+
+    // imageLoad();
+    // function imageLoad() {
+    //     $.ajax({
+    //         url: baseUrl + "uploads/lastImageLoad",
+    //         method: 'get',
+    //         success: function (resp) {
+    //             console.log(resp.data);
+    //             url1 = resp.data
+    //             $("#display").css({
+    //                 "background": `url(${baseUrl + url1})`, "background-size": "cover"
+    //             });
+    //         },
+    //         error: function (err) {
+    //             console.log(err);
+    //         }
+    //     });
+    // }
 
     //----------------Bind Data to InputFields--------------
     function bindCarTableRowClickEvents() {
@@ -530,7 +686,7 @@
             let freeKMForDay = $(this).children(":eq(10)").text();
             let freeKMForMonth = $(this).children(":eq(11)").text();
             let priceForExtraKM = $(this).children(":eq(12)").text();
-            let status = $(this).children(":eq(3)").text();
+            let status = $(this).children(":eq(13)").text();
 
             $("#txtRegNo").val(regNo);
             $("#txtBrand").val(brand);
@@ -546,6 +702,8 @@
             $("#txtFreeKMForMonth").val(freeKMForMonth);
             $("#txtPriceForExtraKM").val(priceForExtraKM);
             $("#selectCarStatus").val(status);
+            imageLoad($("#txtRegNo").val());
+
         });
     }
 
@@ -565,20 +723,43 @@
         $("#txtFreeKMForMonth").val(freeKMForMonth);
         $("#txtPriceForExtraKM").val(priceForExtraKM);
         $("#selectCarStatus").val(status);
-        $("#selectCarImages").val(null);
+        $("#fileString1").val(null);
+        $("#carImage1, #carImage2, #carImage3, #carImage4").attr("src","");
     }
+
+    // $("#btnUpload").click(function (){
+    //     let formData = new FormData($("#formFile")[0]);
+    //     $.ajax({
+    //         url: baseURL + "car/images",
+    //         method: 'post',
+    //         async: true,
+    //         contentType: false,
+    //         processData: false,
+    //         data: formData,
+    //         success: function (resp) {
+    //             alert("Successfully upload;");
+    //             // imageLoad();
+    //         },
+    //         error: function (err) {
+    //             console.log(err);
+    //         }
+    //     });
+    // });
 
     //----------------Save Car--------------
     $("#btnSaveCar").click(function (){
         var formData = $("#carForm").serialize();
+
         console.log(formData);
         $.ajax({
             url: baseURL+"car",
             method: "post",
+            async: true,
             data: formData,
             dataType: "json",
             success: function (resp){
                 alert(resp.message);
+                uploadImages();
                 setCarFormTextFieldValues("","","","");
                 loadAllCars();
             },
@@ -588,6 +769,96 @@
             }
         });
     });
+
+
+    function uploadImages(){
+        let carRegNo = $("#txtRegNo").val();
+
+        let formData = new FormData();
+        var filesCount = $("#fileString1")[0].files.length;
+        console.log("count"+filesCount);
+
+        for(var i=0; i<filesCount; i++){
+            // formData.append("fileString[]", $("#fileString1")[0].files[i], carRegNo+"-"+($("#fileString1")[0].files[i].name));
+
+            formData.append("fileString[]", $("#fileString1")[0].files[i], ($("#fileString1")[0].files[i].name)+"-"+carRegNo);
+        }
+
+        console.log("Start"+formData);
+//-------------------------------------------
+
+
+        // let imageFile = $("#fileString")[0].files[0];
+        // var fileName= carRegNo+"-"+($("#fileString")[0].files[0].name);
+        //
+        // let formData = new FormData();
+        // formData.append("fileString", imageFile, fileName);
+
+
+
+
+
+        // let formData = new FormData($("#formFile")[0], carRegNo);
+
+        // console.log("Start"+imageFile);
+        $.ajax({
+            url: baseURL + "car/images",
+            method: 'post',
+            async: true,
+            contentType: false,
+            processData: false,
+            data: formData,
+            dataType: "json",
+            success: function (resp) {
+                alert("Successfully images upload;");
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+
+    function imageLoad(carregNo) {
+        // var carRegNo = $("#txtRegNo").val();
+        var carRegNo = carregNo;
+        console.log("Image"+carRegNo);
+        $.ajax({
+            url: baseURL + "car?regNo="+carRegNo+"",
+            method: 'get',
+            success: function (resp) {
+                console.log(resp.data);
+                url1 = resp.data[0];
+                url2 = resp.data[1];
+                url3 = resp.data[2];
+                url4 = resp.data[3];
+
+
+                console.log("image1:"+url1);
+                console.log("image2:"+url2);
+                console.log("image3:"+url3);
+                console.log("image4:"+url4);
+
+
+                // var fileName= (url1).split('-')[1];
+
+                // $("#carImage2").css({
+                //     "background": `url(${baseURL+url1})`, "background-size": "cover"
+                // });
+
+                $("#carImage1").attr("src", baseURL + url1);
+                $("#carImage2").attr("src", baseURL + url2);
+                $("#carImage3").attr("src", baseURL + url3);
+                $("#carImage4").attr("src", baseURL + url4);
+
+
+                console.log("ii: "+baseURL+url1);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
 
 
     //----------------Update Car--------------
@@ -641,7 +912,6 @@
         });
     });
 
-
     //----------------Delete Car--------------
     $("#btnDeleteCar").click(function (){
         let regNo = $("#txtRegNo").val();
@@ -659,15 +929,16 @@
         });
     });
 
-
     //----------------Search Car--------------
     $("#btnSearchCar").click(function () {
         let typedRegNo = $("#txtSearchCar").val();
         $.ajax({
-            url: baseURL+"car?regNo="+typedRegNo+"",
+            url: baseURL+"car/search/"+typedRegNo,
             method: "get",
+            async: true,
             dataType: "json",
             success: function (resp){
+                imageLoad(typedRegNo);
                 alert(resp.message);
                 console.log(resp.data);
                 var car = resp.data;
@@ -680,6 +951,10 @@
         });
     });
 
+    //----------------Add New Car--------------
+    $("#btnAddNewCar").click(function () {
+        setCarFormTextFieldValues("","","","");
+    });
 
     //----------------Load Car Data to Table--------------
     $("#btnGetAllCars").click(function (){
@@ -788,7 +1063,6 @@
         });
     });
 
-
     //----------------Update Driver--------------
     $("#btnUpdateDriver").click(function (){
         let driverId = $("#txtDriverID").val();
@@ -889,6 +1163,437 @@
             }
         });
     }
+
+
+    //================================Booking Request=============================
+    //----------------Load Booking Request to Table--------------
+    loadAllPendingBookingRequests();
+    loadAllAvailableDrivers();
+
+    function loadAllPendingBookingRequests(){
+        $("#tblBookingRequest").empty();
+        $.ajax ({
+            url: baseURL+"booking?bookingStatus=pending",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (resp) {
+                // console.log(resp);
+                // for (let booking of resp.data) {
+                //     var row = '<tr><td>'+booking.bookingId+'</td><td>'+booking.bookingDate+'</td><td>'+booking.customerName+'</td><td>'+booking.customerEmail+'</td><td>'
+                //         +booking.carRegNo+'</td><td>'+booking.driverId+'</td>' +'<td>'+booking.pickupDate+'</td><td>'+booking.returnDate+'</td><td>'+booking.status+'</td></tr>';
+                //     $("#tblBookingRequest").append(row);
+                // }
+
+
+                let pendingReq = resp.data;
+                console.log(pendingReq);
+                for (let i in pendingReq) {
+                    if (pendingReq[i].driver !== null){
+                        let rentId = pendingReq[i].bookingId;
+                        let rentDate = pendingReq[i].bookingDate;
+                        let cusName = pendingReq[i].customer.name;
+                        let cusEmail = pendingReq[i].customer.email;
+                        let carId = pendingReq[i].car.regNo;
+                        let driver = pendingReq[i].driver.driverId;
+                        let start = pendingReq[i].pickupDate;
+                        let end = pendingReq[i].returnDate;
+                        let status = pendingReq[i].status;
+
+                        let row = `<tr><td>${rentId}</td><td>${rentDate}</td><td>${cusName}</td><td>${cusEmail}</td><td>${carId}</td><td>${driver}</td><td>${start}</td><td>${end}</td><td>${status}</td></tr>`;
+                        $('#tblBookingRequest').append(row);
+                    }else {
+                        let rentId = pendingReq[i].bookingId;
+                        let rentDate = pendingReq[i].bookingDate;
+                        let cusName = pendingReq[i].customer.name;
+                        let cusEmail = pendingReq[i].customer.email;
+                        let carId = pendingReq[i].car.regNo;
+                        // let driver = pendingReq[i].driver;
+                        let driver = "No";
+                        let start = pendingReq[i].pickupDate;
+                        let end = pendingReq[i].returnDate;
+                        let status = pendingReq[i].status;
+
+                        let row = `<tr><td>${rentId}</td><td>${rentDate}</td><td>${cusName}</td><td>${cusEmail}</td><td>${carId}</td><td>${driver}</td><td>${start}</td><td>${end}</td><td>${status}</td></tr>`;
+                        $('#tblBookingRequest').append(row);
+                    }
+
+                }
+
+
+
+                bindBookingRequestTableRowClickEvents();
+                setBookingRequestFormTextFieldValues("","","","");
+                $("#selectAnotherDriver").focus();
+            },
+            error: function (error){
+                var jsObject = JSON.parse(error.responseText).message;
+                alert(jsObject.message);
+            }
+        });
+    }
+
+    //----------------Bind Data to InputFields--------------
+    function bindBookingRequestTableRowClickEvents() {
+        $("#tblBookingRequest>tr").click(function () {
+            let bookingId = $(this).children(":eq(0)").text();
+            let bookingDate = $(this).children(":eq(1)").text();
+            let customerName = $(this).children(":eq(2)").text();
+            let customerEmail = $(this).children(":eq(3)").text();
+            let carRegNo = $(this).children(":eq(4)").text();
+            let driverId = $(this).children(":eq(5)").text();
+            let pickupDate = $(this).children(":eq(6)").text();
+            let returnDate = $(this).children(":eq(7)").text();
+            let bookingStatus = $(this).children(":eq(8)").text();
+
+            $("#txtLoadBookingRequestId").val(bookingId);
+            $("#txtLoadBookingDate").val(bookingDate);
+            $("#txtLoadCustomerName").val(customerName);
+            $("#txtLoadCustomerEmail").val(customerEmail);
+            $("#txtLoadCarRegNo").val(carRegNo);
+            $("#txtLoadDriverId").val(driverId);
+            $("#txtLoadPickupDate").val(pickupDate);
+            $("#txtLoadReturnDate").val(returnDate);
+            $("#txtLoadBookingStatus").val(bookingStatus);
+
+        });
+    }
+
+    //----------------Clear InputFields--------------
+    function setBookingRequestFormTextFieldValues(bookingId,bookingDate,customerName,customerEmail,carRegNo,driverId,pickupDate,returnDate,bookingStatus,anotherDriver,denialReason){
+        $("#txtLoadBookingRequestId").val(bookingId);
+        $("#txtLoadBookingDate").val(bookingDate);
+        $("#txtLoadCustomerName").val(customerName);
+        $("#txtLoadCustomerEmail").val(customerEmail);
+        $("#txtLoadCarRegNo").val(carRegNo);
+        $("#txtLoadDriverId").val(driverId);
+        $("#txtLoadPickupDate").val(pickupDate);
+        $("#txtLoadReturnDate").val(returnDate);
+        $("#txtLoadBookingStatus").val(bookingStatus);
+        $("#selectAnotherDriver").val(anotherDriver);
+        $("#txtDenialReason").val(denialReason);
+    }
+
+    //----------------Load All Available Drivers--------------
+    function loadAllAvailableDrivers() {
+        $("#selectAnotherDriver").empty();
+        $.ajax({
+            url: baseURL+"driver?driverStatus=Available",
+            success: function (res) {
+                $("#selectAnotherDriver").append(`<option hidden>Select Another Driver</option>`);
+                for (let driver of res.data) {
+                    let driverId = driver.driverId;
+                    $("#selectAnotherDriver").append(`<option value="${driverId}">${driverId}</option>`);
+                }
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    //----------------Accept Booking Request--------------
+    $("#btnAcceptRequest").click(function (){
+        let bookingId = $("#txtLoadBookingRequestId").val();
+        let bookingDate = $("#txtLoadBookingDate").val();
+        let customerName = $("#txtLoadCustomerName").val();
+        let customerEmail = $("#txtLoadCustomerEmail").val();
+        let carRegNo = $("#txtLoadCarRegNo").val();
+        let driverId;
+        let pickupDate = $("#txtLoadPickupDate").val();
+        let returnDate = $("#txtLoadReturnDate").val();
+
+        if ($("#selectAnotherDriver").val() !== null){
+            driverId = $("#selectAnotherDriver").val();
+        }else {
+            driverId = $("#txtLoadDriverId").val();
+        }
+
+        let car;
+        let customer;
+        let driver;
+
+        $.ajax({
+            url: baseURL+"car/search/"+carRegNo,
+            method: "get",
+            async: true,
+            dataType: "json",
+            success: function (resp){
+                // alert(resp.message);
+                console.log(resp.data);
+                const data = resp.data;
+                console.log(resp.data.regNo);
+                car = resp.data;
+
+                $.ajax({
+                    url: baseURL+"customer?email="+customerEmail+"",
+                    method: "get",
+                    dataType: "json",
+                    success: function (resp){
+                        // alert(resp.message);
+                        console.log(resp.data);
+                        customer = resp.data;
+
+                        $.ajax({
+                            url: baseURL+"driver?driverId="+driverId,
+                            method: "get",
+                            dataType: "json",
+                            success: function (resp){
+                                // alert(resp.message);
+                                console.log(resp.data);
+                                driver = resp.data;
+
+                                $.ajax({
+                                    url: baseURL+"booking",
+                                    method: "put",
+                                    contentType: "application/json",
+                                    data: JSON.stringify(
+                                        {
+                                            bookingId: parseInt(bookingId),
+                                            bookingDate: bookingDate,
+                                            pickupDate: pickupDate,
+                                            returnDate: returnDate,
+                                            status: "Accepted",
+                                            car: car,
+                                            customer: customer,
+                                            driver: driver
+                                        }
+                                    ),
+
+                                    success: function (resp){
+                                        alert(resp.message);
+
+                                        //Update Car Status
+                                        $.ajax({
+                                            url: baseURL+"car",
+                                            method: "put",
+                                            contentType: "application/json",
+                                            data: JSON.stringify(
+                                                {
+                                                    regNo: car.regNo,
+                                                    brand: car.brand,
+                                                    type: car.type,
+                                                    color: car.color,
+                                                    noOfPassengers: car.noOfPassengers,
+                                                    transmissionType: car.transmissionType,
+                                                    fuelType: car.fuelType,
+                                                    dailyRate: car.dailyRate,
+                                                    monthlyRate: car.monthlyRate,
+                                                    lossDamageWaiver: car.lossDamageWaiver,
+                                                    freeKMForDay: car.freeKMForDay,
+                                                    freeKMForMonth: car.freeKMForMonth,
+                                                    priceForExtraKM: car.priceForExtraKM,
+                                                    status: "On Hire"
+                                                }
+                                            ),
+                                            dataType: "json",
+                                            success: function (resp){
+                                                alert(resp.message);
+                                                loadAllCars();
+                                            },
+                                            error: function (error){
+                                                var jsObject = JSON.parse(error.responseText).message;
+                                                alert(jsObject.message);
+                                            }
+                                        });
+
+                                        if (driverId !== "No"){
+                                            //Update Driver Status
+                                            $.ajax({
+                                                url: baseURL+"driver",
+                                                method: "put",
+                                                contentType: "application/json",
+                                                data: JSON.stringify(
+                                                    {
+                                                        driverId: driver.driverId,
+                                                        driverName: driver.driverName,
+                                                        driverContact: driver.driverContact,
+                                                        driverUsername: driver.driverUsername,
+                                                        driverPassword: driver.driverPassword,
+                                                        driverStatus: "On Hire"
+                                                    }
+                                                ),
+                                                dataType: "json",
+                                                success: function (resp){
+                                                    alert(resp.message);
+                                                    loadAllDrivers();
+
+                                                //Update Booking Request Table and Available Drivers List
+                                                // loadAllAvailableDrivers();
+                                                    loadAllPendingBookingRequests();
+                                                setBookingRequestFormTextFieldValues();
+                                                },
+                                                error: function (error){
+                                                    var jsObject = JSON.parse(error.responseText).message;
+                                                    alert(jsObject.message);
+                                                }
+                                            });
+                                        } else {
+                                            //Update Booking Request Table and Available Drivers List
+                                            loadAllAvailableDrivers();
+                                            loadAllPendingBookingRequests();
+                                            setBookingRequestFormTextFieldValues();
+                                        }
+                                    },
+                                    error: function (error){
+                                        var jsObject = JSON.parse(error.responseText).message;
+                                        alert(jsObject.message);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+    //----------------Deny Booking Request--------------
+    $("#btnDenyRequest").click(function (){
+        let bookingId = $("#txtLoadBookingRequestId").val();
+        let bookingDate = $("#txtLoadBookingDate").val();
+        let customerName = $("#txtLoadCustomerName").val();
+        let customerEmail = $("#txtLoadCustomerEmail").val();
+        let carRegNo = $("#txtLoadCarRegNo").val();
+        let driverId;
+        let pickupDate = $("#txtLoadPickupDate").val();
+        let returnDate = $("#txtLoadReturnDate").val();
+
+        driverId = $("#txtLoadDriverId").val();
+
+        let denialReason = $("#txtDenialReason").val();
+
+        let car;
+        let customer;
+        let driver;
+
+        $.ajax({
+            url: baseURL+"car/search/"+carRegNo,
+            method: "get",
+            async: true,
+            dataType: "json",
+            success: function (resp){
+                // alert(resp.message);
+                console.log(resp.data);
+                const data = resp.data;
+                console.log(resp.data.regNo);
+                car = resp.data;
+
+                $.ajax({
+                    url: baseURL+"customer?email="+customerEmail+"",
+                    method: "get",
+                    dataType: "json",
+                    success: function (resp){
+                        // alert(resp.message);
+                        console.log(resp.data);
+                        customer = resp.data;
+
+                        $.ajax({
+                            url: baseURL+"driver?driverId="+driverId,
+                            method: "get",
+                            dataType: "json",
+                            success: function (resp){
+                                // alert(resp.message);
+                                console.log(resp.data);
+                                driver = resp.data;
+
+                                $.ajax({
+                                    url: baseURL+"booking",
+                                    method: "put",
+                                    contentType: "application/json",
+                                    data: JSON.stringify(
+                                        {
+                                            bookingId: parseInt(bookingId),
+                                            bookingDate: bookingDate,
+                                            pickupDate: pickupDate,
+                                            returnDate: returnDate,
+                                            status: "Deny: "+denialReason,
+                                            car: car,
+                                            customer: customer,
+                                            driver: driver
+                                        }
+                                    ),
+
+                                    success: function (resp){
+                                        alert(resp.message);
+
+                                        loadAllPendingBookingRequests();
+                                        setBookingRequestFormTextFieldValues();
+
+                                    },
+                                    error: function (error){
+                                        var jsObject = JSON.parse(error.responseText).message;
+                                        alert(jsObject.message);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+
+    //================================Booking=============================
+    //----------------Load Booking to Table--------------
+    loadAllAcceptedBookingRequests();
+
+    function loadAllAcceptedBookingRequests(){
+        $("#tblBooking").empty();
+        $.ajax ({
+            url: baseURL+"booking?bookingStatus=Accepted",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (resp) {
+                // console.log(resp);
+                // for (let booking of resp.data) {
+                //     var row = '<tr><td>'+booking.bookingId+'</td><td>'+booking.bookingDate+'</td><td>'+booking.customerName+'</td><td>'+booking.customerEmail+'</td><td>'
+                //         +booking.carRegNo+'</td><td>'+booking.driverId+'</td>' +'<td>'+booking.pickupDate+'</td><td>'+booking.returnDate+'</td><td>'+booking.status+'</td></tr>';
+                //     $("#tblBookingRequest").append(row);
+                // }
+
+
+                let pendingReq = resp.data;
+                console.log(pendingReq);
+                for (let i in pendingReq) {
+                    if (pendingReq[i].driver !== null){
+                        let rentId = pendingReq[i].bookingId;
+                        let rentDate = pendingReq[i].bookingDate;
+                        let cusName = pendingReq[i].customer.name;
+                        let cusEmail = pendingReq[i].customer.email;
+                        let carId = pendingReq[i].car.regNo;
+                        let driver = pendingReq[i].driver.driverId;
+                        let start = pendingReq[i].pickupDate;
+                        let end = pendingReq[i].returnDate;
+                        let status = pendingReq[i].status;
+
+                        let row = `<tr><td>${rentId}</td><td>${rentDate}</td><td>${cusName}</td><td>${cusEmail}</td><td>${carId}</td><td>${driver}</td><td>${start}</td><td>${end}</td><td>${status}</td></tr>`;
+                        $('#tblBooking').append(row);
+                    }else {
+                        let rentId = pendingReq[i].bookingId;
+                        let rentDate = pendingReq[i].bookingDate;
+                        let cusName = pendingReq[i].customer.name;
+                        let cusEmail = pendingReq[i].customer.email;
+                        let carId = pendingReq[i].car.regNo;
+                        let driver = pendingReq[i].driver;
+                        let start = pendingReq[i].pickupDate;
+                        let end = pendingReq[i].returnDate;
+                        let status = pendingReq[i].status;
+
+                        let row = `<tr><td>${rentId}</td><td>${rentDate}</td><td>${cusName}</td><td>${cusEmail}</td><td>${carId}</td><td>${driver}</td><td>${start}</td><td>${end}</td><td>${status}</td></tr>`;
+                        $('#tblBooking').append(row);
+                    }
+
+                }
+            },
+            error: function (error){
+                var jsObject = JSON.parse(error.responseText).message;
+                alert(jsObject.message);
+            }
+        });
+    }
+
 </script>
 </body>
 </html>

@@ -84,13 +84,15 @@
                                 <input type="text" class="form-control" id="txtCustomerDrivingLicenseNo" placeholder="B386055" name="drivingLicenseNo">
                             </div>
 
-                            <div class="mb-3">
+
+
+                            <div class="mb-3 input-group-m">
                                 <label for="formNIC" class="form-label">Upload NIC</label>
-                                <input class="form-control" type="file" id="formNIC" multiple>
+                                <input class="form-control" type="file" id="formNIC" multiple name="formNIC">
                             </div>
-                            <div class="mb-3">
-                                <label for="formDrivingLicenseNo" class="form-label">Upload Driving License No</label>
-                                <input class="form-control" type="file" id="formDrivingLicenseNo">
+                            <div class="mb-3 input-group-m">
+                                <label for="formDrivingLicense" class="form-label">Upload Driving License</label>
+                                <input class="form-control" type="file" id="formDrivingLicense" name="formDrivingLicense">
                             </div>
                         </form>
                     </div>
@@ -142,6 +144,7 @@
             dataType: "json",
             success: function (resp){
                 alert(resp.message);
+                uploadSignInFiles();
                 setCustomerFormTextFieldValues("");
                 //close the model
                 $("#btnClose").click();
@@ -152,6 +155,39 @@
             }
         });
     });
+
+
+
+    function uploadSignInFiles(){
+        var fileObject1 = $("#formNIC")[0].files[0];//access file object from input field
+        var fileName1 = $('#txtCustomerEmail').val() + " - formNIC";
+        var fileObject2 = $("#formDrivingLicense")[0].files[0];
+        var fileName2 = $('#txtCustomerEmail').val() + " - formDrivingLicense";
+
+        console.log(fileName1);
+        console.log(fileName2);
+
+        var data = new FormData();
+        data.append("formNIC", fileObject1, fileName1);
+        data.append("formDrivingLicense", fileObject2, fileName2);
+
+        $.ajax({
+            url: baseURL + "customer/files",
+            method: 'post',
+            async: true,
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (resp) {
+                alert("Successfully images upload;");
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+
 
     //----------------Search Customer by username and password--------------
     $("#btnCustomerLogin").click(function () {
