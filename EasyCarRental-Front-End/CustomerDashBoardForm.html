@@ -292,7 +292,7 @@
 
     <!--Rent Response Page-->
     <section class="container-fluid" id="bookingResponsePage">
-        <h1 class="mt-3" style="text-align: center">Rent Response</h1>
+        <h1 class="mt-3" style="text-align: center">Booking Response</h1>
 
         <section class="d-flex justify-content-evenly">
             <!--Rent Response Table-->
@@ -355,7 +355,7 @@
                         <label for="txtViewDriverContact" class="form-label my-1">Driver Contact</label>
                         <input type="text" class="form-control" id="txtViewDriverContact" name="viewDriverContact" disabled>
                     </div>
-                    <div class="col-md-10 my-1">
+                    <div class="col-md-6 my-1">
                         <label for="txtViewBookingStatus" class="form-label my-1">Status</label>
                         <input type="text" class="form-control" id="txtViewBookingStatus" name="viewBookingStatus" disabled>
                     </div>
@@ -366,7 +366,7 @@
                     </div>
 
                     <div class="col-12 mx-auto px-auto d-flex justify-content-center">
-                        <button type="button" class="btn btn-success col-md-5" id="btnPaidForCar">Paid for Car</button>
+<!--                        <button type="button" class="btn btn-success col-md-5" id="btnPaidForCar">Paid for Car</button>-->
                         <button type="button" class="btn btn-danger col-md-5 mx-4" id="btnCancelBooking">Cancel Booking</button>
                     </div>
                 </form>
@@ -379,54 +379,6 @@
     <section class="container" id="paymentPage">
         <h1 class="mt-3" style="text-align: center">Payment</h1>
 
-        <!----------Payment Form-------->
-        <form class="row g-3 mt-4" id="paymentForm">
-            <div class="col-md-3 mt-3">
-                <label for="txtLoadBookingId" class="form-label">Booking Id</label>
-                <input type="text" class="form-control" id="txtLoadBookingId" name="loadBookingId" readonly>
-            </div>
-            <div class="col-md-3 mt-3">
-                <label for="txtLossDamageWaiverCost" class="form-label">Loss Damage Waiver Cost</label>
-                <input type="text" class="form-control" id="txtLossDamageWaiverCost" name="lossDamageWaiverCost">
-            </div>
-            <div class="col-md-3 mt-3">
-                <label for="txtLossDamageWaiverBalance" class="form-label">Loss Damage Waiver Balance</label>
-                <input type="text" class="form-control" id="txtLossDamageWaiverBalance" name="lossDamageWaiverBalance">
-            </div>
-            <div class="col-md-3 mt-3">
-                <label for="txtLoadExtraKM" class="form-label">Email</label>
-                <input type="text" class="form-control" id="txtLoadExtraKM" name="loadExtraKM" readonly>
-            </div>
-            <div class="col-md-3 mt-3">
-                <label for="txtLoadCustomerNIC" class="form-label">NIC</label>
-                <input type="text" class="form-control" id="txtLoadCustomerNIC" name="loadNic">
-            </div>
-            <div class="col-md-3 mt-3">
-                <label for="txtLoadCustomerDrivingLicenseNo" class="form-label">Driving License No</label>
-                <input type="text" class="form-control" id="txtLoadCustomerDrivingLicenseNo" name="loadDrivingLicenseNo">
-            </div>
-            <div class="col-md-3 mt-3">
-                <label for="txtLoadCustomerUsername" class="form-label">Username</label>
-                <input type="text" class="form-control" id="txtLoadCustomerUsername" name="loadUsername">
-            </div>
-            <div class="col-md-4 mt-3">
-                <label for="txtLoadCustomerPassword" class="form-label">Current Password</label>
-                <input type="text" class="form-control" id="txtLoadCustomerPassword" name="loadPassword">
-            </div>
-            <div class="col-md-4 mt-3">
-                <label for="txtCustomerNewPassword" class="form-label">New Password</label>
-                <input type="text" class="form-control" id="txtCustomerNewPassword" name="loadNewPassword">
-            </div>
-            <div class="col-md-4 mt-3">
-                <label for="txtConfirmCustomerPassword" class="form-label">Confirm Password</label>
-                <input type="text" class="form-control" id="txtConfirmCustomerPassword" name="loadConfirmPassword">
-            </div>
-            <div class="col-6 mx-auto mt-5">
-                <button type="button" class="btn btn-primary col-3 mx-5" id="btnUpdateCustomer">Save Changes</button>
-                <button type="button" class="btn btn-danger col-3 mx-5" id="btnCancelCustomer">Cancel</button>
-            </div>
-        </form>
-
         <!--Payment Table-->
         <section class="mt-4">
             <table class="table table-striped">
@@ -434,8 +386,8 @@
                 <tr>
                     <th scope="col">Payment ID</th>
                     <th scope="col">Payment Date</th>
-                    <th scope="col">Booking ID</th>
                     <th scope="col">Amount</th>
+                    <th scope="col">Booking ID</th>
                 </tr>
                 </thead>
                 <tbody id="tblPayment">
@@ -443,10 +395,6 @@
                 </tbody>
             </table>
         </section>
-
-        <div class="col-12">
-            <button type="button" class="btn btn-primary" id="btnPaid">Paid</button>
-        </div>
     </section>
 </main>
 
@@ -740,8 +688,11 @@
         let day = date.getDate();
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
-        let currentDate = `${year}-${month}-${day}`;
-        return currentDate;
+
+        if (day < 10) day = '0' + day;
+        if (month < 10) month = '0' + month;
+
+        return `${year}-${month}-${day}`;
     }
 
     //----------------Add Booking Request--------------
@@ -1161,7 +1112,45 @@
         });
     });
 
+    //==========================Your Booking Requests===============
+    loadAllBookingPaymentsOfCustomer();
 
+    //----------------Load Data to Payment Table--------------
+    function loadAllBookingPaymentsOfCustomer(){
+        $("#tblPayment").empty();
+
+        let customerEmail = $("#txtLoadCustomerEmail").val();
+        console.log("Email: "+customerEmail);
+        $.ajax ({
+            url: baseURL+"payment/email/"+customerEmail,
+            dataType: "json",
+            // contentType: "application/json",
+            success: function (resp) {
+                // console.log(resp);
+                // for (let booking of resp.data) {
+                //     var row = '<tr><td>'+booking.bookingId+'</td><td>'+booking.bookingDate+'</td><td>'+booking.customerName+'</td><td>'+booking.customerEmail+'</td><td>'
+                //         +booking.carRegNo+'</td><td>'+booking.driverId+'</td>' +'<td>'+booking.pickupDate+'</td><td>'+booking.returnDate+'</td><td>'+booking.status+'</td></tr>';
+                //     $("#tblBookingRequest").append(row);
+                // }
+
+                let payment = resp.data;
+                console.log("Req:"+payment);
+                for (let i in payment) {
+                    let paymentId = payment[i].paymentId;
+                    let paymentDate = payment[i].paymentDate;
+                    let amount = payment[i].amount;
+                    let booking = payment[i].booking.bookingId;
+
+                    let row = `<tr><td>${paymentId}</td><td>${paymentDate}</td><td>${amount}</td><td>${booking}</td></tr>`;
+                    $('#tblPayment').append(row);
+                }
+            },
+            error: function (error){
+                var jsObject = JSON.parse(error.responseText).message;
+                alert(jsObject.message);
+            }
+        });
+    }
 
 </script>
 </body>

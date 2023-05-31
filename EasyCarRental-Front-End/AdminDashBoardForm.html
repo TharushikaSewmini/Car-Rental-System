@@ -75,7 +75,7 @@
                 <div class="card mt-3 col-10 text-center mx-auto">
                     <div class="cName" style="background-color: #3498db">Registered Users</div>
                     <i class="cFont fa-solid fa-users mt-3" style="color: #3498db"></i>
-                    <h2 class="card-text mt-2 mb-3">00</h2>
+                    <h2 class="card-text mt-2 mb-3" id="registeredUsersCount">00</h2>
                 </div>
             </div>
 
@@ -83,7 +83,7 @@
                 <div class="card mt-3 col-10 text-center mx-auto">
                     <div class="cName" style="background-color:#1abc9c">Available Cars</div>
                     <i class="cFont fa-solid fa-car mt-3" style="color: #1abc9c"></i>
-                    <h2 class="card-text mt-2 mb-3">00</h2>
+                    <h2 class="card-text mt-2 mb-3" id="availableCarsCount">00</h2>
                 </div>
             </div>
 
@@ -91,7 +91,7 @@
                 <div class="card mt-3 col-10 text-center mx-auto">
                     <div class="cName" style="background-color: #9b59b6">Bookings</div>
                     <i class="cFont fa-solid fa-layer-group mt-3" style="color: #9b59b6"></i>
-                    <h2 class="card-text mt-2 mb-3">00</h2>
+                    <h2 class="card-text mt-2 mb-3" id="bookingsCount">00</h2>
                 </div>
             </div>
 
@@ -99,7 +99,7 @@
                 <div class="card mt-3 col-10 text-center mx-auto">
                     <div class="cName" style="background-color: #e67e22">Available Drivers</div>
                     <i class="cFont fa-solid fa-user-group mt-3" style="color: #e67e22"></i>
-                    <h2 class="card-text mt-2 mb-3">00</h2>
+                    <h2 class="card-text mt-2 mb-3" id="availableDriversCount">00</h2>
                 </div>
             </div>
 
@@ -107,7 +107,7 @@
                 <div class="card mt-3 col-10 text-center mx-auto">
                     <div class="cName" style="background-color: #f1c40f">Active Bookings</div>
                     <i class="cFont fa-solid fa-key mt-3" style="color: #f1c40f"></i>
-                    <h2 class="card-text mt-2 mb-3">00</h2>
+                    <h2 class="card-text mt-2 mb-3" id="activeBookingsCount">00</h2>
                 </div>
             </div>
 
@@ -115,7 +115,7 @@
                 <div class="card mt-3 col-10 text-center mx-auto">
                     <div class="cName" style="background-color: #ff5542">Maintenance Cars</div>
                     <i class="cFont fa-solid fa-screwdriver-wrench mt-3" style="color: #ff5542"></i>
-                    <h2 class="card-text mt-2 mb-3">00</h2>
+                    <h2 class="card-text mt-2 mb-3" id="maintenanceCarsCount">00</h2>
                 </div>
             </div>
         </div>
@@ -547,70 +547,106 @@
 
     <!--------------Payment Page------------------>
     <section  class="container" id="paymentPage">
-        <h1 class="mt-3" style="text-align: center">Payment Management</h1>
+        <h2 class="mt-3" style="text-align: center">Payment Management</h2>
 
-        <!--Driver form-->
-        <section id="paymentForm">
-            <div class="mb-1">
-                <label for="txtBookingID" class="form-label fw-bold">Booking ID</label>
-                <input class="form-control" type="text" id="txtBookingID" name="bookingId">
-                <span class="control-error text-danger" style="font-size: 13px;" id="lblBookingID"></span>
-            </div>
-            <div class="mb-1 mt-1">
-                <label for="txtDate" class="form-label fw-bold">Date</label>
-                <input class="form-control" type="text" id="txtDate" name="date">
-                <span class="control-error text-danger" style="font-size: 13px;" id="lblDate"></span>
-            </div>
-            <div class="mb-1 mt-1">
-                <label for="txtPickupDate" class="form-label fw-bold">Pickup Date</label>
-                <input class="form-control" type="text" id="txtPickupDate" name="pickupDate">
-                <span class="control-error text-danger" style="font-size: 13px;" id="lblPickupDate"></span>
-            </div>
-            <div class="mb-1 mt-1">
-                <label for="txtReturnDate" class="form-label fw-bold">Return Date</label>
-                <input class="form-control" id="txtReturnDate" type="text" name="return Date">
-                <span class="control-error text-danger" style="font-size: 13px;" id="lblReturnDate"></span>
-            </div>
+        <!--Search Booking-->
+        <aside class="col-6 mx-auto mt-4" id="bookingSearch">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" id="txtSearchBooking" placeholder="Type Booking ID" aria-label="Search">
+                <button class="btn btn-secondary" type="button" id="btnSearchBooking" style="color: white;">Search</button>
+            </form>
+        </aside>
 
-            <div class="mb-1 mt-1">
-                <label for="txtViewDriverId" class="form-label fw-bold">Driver ID</label>
-                <input class="form-control" id="txtViewDriverId" type="text" name="driverId">
-                <span class="control-error text-danger" style="font-size: 13px;" id="lblViewDriverId"></span>
+        <!----------Payment Form-------->
+        <form class="row g-3 mt-2" id="paymentForm">
+            <div class="col-md-3 mt-3">
+                <label for="txtLoadBookingId" class="form-label mb-1">Booking Id</label>
+                <input type="text" class="form-control" id="txtLoadBookingId" name="loadBookingId" disabled>
             </div>
-
-            <div class="mb-1 mt-1">
-                <label for="txtDamageCost" class="form-label fw-bold">Damage Cost</label>
-                <input class="form-control" id="txtDamageCost" type="text" name="damageCost">
-                <span class="control-error text-danger" style="font-size: 13px;" id="lblDamageCost"></span>
+            <div class="col-md-3 mt-3">
+                <label for="txtDate" class="form-label mb-1">Date</label>
+                <input type="text" class="form-control" id="txtDate" name="date" disabled>
             </div>
-
-            <div class="mb-1 mt-1">
-                <label for="txtRentalCost" class="form-label fw-bold">Rental Cost</label>
-                <input class="form-control" id="txtRentalCost" type="text" name="rentalCost">
-                <span class="control-error text-danger" style="font-size: 13px;" id="lblRentalCost"></span>
+            <div class="col-md-3 mt-3">
+                <label for="txtPickup" class="form-label mb-1">Pickup Date</label>
+                <input type="text" class="form-control" id="txtPickup" name="pickup" disabled>
             </div>
-
-            <div class="mb-1 mt-1">
-                <label for="txtTotal" class="form-label fw-bold">Total Cost</label>
-                <input class="form-control" id="txtTotal" type="text" name="total">
-                <span class="control-error text-danger" style="font-size: 13px;" id="lblTotal"></span>
+            <div class="col-md-3 mt-3">
+                <label for="txtReturn" class="form-label mb-1">Return Date</label>
+                <input type="text" class="form-control" id="txtReturn" name="return" disabled>
             </div>
-
-            <div class="mb-1 mt-1">
-                <label for="txtBalance" class="form-label fw-bold">Balance</label>
-                <input class="form-control" id="txtBalance" type="text" name="balance">
-                <span class="control-error text-danger" style="font-size: 13px;" id="lblBalance"></span>
+            <div class="col-md-3 mt-3">
+                <label for="txtLossDamageWaiverPaidAmount" class="form-label mb-1">Loss Damage Waiver Paid Amount</label>
+                <input type="text" class="form-control" id="txtLossDamageWaiverPaidAmount" name="lossDamageWaiverPaidAmount" disabled>
             </div>
-
-            <div class="mt-4">
-                <button type="button" class="btn btn-success" id="btnCalculatePayment">Calculate Payment</button>
-                <button type="button" class="btn btn-primary" id="btnSubmitPayment">Payment Submit</button>
-                <button type="button" class="btn btn-danger" id="btnCancel">Cancel</button>
+            <div class="col-md-2 mt-3">
+                <label for="txtDamageCost" class="form-label mb-1">Damage Cost</label>
+                <input type="text" class="form-control" id="txtDamageCost" name="damageCost">
             </div>
-        </section>
+            <div class="col-md-3 mt-3">
+                <label for="txtRemain" class="form-label mb-1">Remain Balance</label>
+                <input type="text" class="form-control" id="txtRemain" disabled>
+            </div>
+            <div class="col-md-2 mt-3">
+                <label for="txtLoadDriverId1" class="form-label mb-1">Driver Id</label>
+                <input type="text" class="form-control" id="txtLoadDriverId1" name="driverId1" disabled>
+            </div>
+            <div class="col-md-2 mt-3">
+                <label for="txtDriverPayment" class="form-label mb-1">Driver Payments</label>
+                <input type="text" class="form-control" id="txtDriverPayment" name="driverPayment">
+            </div>
+            <div class="col-md-3 mt-3">
+                <label for="txtRentDuration" class="form-label mb-1">Rent Duration</label>
+                <input type="text" class="form-control" id="txtRentDuration" disabled>
+            </div>
+            <div class="col-md-3 mt-3">
+                <label for="txtLoadDailyRate" class="form-label mb-1">Daily Rate</label>
+                <input type="text" class="form-control" id="txtLoadDailyRate" disabled>
+            </div>
+            <div class="col-md-3 mt-3">
+                <label for="txtRentForUsingDays" class="form-label mb-1">Rent for Using Days</label>
+                <input type="text" class="form-control" id="txtRentForUsingDays" name="rentForUsingDays" disabled>
+            </div>
+            <div class="col-md-3 mt-3">
+            </div>
+            <div class="col-md-3 mt-3">
+                <label for="txtTotalKM" class="form-label mb-1">Total KM</label>
+                <input type="text" class="form-control" id="txtTotalKM" name="totalKM">
+            </div>
+            <div class="col-md-3 mt-3">
+                <label for="txtCostForExtraKM" class="form-label mb-1">Price for Extra KM</label>
+                <input type="text" class="form-control" id="txtCostForExtraKM" disabled>
+            </div>
+            <div class="col-md-3 mt-3">
+                <label for="txtExtraKM" class="form-label mb-1">Extra KM</label>
+                <input type="text" class="form-control" id="txtExtraKM" disabled>
+            </div>
+            <div class="col-md-3 mt-3">
+                <label for="txtTotalCostForExtraKM" class="form-label mb-1">Total Cost for Extra KM</label>
+                <input type="text" class="form-control" id="txtTotalCostForExtraKM" name="totalCostForExtraKM" disabled>
+            </div>
+            <div class="col-md-6 mx-auto me-auto mt-2">
+                <button type="button" class="btn btn-primary col-4 mx-5 mt-3" id="btnCalculate">Calculate</button>
+            </div>
+            <hr class="hr mx-auto mt-3">
+            <div class="col-md-3 mt-3">
+                <label for="txtTotalPayment" class="form-label">Total Payment</label>
+                <input type="text" class="form-control" id="txtTotalPayment" name="totalPayment" disabled>
+            </div>
+            <div class="col-md-3 mt-3">
+                <label for="txtCash" class="form-label">Cash</label>
+                <input type="text" class="form-control" id="txtCash" name="cash">
+            </div>
+            <div class="col-md-3 mt-3">
+                <label for="txtBalance" class="form-label">Balance</label>
+                <input type="text" class="form-control" id="txtBalance" name="balance" disabled>
+            </div>
+            <div class="col-2 mx-auto mt-5">
+                <button type="button" class="btn btn-success col-12" id="btnPaid">Paid</button>
+<!--                <button type="button" class="btn btn-danger col-3 mx-5" id="btnCancelCustomer">Cancel</button>-->
+            </div>
+        </form>
     </section>
-
-
 
 </main>
 
@@ -621,6 +657,24 @@
 <script>
 
     let baseURL = "http://localhost:8080/EasyCarRentalApp/";
+
+//===========================DashBoard============================
+    $(document).ready(function () {
+        getRegisteredUsersCount();
+    });
+
+    function getRegisteredUsersCount(){
+        $.ajax ({
+            url: baseURL + "customer/rCustomerCount",
+            dataType: "json",
+            success: function (resp) {
+                let rCustomerCount = resp.data;
+                console.log(resp);
+                $("#fileString1").text(rCustomerCount);
+            }
+        });
+    }
+
 
 //===========================Car============================
     loadAllCars();
@@ -1594,6 +1648,359 @@
         });
     }
 
+    //================================Payment=============================
+    //----------------Load Booking Details to TextFields--------------
+
+    //----------------Get Current Date--------------
+    function getCurrentDate(){
+        const date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+
+        if (day < 10) day = '0' + day;
+        if (month < 10) month = '0' + month;
+
+        return `${year}-${month}-${day}`;
+    }
+
+    $("#txtDate").val(getCurrentDate());
+
+    //----------------Search Booking--------------
+    $("#btnSearchBooking").click(function () {
+        loadBookingDetailsByBookingId();
+    });
+
+    function loadBookingDetailsByBookingId() {
+        let bookingId = $("#txtSearchBooking").val();
+        parseInt(bookingId);
+        $.ajax ({
+            url: baseURL+"booking?bookingId="+bookingId,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (resp) {
+                let booking = resp.data;
+
+                if (booking.driver !== null) {
+                    $("#txtLoadBookingId").val(booking.bookingId);
+                    $("#txtLoadDriverId1").val(booking.driver.driverId);
+                    $("#txtPickup").val(booking.pickupDate);
+                    $("#txtReturn").val(booking.returnDate);
+                }else {
+                    $("#txtLoadBookingId").val(booking.bookingId);
+                    $("#txtLoadDriverId1").val("No");
+                    $("#txtPickup").val(booking.pickupDate);
+                    $("#txtReturn").val(booking.returnDate);
+                }
+
+                //----------------Get Car Loss Damage Waiver--------------
+                let carRegNo = booking.car.regNo;
+                $.ajax ({
+                    url: baseURL+"car/search/"+carRegNo,
+                    dataType: "json",
+                    contentType: "application/json",
+                    async: false,
+                    success: function (resp) {
+                        let car = resp.data;
+                        $("#txtLossDamageWaiverPaidAmount").val(car.lossDamageWaiver);
+                        console.log("Car"+car.brand);
+
+                        //----------------Calculate Rent for using days--------------
+                        let pickupDate = new Date(booking.pickupDate);
+                        let returnDate = new Date(booking.returnDate);
+                        let diffOfTime = returnDate.getTime()-pickupDate.getTime();
+                        let diffOfDays = diffOfTime / (1000*3600*24);
+
+                        $("#txtRentDuration").val(diffOfDays);
+                        console.log("Days: "+diffOfDays);
+
+                        let dailyRate = car.dailyRate;
+                        $("#txtLoadDailyRate").val(dailyRate);
+
+                        $("#txtRentForUsingDays").val(dailyRate * diffOfDays);
+
+                        $("#txtCostForExtraKM").val(car.priceForExtraKM);
+
+                        let freeKM = car.freeKMForDay;
+
+                        calculateRemainLossDamageWaiverPayment();
+
+                        calculateExtraKM(freeKM);
+
+                        calculateTotalCostOfExtraKM();
+                    }
+                });
+            }
+        });
+    }
+
+    function calculateRemainLossDamageWaiverPayment(){
+        let damageCost = $("#txtDamageCost").val();
+        $("#txtRemain").val($("#txtLossDamageWaiverPaidAmount").val() - damageCost);
+    }
+
+    function calculateExtraKM(freeKM){
+        let totalKM = $("#txtTotalKM").val();
+
+        let extraKM;
+        if (freeKM<totalKM){
+            extraKM = totalKM - freeKM;
+        }else {
+            extraKM = 0;
+        }
+        $("#txtExtraKM").val(extraKM);
+        return extraKM;
+    }
+
+    function calculateTotalCostOfExtraKM(){
+        let totCostOfExtraKM = $("#txtExtraKM").val() * $("#txtCostForExtraKM").val();
+        $("#txtTotalCostForExtraKM").val(totCostOfExtraKM);
+        return totCostOfExtraKM;
+    }
+
+    function calculateTotalPayment(){
+        let totalPayment;
+        let totalCostForExtraKM = parseFloat($("#txtTotalCostForExtraKM").val());
+        let rentForUsingDays = parseFloat($("#txtRentForUsingDays").val());
+        let driverPayment = parseFloat($("#txtDriverPayment").val());
+        let remainLossDamageWaiver = parseFloat($("#txtRemain").val());
+        totalPayment = (totalCostForExtraKM + rentForUsingDays + driverPayment) - remainLossDamageWaiver;
+        $("#txtTotalPayment").val(totalPayment.toString());
+        console.log("Total: "+totalPayment.toString());
+    }
+
+    //----------------Calculate Total Payment--------------
+    $("#btnCalculate").click(function () {
+        loadBookingDetailsByBookingId();
+        setInterval(calculateTotalPayment,100);
+        // calculateTotalPayment();
+    });
+
+    //----------------Calculate Balance--------------
+    $(document).ready(function (){
+        $("#txtCash").on('input',function () {
+            let cash = $(this).val();
+            cash -= $("#txtTotalPayment").val();
+            $("#txtBalance").val(cash);
+        });
+    });
+
+    //----------------Send Payment--------------
+    $("#btnPaid").click(function () {
+        let bookingId = $("#txtLoadBookingId").val();
+        parseInt(bookingId);
+
+        let paymentDate= $("#txtDate").val();
+        let booking;
+        let amount = $("#txtTotalPayment").val();
+
+        let driverId = $("#txtLoadDriverId1").val();
+
+        let car;
+        let driver;
+
+        $.ajax ({
+            url: baseURL+"booking?bookingId="+bookingId,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (resp) {
+                booking = resp.data;
+                console.log("Data: "+resp.data.bookingId)
+
+                $.ajax({
+                    url: baseURL + "payment",
+                    method: 'post',
+                    contentType: "application/json",
+                    data: JSON.stringify(
+                        {
+                            paymentDate: paymentDate,
+                            amount: amount,
+                            booking: booking
+                        }
+                    ),
+                    success: function (resp) {
+                        console.log(resp)
+
+                        //Update Car Status
+                        $.ajax({
+                            url: baseURL+"car",
+                            method: "put",
+                            contentType: "application/json",
+                            async: false,
+                            data: JSON.stringify(
+                                {
+                                    regNo: booking.car.regNo,
+                                    brand: booking.car.brand,
+                                    type: booking.car.type,
+                                    color: booking.car.color,
+                                    noOfPassengers: booking.car.noOfPassengers,
+                                    transmissionType: booking.car.transmissionType,
+                                    fuelType: booking.car.fuelType,
+                                    dailyRate: booking.car.dailyRate,
+                                    monthlyRate: booking.car.monthlyRate,
+                                    lossDamageWaiver: booking.car.lossDamageWaiver,
+                                    freeKMForDay: booking.car.freeKMForDay,
+                                    freeKMForMonth: booking.car.freeKMForMonth,
+                                    priceForExtraKM: booking.car.priceForExtraKM,
+                                    status: "Available"
+                                }
+                            ),
+                            dataType: "json",
+                            success: function (resp){
+                                alert(resp.message);
+                                loadAllCars();
+                            },
+                            error: function (error){
+                                var jsObject = JSON.parse(error.responseText).message;
+                                alert(jsObject.message);
+                            }
+                        });
+
+                        if (driverId !== "No"){
+                            //Update Driver Status
+                            $.ajax({
+                                url: baseURL+"driver",
+                                method: "put",
+                                contentType: "application/json",
+                                data: JSON.stringify(
+                                    {
+                                        driverId: booking.driver.driverId,
+                                        driverName: booking.driver.driverName,
+                                        driverContact: booking.driver.driverContact,
+                                        driverUsername: booking.driver.driverUsername,
+                                        driverPassword: booking.driver.driverPassword,
+                                        driverStatus: "Available"
+                                    }
+                                ),
+                                dataType: "json",
+                                success: function (resp){
+
+                                    // //Update Booking Status
+                                    // $.ajax({
+                                    //     url: baseURL+"booking",
+                                    //     method: "put",
+                                    //     contentType: "application/json",
+                                    //     data: JSON.stringify(
+                                    //         {
+                                    //             bookingId: parseInt(bookingId),
+                                    //             bookingDate: booking.bookingDate,
+                                    //             pickupDate: booking.pickupDate,
+                                    //             returnDate: booking.returnDate,
+                                    //             status: "Rented",
+                                    //             car: booking.car,
+                                    //             customer: booking.customer,
+                                    //             driver: booking.driver
+                                    //         }
+                                    //     ),
+                                    //
+                                    //     success: function (resp){
+                                    //         alert(resp.message);
+                                    //
+                                    //         loadAllPendingBookingRequests();
+                                    //         setBookingRequestFormTextFieldValues();
+                                    //
+                                    //     },
+                                    //     error: function (error){
+                                    //         var jsObject = JSON.parse(error.responseText).message;
+                                    //         alert(jsObject.message);
+                                    //     }
+                                    // });
+                                    //
+                                    // alert(resp.message);
+                                    // loadAllDrivers();
+                                    //
+                                    // //Update Booking Request Table and Available Drivers List
+                                    // // loadAllAvailableDrivers();
+                                    // loadAllPendingBookingRequests();
+                                    // setBookingRequestFormTextFieldValues();
+                                },
+                                error: function (error){
+                                    var jsObject = JSON.parse(error.responseText).message;
+                                    alert(jsObject.message);
+                                }
+                            });
+                        }
+
+                        //Update Booking Status
+                        $.ajax({
+                            url: baseURL+"booking",
+                            method: "put",
+                            contentType: "application/json",
+                            data: JSON.stringify(
+                                {
+                                    bookingId: parseInt(bookingId),
+                                    bookingDate: booking.bookingDate,
+                                    pickupDate: booking.pickupDate,
+                                    returnDate: booking.returnDate,
+                                    status: "Rented",
+                                    car: booking.car,
+                                    customer: booking.customer,
+                                    driver: booking.driver
+                                }
+                            ),
+
+                            success: function (resp){
+                                alert(resp.message);
+
+                                loadAllPendingBookingRequests();
+                                setBookingRequestFormTextFieldValues();
+
+                            },
+                            error: function (error){
+                                var jsObject = JSON.parse(error.responseText).message;
+                                alert(jsObject.message);
+                            }
+                        });
+
+                        alert(resp.message);
+                        loadAllDrivers();
+
+                        //Update Booking Request Table and Available Drivers List
+                        // loadAllAvailableDrivers();
+                        loadAllPendingBookingRequests();
+                        setBookingRequestFormTextFieldValues();
+
+
+
+
+
+                            //Update Booking Request Table and Available Drivers List
+                            loadAllAvailableDrivers();
+                            loadAllPendingBookingRequests();
+                            setBookingRequestFormTextFieldValues();
+
+
+                        alert("Paid Successfully");
+                        setPaymentFormTextFieldValues("");
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+        });
+    });
+
+    //----------------Clear InputFields--------------
+    function setPaymentFormTextFieldValues(bookingId,paymentDate,pickupDate,returnDate,lossDWPAmount,damageCost,lossDWRemain,driverID1,driverPayment,
+                                           rentDuration,rentForUsingDays,totalKM,costForExtraKM,totalPayment,cash,balance){
+        $("#txtLoadBookingId").val(bookingId);
+        $("#txtDate").val(paymentDate);
+        $("#txtPickup").val(pickupDate);
+        $("#txtReturn").val(returnDate);
+        $("#txtLossDamageWaiverPaidAmount").val(lossDWPAmount);
+        $("#txtDamageCost").val(damageCost);
+        $("#txtRemain").val(lossDWRemain);
+        $("#txtLoadDriverId1").val(driverID1);
+        $("#txtDriverPayment").val(driverPayment);
+        $("#txtRentDuration").val(rentDuration);
+        $("#txtRentForUsingDays").val(rentForUsingDays);
+        $("#txtTotalKM").val(totalKM);
+        $("#txtCostForExtraKM").val(costForExtraKM);
+        $("#txtTotalPayment").val(totalPayment);
+        $("#txtCash").val(cash);
+        $("#txtBalance").val(balance);
+    }
 </script>
 </body>
 </html>
