@@ -83,7 +83,15 @@
                 <div class="card mt-3 col-10 text-center mx-auto">
                     <div class="cName" style="background-color:#1abc9c">Available Cars</div>
                     <i class="cFont fa-solid fa-car mt-3" style="color: #1abc9c"></i>
-                    <h2 class="card-text mt-2 mb-3" id="availableCarsCount">00</h2>
+                    <h2 class="card-text mt-2 mb-3"id="availableCarsCount">00</h2>
+                </div>
+            </div>
+
+            <div class="col-3 me-3">
+                <div class="card mt-3 col-10 text-center mx-auto">
+                    <div class="cName" style="background-color: #e67e22">Reserved Cars</div>
+                    <i class="cFont fa-solid fa-user-group mt-3" style="color: #e67e22"></i>
+                    <h2 class="card-text mt-2 mb-3" id="reservedCarsCount">00</h2>
                 </div>
             </div>
 
@@ -100,6 +108,14 @@
                     <div class="cName" style="background-color: #e67e22">Available Drivers</div>
                     <i class="cFont fa-solid fa-user-group mt-3" style="color: #e67e22"></i>
                     <h2 class="card-text mt-2 mb-3" id="availableDriversCount">00</h2>
+                </div>
+            </div>
+
+            <div class="col-3 me-3">
+                <div class="card mt-3 col-10 text-center mx-auto">
+                    <div class="cName" style="background-color: #e67e22">Occupied Drivers</div>
+                    <i class="cFont fa-solid fa-user-group mt-3" style="color: #e67e22"></i>
+                    <h2 class="card-text mt-2 mb-3" id="occupiedDriversCount">00</h2>
                 </div>
             </div>
 
@@ -658,25 +674,8 @@
 
     let baseURL = "http://localhost:8080/EasyCarRentalApp/";
 
-//===========================DashBoard============================
-    $(document).ready(function () {
-        getRegisteredUsersCount();
-    });
 
-    function getRegisteredUsersCount(){
-        $.ajax ({
-            url: baseURL + "customer/rCustomerCount",
-            dataType: "json",
-            success: function (resp) {
-                let rCustomerCount = resp.data;
-                console.log(resp);
-                $("#fileString1").text(rCustomerCount);
-            }
-        });
-    }
-
-
-//===========================Car============================
+    //===========================Car============================
     loadAllCars();
 
     //------------Add Car Images----------------
@@ -2000,6 +1999,87 @@
         $("#txtTotalPayment").val(totalPayment);
         $("#txtCash").val(cash);
         $("#txtBalance").val(balance);
+    }
+
+
+    //===========================DashBoard============================
+
+    getRegisteredUsersCount();
+
+    function getRegisteredUsersCount(){
+        $.ajax ({
+            url: baseURL + "customer/count",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (resp) {
+                $("#registeredUsersCount").text(resp.data);
+            }
+        });
+
+        $.ajax ({
+            url: baseURL + "car?status=Available",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (resp) {
+                $("#availableCarsCount").text(resp.data.length);
+                $.ajax({
+                    method: "get",
+                    url: "car",
+                    contentType: 'application/json',
+                    async: true,
+                    success: function (allCar) {
+                        let reserved = allCar.data.length - resp.data.length;
+                        $("#reservedCarsCount").text(reserved);
+                    }
+                });
+            }
+        });
+
+        $.ajax ({
+            url: baseURL + "booking?pickupDate=today&status=Accepted",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (today) {
+                $("#bookingsCount").text(today.data);
+            }
+        });
+
+        $.ajax ({
+            url: baseURL + "driver?driverStatus=Available",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (resp) {
+                $("#availableDriversCount").text(resp.data.length);
+                $.ajax({
+                    method: "get",
+                    url: "driver",
+                    contentType: 'application/json',
+                    async: true,
+                    success: function (allDrivers) {
+                        $('#occupiedDriversCount').text(allDrivers.length - resp.data.length - 1/*No_Driver*/);
+                    }
+                });
+            }
+        });
+
+        // $.ajax ({
+        //     url: baseURL + "booking?pickupDate=today&status=Accepted",
+        //     contentType: "application/json",
+        //     dataType: "json",
+        //     success: function (today) {
+        //         $("#activeBookingsCount").text(today);
+        //     }
+        // });
+        //
+        // $.ajax ({
+        //     url: baseURL + "maintenance/count",
+        //     contentType: "application/json",
+        //     dataType: "json",
+        //     success: function (resp) {
+        //         $("#maintenanceCarsCount").text(resp.data);
+        //     }
+        // });
+
     }
 </script>
 </body>
