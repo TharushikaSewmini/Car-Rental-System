@@ -207,8 +207,11 @@
 
                 //======================
 
-                let val = $("#txtCustomerLoginUserName").val();
-                localStorage.setItem("Username",val);
+                let val1 = $("#txtCustomerLoginUserName").val();
+                localStorage.setItem("Username",val1);
+
+                let val2 = $("#txtCustomerLoginPassword").val();
+                localStorage.setItem("Password",val2);
 
 
                 $(location).attr('href','CustomerDashBoardForm.html');

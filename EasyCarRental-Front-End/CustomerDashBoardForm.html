@@ -407,6 +407,7 @@
 
 
     let username = localStorage.getItem("Username");
+    let password = localStorage.getItem("Password");
     getLastLoginCustomer();
 
 //=====================Customer Profile================
@@ -426,9 +427,11 @@
     //----------------Get Customer by Username--------------
     function getLastLoginCustomer() {
         let typedUsername = username;
+
+        let typedPassword = password;
         // console.log("lastLog: "+typedUsername);
         $.ajax({
-            url: baseURL+"customer?username="+typedUsername+"",
+            url: baseURL+"customer/username/"+typedUsername+"/password/"+typedPassword,
             method: "get",
             dataType: "json",
             async: false,

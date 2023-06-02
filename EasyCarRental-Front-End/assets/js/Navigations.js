@@ -5,6 +5,7 @@ $("#driverPage").css("display","none");
 $("#bookingPage").css("display","none");
 $("#bookingRequestPage").css("display","none");
 $("#paymentPage").css("display","none");
+$("#maintenancePage").css("display","none");
 
 $("#linkDashBoard").click(function () {
     $("#dashBoardPage").css("display","block");
@@ -14,6 +15,7 @@ $("#linkDashBoard").click(function () {
     $("#bookingPage").css("display","none");
     $("#bookingRequestPage").css("display","none");
     $("#paymentPage").css("display","none");
+    $("#maintenancePage").css("display","none");
 });
 
 $("#linkCars").click(function () {
@@ -24,6 +26,7 @@ $("#linkCars").click(function () {
     $("#bookingPage").css("display","none");
     $("#bookingRequestPage").css("display","none");
     $("#paymentPage").css("display","none");
+    $("#maintenancePage").css("display","none");
 });
 
 $("#linkCustomers").click(function () {
@@ -34,6 +37,7 @@ $("#linkCustomers").click(function () {
     $("#bookingPage").css("display","none");
     $("#bookingRequestPage").css("display","none");
     $("#paymentPage").css("display","none");
+    $("#maintenancePage").css("display","none");
 });
 
 $("#linkDrivers").click(function () {
@@ -44,6 +48,7 @@ $("#linkDrivers").click(function () {
     $("#bookingPage").css("display","none");
     $("#bookingRequestPage").css("display","none");
     $("#paymentPage").css("display","none");
+    $("#maintenancePage").css("display","none");
 });
 
 $("#linkBooking").click(function () {
@@ -54,6 +59,7 @@ $("#linkBooking").click(function () {
     $("#bookingPage").css("display","block");
     $("#bookingRequestPage").css("display","none");
     $("#paymentPage").css("display","none");
+    $("#maintenancePage").css("display","none");
 });
 
 $("#linkBookingRequest").click(function () {
@@ -64,6 +70,7 @@ $("#linkBookingRequest").click(function () {
     $("#bookingPage").css("display","none");
     $("#bookingRequestPage").css("display","block");
     $("#paymentPage").css("display","none");
+    $("#maintenancePage").css("display","none");
 });
 
 $("#linkPayment").click(function () {
@@ -74,4 +81,16 @@ $("#linkPayment").click(function () {
     $("#bookingPage").css("display","none");
     $("#bookingRequestPage").css("display","none");
     $("#paymentPage").css("display","block");
+    $("#maintenancePage").css("display","none");
+});
+
+$("#linkMaintenance").click(function () {
+    $("#dashBoardPage").css("display","none");
+    $("#carPage").css("display","none");
+    $("#customerPage").css("display","none");
+    $("#driverPage").css("display","none");
+    $("#bookingPage").css("display","none");
+    $("#bookingRequestPage").css("display","none");
+    $("#paymentPage").css("display","none");
+    $("#maintenancePage").css("display","block");
 });

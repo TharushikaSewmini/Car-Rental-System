@@ -74,6 +74,56 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
 
+    let baseURL = "http://localhost:8080/EasyCarRentalApp/";
+
+    let driverUsername = localStorage.getItem("DriverUsername");
+    let driverPassword = localStorage.getItem("DriverPassword");
+    getLastLoginDriver();
+
+    //=====================Driver Schedule================
+    //----------------Get Driver by Username and Password--------------
+    function getLastLoginDriver() {
+        $("#tblRentResponse").empty();
+
+        let typedDriverUsername = driverUsername;
+        let typedDriverPassword = driverPassword;
+        console.log("lastLog: "+typedDriverUsername+typedDriverPassword);
+        $.ajax({
+            url: baseURL+"driver/driverUsername/"+typedDriverUsername+"/driverPassword/"+typedDriverPassword,
+            method: "get",
+            dataType: "json",
+            async: false,
+            success: function (resp){
+                // alert(resp.message);
+                console.log(resp.data);
+                var driver = resp.data;
+
+                $.ajax ({
+                    url: baseURL+"booking?driverId="+driver.driverId+"&status=Accepted",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (resp) {
+                        console.log("Data: " + resp.data)
+                        let booking = resp.data;
+                        console.log("Req:"+booking);
+                        for (let i in booking) {
+                            let customerName = booking[i].customer.name;
+                            let regNo = booking[i].car.regNo;
+                            let pickupDate = booking[i].pickupDate;
+                            let returnDate = booking[i].returnDate;
+                            let customerContact = booking[i].customer.contact;
+
+                            let row = `<tr><td>${customerName}</td><td>${regNo}</td><td>${pickupDate}</td><td>${returnDate}</td><td>${customerContact}</td></tr>`;
+                            $('#tblDriverSchedule').append(row);
+                        }
+                    }
+                });
+            },
+            error: function (error){
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    }
 </script>
 </body>
 </html>

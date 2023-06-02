@@ -132,8 +132,16 @@
                 console.log(resp.data);
                 if (!resp.data){
                     $("#txtDriverLoginUserName").focus();
-                    return alert("The Email or Password is incorrect.");
+                    //return alert("The Email or Password is incorrect.");
                 }
+                let val1 = $("#txtDriverLoginUserName").val();
+                localStorage.setItem("DriverUsername",val1);
+                console.log("Val1: "+val1);
+
+                let val2 = $("#txtDriverLoginPassword").val();
+                localStorage.setItem("DriverPassword",val2);
+
+
                 $(location).attr('href','DriverDashBoardForm.html');
             },
             error: function (error){
