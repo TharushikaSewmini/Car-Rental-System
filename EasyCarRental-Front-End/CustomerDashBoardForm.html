@@ -337,11 +337,11 @@
                     </div>
                     <div class="col-md-6 my-1">
                         <label for="txtViewPickupDate" class="form-label my-1">Pickup Date</label>
-                        <input type="text" class="form-control" id="txtViewPickupDate" name="viewPickupDate" disabled>
+                        <input type="date" class="form-control" id="txtViewPickupDate" name="viewPickupDate" disabled>
                     </div>
                     <div class="col-md-6 my-1">
                         <label for="txtViewReturnDate" class="form-label my-1">Return Date</label>
-                        <input type="text" class="form-control" id="txtViewReturnDate" name="viewReturnDate" disabled>
+                        <input type="date" class="form-control" id="txtViewReturnDate" name="viewReturnDate" disabled>
                     </div>
                     <div class="col-md-6 my-1">
                         <label for="txtViewDriverId" class="form-label my-1">Driver ID</label>
@@ -440,8 +440,31 @@
                 console.log(resp.data);
                 var customer = resp.data;
                 // alert(customer);
-                setCustomerDetailsTextFieldValues(customer.name, customer.address, customer.contact, customer.email,
-                    customer.nic, customer.drivingLicenseNo, customer.username, customer.password);
+
+                $.ajax ({
+                    url: baseURL+"booking?email="+customer.email,
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (resp) {
+                        let booking = resp.data;
+                        console.log("Data: "+resp.data);
+
+                        for (let i in booking) {
+                            // if (booking[i] !== null) {
+                                let status = booking[i].status;
+                            console.log("SS: "+status);
+
+                            if (status === "Accepted"){
+                                $("#customerForm>div>input").prop("readonly", true);
+                                $("#txtLoadCustomerContact").prop("readonly", false);
+                            }else {
+                                setCustomerDetailsTextFieldValues(customer.name, customer.address, customer.contact, customer.email,
+                                    customer.nic, customer.drivingLicenseNo, customer.username, customer.password);
+                            }
+                        }
+
+                    }
+                });
             },
             error: function (error){
                 alert(JSON.parse(error.responseText).message);
@@ -645,7 +668,7 @@
                 // alert(resp.message);
                 console.log("Resp.data"+resp.data);
                 let car = resp.data;
-                setCarDetailsFormTextFieldValues(car.brand, car.color, car.noOfPassengers, car.transmissionType, car.fuelType,
+                setCarDetailsFormTextFieldValues(car.color, car.noOfPassengers, car.transmissionType, car.fuelType,
                     car.dailyRate, car.monthlyRate, car.lossDamageWaiver, car.freeKMForDay, car.freeKMForMonth, car.priceForExtraKM);
             },
             error: function (error){
@@ -765,6 +788,13 @@
                                         success: function (resp) {
                                             console.log(resp)
                                             alert("Successfully Car Booked");
+
+                                            //Load Customer Booking Response Table
+                                            loadAllBookingRequestsOfCustomer();
+
+                                            //Load Admin Booking Request Table
+                                            // loadAllPendingBookingRequests();
+
                                             setCarDetailsFormTextFieldValues("");
                                             $("#selectType").val("");
                                             $("#selectBrand").val("");
@@ -805,6 +835,12 @@
                                         success: function (resp) {
                                             console.log(resp)
                                             alert("Successfully Car Booked");
+                                            //Load Customer Booking Response Table
+                                            loadAllBookingRequestsOfCustomer();
+
+                                            //Load Admin Booking Request Table
+                                            // loadAllPendingBookingRequests();
+
                                             setCarDetailsFormTextFieldValues("");
                                             $("#selectType").val("");
                                             $("#selectBrand").val("");
@@ -858,6 +894,7 @@
     //----------------Send Booking Request--------------
     $("#btnSendRequest").click(function (){
         uploadLossDamageWaiverReceipt();
+        // loadAllBookingRequestsOfCustomer();
     });
 
     //----------------Cancel Booking Request--------------
@@ -1038,84 +1075,160 @@
         let pickupDate = $("#txtViewPickupDate").val();
         let returnDate = $("#txtViewReturnDate").val();
 
-        if ($("#selectAnotherDriver").val() !== null){
-            driverId = $("#selectAnotherDriver").val();
-        }else {
-            driverId = $("#txtLoadDriverId").val();
-        }
+        // if ($("#selectAnotherDriver").val() !== null){
+        //     driverId = $("#selectAnotherDriver").val();
+        // }else {
+        //     driverId = $("#txtLoadDriverId").val();
+        // }
 
         let customerEmail = $("#txtLoadCustomerEmail").val();
-        let customerName = $("#txtLoadCustomerName").val();
+
+        let status = $("#txtViewBookingStatus").val();
 
         let car;
         let customer;
         let driver;
 
-        $.ajax({
-            url: baseURL+"car/search/"+carRegNo,
-            method: "get",
-            async: true,
-            dataType: "json",
-            success: function (resp){
-                // alert(resp.message);
-                console.log(resp.data);
-                const data = resp.data;
-                console.log(resp.data.regNo);
-                car = resp.data;
+        if (status === "Accepted" || status === "pending"){
+            $.ajax({
+                url: baseURL+"car/search/"+carRegNo,
+                method: "get",
+                async: true,
+                dataType: "json",
+                success: function (resp){
+                    // alert(resp.message);
+                    console.log(resp.data);
+                    const data = resp.data;
+                    console.log(resp.data.regNo);
+                    car = resp.data;
 
-                $.ajax({
-                    url: baseURL+"customer?email="+customerEmail+"",
-                    method: "get",
-                    dataType: "json",
-                    success: function (resp){
-                        // alert(resp.message);
-                        console.log(resp.data);
-                        customer = resp.data;
+                    $.ajax({
+                        url: baseURL+"customer?email="+customerEmail+"",
+                        method: "get",
+                        dataType: "json",
+                        success: function (resp){
+                            // alert(resp.message);
+                            console.log(resp.data);
+                            customer = resp.data;
 
-                        $.ajax({
-                            url: baseURL+"driver?driverId="+driverId,
-                            method: "get",
-                            dataType: "json",
-                            success: function (resp){
-                                // alert(resp.message);
-                                console.log(resp.data);
-                                driver = resp.data;
+                            $.ajax({
+                                url: baseURL+"driver?driverId="+driverId,
+                                method: "get",
+                                dataType: "json",
+                                success: function (resp){
+                                    // alert(resp.message);
+                                    console.log(resp.data);
+                                    driver = resp.data;
 
-                                $.ajax({
-                                    url: baseURL+"booking",
-                                    method: "put",
-                                    contentType: "application/json",
-                                    data: JSON.stringify(
-                                        {
-                                            bookingId: parseInt(bookingId),
-                                            bookingDate: bookingDate,
-                                            pickupDate: pickupDate,
-                                            returnDate: returnDate,
-                                            status: "Canceled By Customer",
-                                            car: car,
-                                            customer: customer,
-                                            driver: driver
+                                    $.ajax({
+                                        url: baseURL+"booking",
+                                        method: "put",
+                                        contentType: "application/json",
+                                        data: JSON.stringify(
+                                            {
+                                                bookingId: parseInt(bookingId),
+                                                bookingDate: bookingDate,
+                                                pickupDate: pickupDate,
+                                                returnDate: returnDate,
+                                                status: "Canceled By Customer",
+                                                car: car,
+                                                customer: customer,
+                                                driver: driver
+                                            }
+                                        ),
+                                        success: function (resp){
+
+                                            // let booking = bookingId;
+                                            // console.log("B: "+resp.data);
+                                            if (status !== "pending"){
+                                                //Update Car Status
+                                                $.ajax({
+                                                    url: baseURL + "car",
+                                                    method: "put",
+                                                    contentType: "application/json",
+                                                    async: false,
+                                                    data: JSON.stringify(
+                                                        {
+                                                            regNo: car.regNo,
+                                                            brand: car.brand,
+                                                            type: car.type,
+                                                            color: car.color,
+                                                            noOfPassengers: car.noOfPassengers,
+                                                            transmissionType: car.transmissionType,
+                                                            fuelType: car.fuelType,
+                                                            dailyRate: car.dailyRate,
+                                                            monthlyRate: car.monthlyRate,
+                                                            lossDamageWaiver: car.lossDamageWaiver,
+                                                            freeKMForDay: car.freeKMForDay,
+                                                            freeKMForMonth: car.freeKMForMonth,
+                                                            priceForExtraKM: car.priceForExtraKM,
+                                                            status: "Available",
+                                                            completedKM: car.completedKM
+                                                        }
+                                                    ),
+                                                    dataType: "json",
+                                                    success: function (resp) {
+                                                        alert(resp.message);
+
+                                                        if (driverId !== "No") {
+                                                            //Update Driver Status
+                                                            $.ajax({
+                                                                url: baseURL + "driver",
+                                                                method: "put",
+                                                                contentType: "application/json",
+                                                                data: JSON.stringify(
+                                                                    {
+                                                                        driverId: driver.driverId,
+                                                                        driverName: driver.driverName,
+                                                                        driverContact: driver.driverContact,
+                                                                        driverUsername: driver.driverUsername,
+                                                                        driverPassword: driver.driverPassword,
+                                                                        driverStatus: "Available"
+                                                                    }
+                                                                ),
+                                                                dataType: "json",
+                                                                success: function (resp) {
+                                                                    console.log(resp);
+                                                                },
+                                                                error: function (error) {
+                                                                    var jsObject = JSON.parse(error.responseText).message;
+                                                                    alert(jsObject.message);
+                                                                }
+                                                            });
+                                                        }
+
+                                                    },
+                                                    error: function (error) {
+                                                        var jsObject = JSON.parse(error.responseText).message;
+                                                        alert(jsObject.message);
+                                                    }
+                                                });
+                                            }
+
+                                                alert(resp.message);
+                                                alert("Booking is Canceled");
+
+                                                loadAllBookingRequestsOfCustomer();
+                                        },
+                                        error: function (error){
+                                            var jsObject = JSON.parse(error.responseText).message;
+                                            alert(jsObject.message);
                                         }
-                                    ),
-                                    success: function (resp){
-                                        alert(resp.message);
-                                        alert("Booking is Canceled");
-                                        loadAllBookingRequestsOfCustomer();
-                                    },
-                                    error: function (error){
-                                        var jsObject = JSON.parse(error.responseText).message;
-                                        alert(jsObject.message);
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
-            }
-        });
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }else if (status === "Rented") {
+            alert("You Can not Cancel this Booking!!");
+        }else {
+            alert("This Booking is already Canceled!!");
+        }
     });
 
-    //==========================Your Booking Requests===============
+    //==========================Payments===============
     loadAllBookingPaymentsOfCustomer();
 
     //----------------Load Data to Payment Table--------------

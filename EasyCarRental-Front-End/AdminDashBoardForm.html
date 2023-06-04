@@ -265,8 +265,14 @@
             </div>
 
             <div class="col-md-3 mt-3">
-                <label for="txtLossDamageWaiver" class="form-label">Loss Damage Waiver</label>
-                <input type="number" class="form-control" id="txtLossDamageWaiver" name="lossDamageWaiver">
+                <label for="selectLossDamageWaiver" class="form-label">Loss Damage Waiver</label>
+<!--                <input type="number" class="form-control" id="txtLossDamageWaiver" name="lossDamageWaiver">-->
+                <select id="selectLossDamageWaiver" class="form-select" name="lossDamageWaiver">
+                    <option selected hidden>Choose...</option>
+                    <option>10000</option>
+                    <option>15000</option>
+                    <option>20000</option>
+                </select>
             </div>
 
             <div class="col-md-3 mt-3"></div>
@@ -613,7 +619,7 @@
             </div>
             <div class="col-md-2 mt-3">
                 <label for="txtDriverPayment" class="form-label mb-1">Driver Payments</label>
-                <input type="text" class="form-control" id="txtDriverPayment" name="driverPayment">
+                <input type="text" class="form-control" id="txtDriverPayment" name="driverPayment" disabled>
             </div>
             <div class="col-md-3 mt-3">
                 <label for="txtRentDuration" class="form-label mb-1">Rent Duration</label>
@@ -680,7 +686,7 @@
                     <th scope="col">Car RegNo</th>
                     <th scope="col">Brand</th>
                     <th scope="col">Completed KM</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Description</th>
                 </tr>
                 </thead>
                 <tbody id="tblNeedMaintenance">
@@ -807,7 +813,7 @@
             $("#selectFuelType").val(fuelType);
             $("#txtDailyRate").val(dailyRate);
             $("#txtMonthlyRate").val(monthlyRate);
-            $("#txtLossDamageWaiver").val(lossDamageWaiver);
+            $("#selectLossDamageWaiver").val(lossDamageWaiver);
             $("#txtFreeKMForDay").val(freeKMForDay);
             $("#txtFreeKMForMonth").val(freeKMForMonth);
             $("#txtPriceForExtraKM").val(priceForExtraKM);
@@ -828,7 +834,7 @@
         $("#selectFuelType").val(fuelType);
         $("#txtDailyRate").val(dailyRate);
         $("#txtMonthlyRate").val(monthlyRate);
-        $("#txtLossDamageWaiver").val(lossDamageWaiver);
+        $("#selectLossDamageWaiver").val(lossDamageWaiver);
         $("#txtFreeKMForDay").val(freeKMForDay);
         $("#txtFreeKMForMonth").val(freeKMForMonth);
         $("#txtPriceForExtraKM").val(priceForExtraKM);
@@ -869,7 +875,7 @@
         let fuelType = $("#selectFuelType").val();
         let dailyRate = $("#txtDailyRate").val();
         let monthlyRate = $("#txtMonthlyRate").val();
-        let lossDamageWaiver = $("#txtLossDamageWaiver").val();
+        let lossDamageWaiver = $("#selectLossDamageWaiver").val();
         let freeKMForDay = $("#txtFreeKMForDay").val();
         let freeKMForMonth = $("#txtFreeKMForMonth").val();
         let priceForExtraKM = $("#txtPriceForExtraKM").val();
@@ -1015,7 +1021,7 @@
         let fuelType = $("#selectFuelType").val();
         let dailyRate = $("#txtDailyRate").val();
         let monthlyRate = $("#txtMonthlyRate").val();
-        let lossDamageWaiver = $("#txtLossDamageWaiver").val();
+        let lossDamageWaiver = $("#selectLossDamageWaiver").val();
         let freeKMForDay = $("#txtFreeKMForDay").val();
         let freeKMForMonth = $("#txtFreeKMForMonth").val();
         let priceForExtraKM = $("#txtPriceForExtraKM").val();
@@ -1312,7 +1318,7 @@
     //================================Booking Request=============================
     //----------------Load Booking Request to Table--------------
     loadAllPendingBookingRequests();
-    loadAllAvailableDrivers();
+    // loadAllAvailableDrivers();
 
     function loadAllPendingBookingRequests(){
         $("#tblBookingRequest").empty();
@@ -1366,8 +1372,11 @@
 
 
                 bindBookingRequestTableRowClickEvents();
-                // setBookingRequestFormTextFieldValues("","","","");
+                setBookingRequestFormTextFieldValues("","","","");
+                $("#selectAnotherDriver").val("Select Another Driver");
                 $("#selectAnotherDriver").focus();
+
+                loadAllAvailableDrivers();
             },
             error: function (error){
                 var jsObject = JSON.parse(error.responseText).message;
@@ -1403,8 +1412,9 @@
     }
 
     //----------------Clear InputFields--------------
-    function setBookingRequestFormTextFieldValues(bookingId,bookingDate,customerName,customerEmail,carRegNo,driverId,pickupDate,returnDate,bookingStatus,anotherDriver,denialReason){
+    function setBookingRequestFormTextFieldValues(bookingId,bookingDate,customerName,customerEmail,carRegNo,driverId,pickupDate,returnDate,bookingStatus,denialReason){
         $("#txtLoadBookingRequestId").val(bookingId);
+        $("#txtLoadBookingDate").val(bookingDate);
         $("#txtLoadCustomerName").val(customerName);
         $("#txtLoadCustomerEmail").val(customerEmail);
         $("#txtLoadCarRegNo").val(carRegNo);
@@ -1412,7 +1422,7 @@
         $("#txtLoadPickupDate").val(pickupDate);
         $("#txtLoadReturnDate").val(returnDate);
         $("#txtLoadBookingStatus").val(bookingStatus);
-        $("#selectAnotherDriver").val(anotherDriver);
+        // $("#selectAnotherDriver").val(anotherDriver);
         $("#txtDenialReason").val(denialReason);
         // $("#txtTotalPayment").val(totalPayment);
     }
@@ -1447,11 +1457,13 @@
         let pickupDate = $("#txtLoadPickupDate").val();
         let returnDate = $("#txtLoadReturnDate").val();
 
-        if ($("#selectAnotherDriver").val() !== null){
-            driverId = $("#selectAnotherDriver").val();
-        }else {
+        if ($("#selectAnotherDriver").val() === "Select Another Driver"){
             driverId = $("#txtLoadDriverId").val();
+        }else {
+            driverId = $("#selectAnotherDriver").val();
         }
+
+        console.log("Driver1: "+driverId);
 
         let car;
         let customer;
@@ -1477,6 +1489,10 @@
                         // alert(resp.message);
                         console.log(resp.data);
                         customer = resp.data;
+
+
+                        console.log("Driver2: "+driverId);
+
 
                         $.ajax({
                             url: baseURL+"driver?driverId="+driverId,
@@ -1560,6 +1576,19 @@
                                                 dataType: "json",
                                                 success: function (resp){
                                                     alert(resp.message);
+
+                                                    //Load Admin Booking Table
+                                                    loadAllAcceptedBookingRequests();
+
+                                                    //Load Admin DashBoard
+                                                    getRegisteredUsersCount();
+
+                                                    //Load Customer Booking Response Table
+                                                    // loadAllBookingRequestsOfCustomer();
+
+                                                    //Load Admin Available Driver List
+                                                    loadAllAvailableDrivers();
+
                                                     loadAllDrivers();
 
                                                 //Update Booking Request Table and Available Drivers List
@@ -1574,9 +1603,23 @@
                                             });
                                         } else {
                                             //Update Booking Request Table and Available Drivers List
-                                            loadAllAvailableDrivers();
+                                            // loadAllAvailableDrivers();
                                             loadAllPendingBookingRequests();
-                                            // setBookingRequestFormTextFieldValues();
+
+                                            //Load Admin Booking Table
+                                            loadAllAcceptedBookingRequests();
+
+                                            //Load Customer Booking Response Table
+                                            // loadAllBookingRequestsOfCustomer();
+
+                                            //Load Admin Available Driver List
+                                            loadAllAvailableDrivers();
+
+                                            //Load Admin DashBoard
+                                            getRegisteredUsersCount();
+
+                                            setBookingRequestFormTextFieldValues("");
+                                            $("#selectAnotherDriver").val("Select Another Driver");
                                         }
                                     },
                                     error: function (error){
@@ -1662,6 +1705,10 @@
                                         alert(resp.message);
 
                                         loadAllPendingBookingRequests();
+
+                                        //Load Admin Booking Table
+                                        loadAllAcceptedBookingRequests();
+
                                         // setBookingRequestFormTextFieldValues();
 
                                     },
@@ -1686,7 +1733,7 @@
     function loadAllAcceptedBookingRequests(){
         $("#tblBooking").empty();
         $.ajax ({
-            url: baseURL+"booking?bookingStatus=Accepted",
+            url: baseURL+"booking",
             dataType: "json",
             contentType: "application/json",
             success: function (resp) {
@@ -1712,8 +1759,12 @@
                         let end = pendingReq[i].returnDate;
                         let status = pendingReq[i].status;
 
+                        if (status !== "pending"){
+
                         let row = `<tr><td>${rentId}</td><td>${rentDate}</td><td>${cusName}</td><td>${cusEmail}</td><td>${carId}</td><td>${driver}</td><td>${start}</td><td>${end}</td><td>${status}</td></tr>`;
                         $('#tblBooking').append(row);
+
+                        }
                     }else {
                         let rentId = pendingReq[i].bookingId;
                         let rentDate = pendingReq[i].bookingDate;
@@ -1725,8 +1776,10 @@
                         let end = pendingReq[i].returnDate;
                         let status = pendingReq[i].status;
 
+                        if (status !== "pending"){
                         let row = `<tr><td>${rentId}</td><td>${rentDate}</td><td>${cusName}</td><td>${cusEmail}</td><td>${carId}</td><td>${driver}</td><td>${start}</td><td>${end}</td><td>${status}</td></tr>`;
                         $('#tblBooking').append(row);
+                        }
                     }
 
                 }
@@ -1756,6 +1809,8 @@
 
     $("#txtDate").val(getCurrentDate());
 
+    $("#txtDriverPayment").val(1000.00);
+
     //----------------Search Booking--------------
     $("#btnSearchBooking").click(function () {
         loadBookingDetailsByBookingId();
@@ -1771,55 +1826,64 @@
             success: function (resp) {
                 let booking = resp.data;
 
-                if (booking.driver !== null) {
-                    $("#txtLoadBookingId").val(booking.bookingId);
-                    $("#txtLoadDriverId1").val(booking.driver.driverId);
-                    $("#txtPickup").val(booking.pickupDate);
-                    $("#txtReturn").val(booking.returnDate);
-                }else {
-                    $("#txtLoadBookingId").val(booking.bookingId);
-                    $("#txtLoadDriverId1").val("No");
-                    $("#txtPickup").val(booking.pickupDate);
-                    $("#txtReturn").val(booking.returnDate);
-                }
-
-                //----------------Get Car Loss Damage Waiver--------------
-                let carRegNo = booking.car.regNo;
-                $.ajax ({
-                    url: baseURL+"car/search/"+carRegNo,
-                    dataType: "json",
-                    contentType: "application/json",
-                    async: false,
-                    success: function (resp) {
-                        let car = resp.data;
-                        $("#txtLossDamageWaiverPaidAmount").val(car.lossDamageWaiver);
-                        console.log("Car"+car.brand);
-
-                        //----------------Calculate Rent for using days--------------
-                        let pickupDate = new Date(booking.pickupDate);
-                        let returnDate = new Date(booking.returnDate);
-                        let diffOfTime = returnDate.getTime()-pickupDate.getTime();
-                        let diffOfDays = diffOfTime / (1000*3600*24);
-
-                        $("#txtRentDuration").val(diffOfDays);
-                        console.log("Days: "+diffOfDays);
-
-                        let dailyRate = car.dailyRate;
-                        $("#txtLoadDailyRate").val(dailyRate);
-
-                        $("#txtRentForUsingDays").val(dailyRate * diffOfDays);
-
-                        $("#txtCostForExtraKM").val(car.priceForExtraKM);
-
-                        let freeKM = car.freeKMForDay;
-
-                        calculateRemainLossDamageWaiverPayment();
-
-                        calculateExtraKM(freeKM);
-
-                        calculateTotalCostOfExtraKM();
+                if (booking.status === "Accepted") {
+                    if (booking.driver !== null) {
+                        $("#txtLoadBookingId").val(booking.bookingId);
+                        $("#txtLoadDriverId1").val(booking.driver.driverId);
+                        $("#txtPickup").val(booking.pickupDate);
+                        $("#txtReturn").val(booking.returnDate);
+                    } else {
+                        $("#txtLoadBookingId").val(booking.bookingId);
+                        $("#txtLoadDriverId1").val("No");
+                        $("#txtPickup").val(booking.pickupDate);
+                        $("#txtReturn").val(booking.returnDate);
                     }
-                });
+
+                    //----------------Get Car Loss Damage Waiver--------------
+                    let carRegNo = booking.car.regNo;
+                    $.ajax({
+                        url: baseURL + "car/search/" + carRegNo,
+                        dataType: "json",
+                        contentType: "application/json",
+                        async: false,
+                        success: function (resp) {
+                            let car = resp.data;
+                            $("#txtLossDamageWaiverPaidAmount").val(car.lossDamageWaiver);
+                            console.log("Car" + car.brand);
+
+                            //----------------Calculate Rent for using days--------------
+                            let pickupDate = new Date(booking.pickupDate);
+                            let returnDate = new Date(booking.returnDate);
+                            let diffOfTime = returnDate.getTime() - pickupDate.getTime();
+                            let diffOfDays = diffOfTime / (1000 * 3600 * 24);
+
+                            $("#txtRentDuration").val(diffOfDays);
+                            console.log("Days: " + diffOfDays);
+
+                            let totCostOfExtraKM = $("#txtDriverPayment").val() * $("#txtRentDuration").val();
+                            $("#txtDriverPayment").val(totCostOfExtraKM);
+
+                            let dailyRate = car.dailyRate;
+                            $("#txtLoadDailyRate").val(dailyRate);
+
+                            $("#txtRentForUsingDays").val(dailyRate * diffOfDays);
+
+                            $("#txtCostForExtraKM").val(car.priceForExtraKM);
+
+                            let freeKM = car.freeKMForDay;
+
+                            calculateRemainLossDamageWaiverPayment();
+
+                            calculateExtraKM(freeKM);
+
+                            calculateTotalCostOfExtraKM();
+                        }
+                    });
+                }else if (booking.status === "Rented") {
+                    alert("This Booking is Already Paid!!");
+                }else {
+                    alert("This Booking does not Exists!!");
+                }
             }
         });
     }
@@ -1894,9 +1958,9 @@
         let carStatus;
 
         if (damageAmount === "0"){
-            carStatus = "Damaged";
-        }else {
             carStatus = "Available";
+        }else {
+            carStatus = "Damaged";
         }
 
         let car;
@@ -2046,6 +2110,9 @@
                             success: function (resp){
                                 alert(resp.message);
 
+                                //Load Admin Booking Request Table
+                                loadAllAcceptedBookingRequests();
+
                                 loadAllPendingBookingRequests();
                                 // setBookingRequestFormTextFieldValues();
                                 // setPaymentFormTextFieldValues();
@@ -2071,6 +2138,7 @@
 
                         alert("Paid Successfully");
                         setPaymentFormTextFieldValues("");
+                        $("#txtDriverPayment").val(1000.00);
                         // $("#txtTotalPayment").val(0);
                     },
                     error: function (err) {
@@ -2082,7 +2150,7 @@
     });
 
     //----------------Clear InputFields--------------
-    function setPaymentFormTextFieldValues(bookingId,pickupDate,returnDate,lossDWPAmount,damageCost,lossDWRemain,driverID1,driverPayment,
+    function setPaymentFormTextFieldValues(bookingId,pickupDate,returnDate,lossDWPAmount,damageCost,lossDWRemain,driverID1,
                                            rentDuration,dailyRate,rentForUsingDays,totalKM,extraKM,costForExtraKM,totalCostForExtraKM,cash,balance,searchBooking){
         $("#txtLoadBookingId").val(bookingId);
         // $("#txtDate").val(paymentDate);
@@ -2092,7 +2160,7 @@
         $("#txtDamageCost").val(damageCost);
         $("#txtRemain").val(lossDWRemain);
         $("#txtLoadDriverId1").val(driverID1);
-        $("#txtDriverPayment").val(driverPayment);
+        // $("#txtDriverPayment").val(driverPayment);
         $("#txtRentDuration").val(rentDuration);
         $("#txtLoadDailyRate").val(dailyRate);
         $("#txtRentForUsingDays").val(rentForUsingDays);
@@ -2233,6 +2301,8 @@
 
 
                         alert("Successfully Car Added to Maintenance");
+
+                        getRegisteredUsersCount();
                         // setCarDetailsFormTextFieldValues("");
                         // $("#selectType").val("");
                         // $("#selectBrand").val("");
@@ -2469,6 +2539,8 @@
                                     alert(resp.message);
                                     loadAllCars();
                                     loadMaintenanceCars();
+
+                                    getRegisteredUsersCount();
                                 },
                                 error: function (error) {
                                     var jsObject = JSON.parse(error.responseText).message;
@@ -2504,16 +2576,50 @@
             dataType: "json",
             success: function (resp) {
                 $("#availableCarsCount").text(resp.data.length);
-                $.ajax({
-                    method: "get",
-                    url: baseURL + "car?status=On Hire",
-                    contentType: 'application/json',
-                    async: true,
-                    success: function (allCar) {
-                        let reserved = allCar.data.length;
-                        $("#reservedCarsCount").text(reserved);
-                    }
-                });
+            }
+        });
+
+        $.ajax({
+            method: "get",
+            url: baseURL + "booking/pickupDate/today/status/Accepted",
+            contentType: 'application/json',
+            async: true,
+            success: function (resp1) {
+                $("#activeBookingsCount").text(resp1.data.length);
+                console.log("All: "+resp1.data.length);
+
+                // let reserved = resp1.data.length;
+                // $("#reservedCarsCount").text(reserved);
+            }
+        });
+
+        $.ajax({
+            method: "get",
+            url: baseURL + "booking/pickupDate/today/status/Accepted",
+            contentType: 'application/json',
+            async: true,
+            success: function (resp1) {
+                // $("#activeBookingsCount").text(resp1.data.length);
+                console.log("All: "+resp1.data);
+
+                let bookings = resp1.data;
+                console.log(bookings);
+                let ob=[];
+
+                for (let i in bookings) {
+                    let carId = bookings[i].car.regNo;
+
+                    console.log("New: " + carId);
+                    ob.push(carId);
+                }
+                console.log("C: " + ob);
+
+                    let newResp = [...new Set(ob)];
+                    console.log("New: "+newResp);
+
+                    let reserved = newResp.length;
+                    $("#reservedCarsCount").text(reserved);
+
             }
         });
 
@@ -2521,8 +2627,16 @@
             url: baseURL + "booking?pickupDate=today&status=Accepted",
             contentType: "application/json",
             dataType: "json",
-            success: function (today) {
-                $("#bookingsCount").text(today.data);
+            success: function (resp1) {
+
+                $.ajax ({
+                    url: baseURL + "booking?pickupDate=today&status=Rented",
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (resp2) {
+                        $("#bookingsCount").text(resp1.data + resp2.data);
+                    }
+                });
             }
         });
 
@@ -2544,15 +2658,15 @@
             }
         });
 
-        $.ajax ({
-            url: baseURL + "car?status=Damaged",
-            contentType: "application/json",
-            dataType: "json",
-            async: true,
-            success: function (today) {
-                $("#activeBookingsCount").text(today.data.length);
-            }
-        });
+        // $.ajax ({
+        //     url: baseURL + "booking?pickupDate=today&status=Accepted",
+        //     contentType: "application/json",
+        //     dataType: "json",
+        //     async: true,
+        //     success: function (today) {
+        //         $("#activeBookingsCount").text(today.data.length);
+        //     }
+        // });
 
         $.ajax ({
             url: baseURL + "car?status=Under Maintenance",
